@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import { Route, Redirect, Switch } from "react-router-dom";
-import Login from "./Login";
+import Routing from "./Routing";
 import { connect } from "react-redux";
 
 class Home extends Component {
@@ -12,10 +11,7 @@ class Home extends Component {
       <div>
         <Navigation user={user} />
         <div className="container">
-          <Switch>
-            <Route path='/login' component={Login} />
-            <Redirect to='/' />
-          </Switch>
+          <Routing user={user} />
           <hr />
           <Footer />
         </div>

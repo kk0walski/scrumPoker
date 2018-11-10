@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { FaGithub } from "react-icons/fa";
-import { firebase } from "./firebase/firebase";
-import { enterAsUser } from "./actions/User";
+import { firebase } from "../firebase/firebase";
+import { enterAsUser } from "../actions/User";
 
 class Login extends Component {
 
@@ -27,14 +27,14 @@ class Login extends Component {
 
     render() {
         return (
-            <div class="row">
-                <div class="col-md-7 mx-auto">
-                    <div class="card card-signin my-5">
-                        <img class="card-img-top" src="github-mark.png" alt="Github logo" />
-                        <div class="card-body">
-                            <h5 class="card-title">Github Loging</h5>
-                            <p class="card-text">Thanks github integration you can give scales to your github issues</p>
-                            <button class="btn btn-primary" onClick={this.handleSocialLogin}><FaGithub /> Login</button>
+            <div className="row">
+                <div className="col-md-7 mx-auto">
+                    <div className="card card-signin my-5">
+                        <img className="card-img-top" src="github-mark.png" alt="Github logo" />
+                        <div className="card-body">
+                            <h5 className="card-title">Github Loging</h5>
+                            <p className="card-text">Thanks github integration you can give scales to your github issues</p>
+                            <button className="btn btn-primary" onClick={this.handleSocialLogin}><FaGithub /> Login</button>
                         </div>
                     </div>
                 </div>
