@@ -5,8 +5,12 @@ import { firebase } from "../firebase/firebase";
 import { enterAsUser } from "../actions/User";
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSocialLogin = this.handleSocialLogin.bind(this);
+    }
 
-    handleSocialLogin = () => {
+    handleSocialLogin(event) {
         var provider = new firebase.auth.GithubAuthProvider();
         provider.addScope("repo");
         provider.addScope("user");
@@ -18,11 +22,9 @@ class Login extends Component {
                     const token = result.credential.accessToken;
                     this.props.enterAsUser(result.user, token);
                 }
+            }).catch(error => {
+                console.error(error.message);
             });
-    };
-
-    handleSocialLoginFailure = err => {
-        console.error(err);
     };
 
     render() {
@@ -34,7 +36,7 @@ class Login extends Component {
                         <div className="card-body">
                             <h5 className="card-title">Github Loging</h5>
                             <p className="card-text">Thanks github integration you can give scales to your github issues</p>
-                            <button className="btn btn-primary" onClick={this.handleSocialLogin}><FaGithub /> Login</button>
+                            <button className="btn btn-primary" onClick={event => this.handleSocialLogin(event)}><FaGithub /> Login</button>
                         </div>
                     </div>
                 </div>
@@ -45,9 +47,9 @@ class Login extends Component {
 
 const mapDispatchToProps = dispatch => ({
     enterAsUser: (user, token) => dispatch(enterAsUser(user, token))
-  });
-  
-  export default connect(
+});
+
+export default connect(
     undefined,
     mapDispatchToProps
-  )(Login);
+)(Login);
