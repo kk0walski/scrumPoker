@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch } from "react-router-dom";
 import Login from "./Login";
+import Dashboard from "./Dasboard";
 
 export default class Routing extends Component {
     render() {
@@ -8,8 +9,9 @@ export default class Routing extends Component {
         if (user) {
             return (
                 <Switch >
-                <Redirect to='/' />
-            </Switch >
+                    <Route path='/dashboard' component={Dashboard}/>
+                    <Redirect to='/dashboard' />
+                </Switch >
             )
         } else {
             return (
