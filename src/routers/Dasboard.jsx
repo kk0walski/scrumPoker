@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
-import GamesList from "./GamesList"
-import CreateGame from "./CreateGame"
-import CreateList from "./CreateList"
-import IssuesLists from './IssuesLists'
-import Account from "./Account"
+import GamesList from "../components/GamesList"
+import CreateGame from "../components/CreateGame"
+import CreateList from "../components/CreateList"
+import IssuesLists from '../components/IssuesLists'
+import Account from "../components/Account"
 
 export default class Dasboard extends Component {
     render() {
         return (
-            <div class="container-fluid">
-                <div class="row wrapper">
+            <div className="container-fluid">
+                <div className="row wrapper">
                     <aside className="col-12 col-sm-3 p-0 bg-light">
                         <nav className="navbar navbar-expand-sm navbar-light bg-light align-items-start flex-sm-column flex-row">
                             <p className="navbar-brand"><i className="fa fa-bullseye fa-fw"></i> Dashboard</p>
@@ -39,7 +39,7 @@ export default class Dasboard extends Component {
                             </div>
                         </nav>
                     </aside>
-                    <main class="col bg-faded py-3">
+                    <main className="col bg-faded py-3">
                         <Switch >
                             <Route path='/dashboard/saved_games' component={GamesList} />
                             <Route path="/dashboard/create_game" component={CreateGame} />

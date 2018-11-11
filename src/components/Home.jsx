@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
-import Routing from "./Routing";
+import Routing from "../routers/Routing";
 import { connect } from "react-redux";
 
 class Home extends Component {

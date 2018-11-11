@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import { Route, Switch, withRouter } from "react-router-dom";
-import Home from './Home';
+import Home from '../components/Home';
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -29,4 +29,3 @@ export default withRouter(
     mapStateToProps
   )(App)
 );
-

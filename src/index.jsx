@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import configureStore from "./store/configureStore";
-import AppRouter from "./components/App";
+import AppRouter from "./routers/App";
 import * as serviceWorker from './serviceWorker';
 
 const store = configureStore();
