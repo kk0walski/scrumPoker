@@ -29,7 +29,6 @@ class Repositories extends Component {
             me.listRepos({
                 affiliation: 'owner'
             }).then(result => {
-                console.log("REPOS: ", result.data);
                 this.setState({
                     data: result.data,
                     totalItemsCount: result.data.length,
@@ -53,14 +52,15 @@ class Repositories extends Component {
 
     render() {
         const { partData } = this.state;
+        const {match} = this.props;
         if (partData) {
             return (
-                <div>
+                <div className="container">
                     <h1>Your Github Repositories</h1>
                     <hr />
                     <ul className="list-group">
                         {partData.map(node => (
-                            <RepositoryItem repo={node} />
+                            <RepositoryItem repo={node} match={match} key={node.id}/>
                         ))}
                     </ul>
                     <hr />

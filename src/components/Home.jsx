@@ -10,11 +10,9 @@ class Home extends Component {
     return (
       <div>
         <Navigation user={user} />
-        <div className="container">
           <Routing user={user} />
           <hr />
           <Footer />
-        </div>
       </div>
     )
   }

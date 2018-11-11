@@ -10,8 +10,8 @@ export default class Routing extends Component {
         if (user) {
             return (
                 <Switch >
-                    <Route path="/repositories" component={Repositories}/>
-                    <Route path='/dashboard' component={Dashboard}/>
+                    <Route exact path="/repositories" component={Repositories} />
+                    <Route path="/repositories/:id" component={Dashboard} />
                     <Redirect to='/repositories' />
                 </Switch >
             )
