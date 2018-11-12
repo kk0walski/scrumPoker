@@ -1,35 +1,38 @@
 import React, { Component } from 'react';
 import Github from 'github-api';
 import { connect } from "react-redux";
-import classnames from 'classnames';
 import Pagination from "react-js-pagination";
-import IssueItem from './IssueItem'
+import IssueItem from './IssueItem';
+import classnames from 'classnames';
 
-class Issues extends Component {
+class ImportIssues extends Component {
 
     constructor(props) {
         super(props);
         this.changeFilter = this.changeFilter.bind(this);
         this.checkLabel = this.checkLabel.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
+        this.importData = this.importData.bind(this)
         this.filterData = this.filterData.bind(this);
-        this.handlePageChange = this.handlePageChange.bind(this)
-        this.refresh = this.refresh.bind(this)
         if (this.props.user) {
             this.gh = new Github({
                 token: props.user.token
             });
         }
         this.state = {
-            data: undefined,
-            refreshDisabled: false,
-            filteredData: undefined,
+            organisation: undefined,
+            repository: undefined,
+            data: [],
+            filteredData: [],
             filterText: '',
             labels: [],
+            myLabels: [],
             filterLabels: [],
-            partData: undefined,
+            partData: [],
             itemsCountPerPage: 10,
             activePage: 1,
-            totalItemsCount: undefined,
+            totalItemsCount: 0,
             pageRangeDisplayed: 10
         }
     }
@@ -37,18 +40,42 @@ class Issues extends Component {
     componentDidMount() {
         const { params } = this.props.match;
         var issues = this.gh.getIssues(params.owner, params.name);
-        issues.listIssues().then(result => {
-            this.setState({
-                data: result.data,
-                filteredData: result.data,
-                totalItemsCount: result.data.length,
-                partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
-            })
-        })
         issues.listLabels().then(result => {
             this.setState({
-                labels: result.data.map(element => element.name)
+                myLabels: result.data.map(element => element.name)
             })
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.organisation !== prevState.organisation ||
+            this.state.repository !== prevState.repository) {
+            var issues = this.gh.getIssues(this.state.organisation, this.state.repository);
+            issues.listIssues({
+                labels: this.state.filterLabels.toString()
+            }).then(result => {
+                this.setState({
+                    data: result.data,
+                    filteredData: result.data,
+                    totalItemsCount: result.data.length,
+                    partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
+                })
+            })
+            issues.listLabels().then(result => {
+                this.setState({
+                    labels: Array.from(new Set(result.data.map(element => element.name)))
+                })
+            })
+        }
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        console.log("SUBMIT")
+        this.setState({
+            organisation: event.target.elements.organisation.value,
+            repository: event.target.elements.repository.value,
+            filterLabels: event.target.elements.labels.value.split(',')
         })
     }
 
@@ -58,8 +85,7 @@ class Issues extends Component {
     }
 
     filterData(filterLabels) {
-        const { params } = this.props.match;
-        var issues = this.gh.getIssues(params.owner, params.name);
+        var issues = this.gh.getIssues(this.state.organisation, this.state.repository);
         issues.listIssues({
             labels: filterLabels.toString()
         }).then(result => {
@@ -74,6 +100,13 @@ class Issues extends Component {
     changeFilter(event) {
         this.setState({
             filterText: event.target.value
+        })
+    }
+
+    handlePageChange(pageNumber) {
+        this.setState({
+            partData: this.paginate(this.state.filteredData, this.state.itemsCountPerPage, pageNumber),
+            activePage: pageNumber
         })
     }
 
@@ -94,59 +127,60 @@ class Issues extends Component {
         }
     }
 
-    handlePageChange(pageNumber) {
-        this.setState({
-            partData: this.paginate(this.state.filteredData, this.state.itemsCountPerPage, pageNumber),
-            activePage: pageNumber
-        })
-    }
-
-    refresh() {
-        const { params } = this.props.match;
-        this.setState({
-            refreshDisabled: true
-        })
-        var issues = this.gh.getIssues(params.owner, params.name);
-        issues.listIssues().then(result => {
-            this.setState({
-                data: result.data,
-                totalItemsCount: result.data.length,
-                partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
-                refreshDisabled: false
-            })
-        })
-        issues.listLabels().then(result => {
-            this.setState({
-                labels: result.data.map(element => element.name)
+    importData() {
+        const { filteredData, myLabels } = this.state;
+        const { owner, name } = this.props.match.params;
+        var issues = this.gh.getIssues(owner, name);
+        filteredData.forEach((element) => {
+            const newLabels = Array.from(new Set(element.labels.map(label => label.name))).filter(name => !myLabels.includes(name))
+            const importIssue = { body: element.body, title: element.title, labels: newLabels}
+            issues.createIssue(importIssue).catch(error => {
+                alert("ERROR: ", error);
             })
         })
     }
 
     render() {
-        const { partData, labels, filterText, filterLabels, refreshDisabled } = this.state;
+        const { partData, labels, filterText, filterLabels, myLabels } = this.state;
         const { match } = this.props;
-        if (partData) {
+        if (myLabels.length < 1 || myLabels === undefined) {
             return (
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col">
-                            <h1>{match.params.name}</h1>
+                <p>Loading...</p>
+            )
+        } else {
+            return (
+                <div>
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="organisation">Organisation name</label>
+                            <input type="text" className="form-control" name="organisation" id="orgInput" aria-describedby="orgHelp" placeholder="Enter organisation" />
+                            <small id="orgHelp" className="form-text text-muted">Organisation which own this repository.</small>
                         </div>
-                        <div className="col">
-                        <button type="button" onClick={this.refresh} className={classnames('btn', 'btn-light', 'float-right', { disabled: refreshDisabled })}>Refresh</button>
+                        <div className="form-group">
+                            <label htmlFor="Repository">Repository</label>
+                            <input type="text" className="form-control" name="repository" id="exampleRepository" placeholder="Repository" />
                         </div>
-                    </div>
-                    <hr />
+                        <div className="form-group">
+                            <label htmlFor="organisation">Labels</label>
+                            <input type="text" className="form-control" name="labels" id="labelsInput" aria-describedby="labelsHelp" placeholder="Enter organisation" />
+                            <small id="labelsHelp" className="form-text text-muted">Labels for filtering data</small>
+                        </div>
+                        <button type="submit" className="btn btn-primary">SEARCH</button>
+                    </form>
+
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
+
+                                {/*Dropdown menu labels start */}
+
                                 <li className="nav-item dropdown">
                                     <p className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Labels
-                                    </p>
+                                        </p>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <input type="text" className="form-control" placeholder="Filter" onChange={this.changeFilter} />
                                         <div style={{ maxHeight: "200px", overflow: 'auto' }} >
@@ -168,6 +202,13 @@ class Issues extends Component {
                                         </div>
                                     </div>
                                 </li>
+
+                                {/*Dropdown menu labels start */}
+
+                                <li class="nav-item">
+                                    <button class="btn btn-outline-success" type="button" onClick={this.importData}>Import filtered data</button>
+                                </li>
+
                             </ul>
                         </div>
                     </nav>
@@ -187,11 +228,6 @@ class Issues extends Component {
                         itemClass="page-item"
                         linkClass="page-link"
                     />
-                </div>
-            )
-        } else {
-            return (
-                <div>
 
                 </div>
             )
@@ -202,4 +238,4 @@ class Issues extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(Issues);
+export default connect(mapStateToProps)(ImportIssues);

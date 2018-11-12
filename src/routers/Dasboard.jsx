@@ -4,9 +4,9 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import GamesList from "../components/GamesList"
 import CreateGame from "../components/CreateGame"
 import CreateList from "../components/CreateList"
-import IssuesLists from '../components/IssuesLists'
 import Account from "../components/Account";
 import Issues from "../components/Issues";
+import Import from "../components/ImportIssues";
 
 export default class Dasboard extends Component {
     render() {
@@ -26,13 +26,13 @@ export default class Dasboard extends Component {
                                         <NavLink exact to={`${match.url}/issues`} className="nav-link" activeClassName="active">Issues</NavLink>
                                     </li>
                                     <li className="nav-item">
+                                        <NavLink exact to={`${match.url}/import`} className="nav-link" activeClassName="active">Import issues</NavLink>
+                                    </li>
+                                    <li className="nav-item">
                                         <NavLink exact to={`${match.url}/saved_games`} className="nav-link" activeClassName="active">Saved games</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         <NavLink exact to={`${match.url}/create_game`} className="nav-link" activeClassName="active">Create game</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink exact to={`${match.url}/issues_lists`} className="nav-link" activeClassName="active">Saved lists</NavLink>
                                     </li>
                                     <li className="nav-item">
                                         <NavLink exact to={`${match.url}/create_list`} className="nav-link" activeClassName="active">Create List</NavLink>
@@ -47,10 +47,10 @@ export default class Dasboard extends Component {
                     <main className="col bg-faded py-3">
                         <Switch >
                             <Route path='/repositories/:owner/:name/issues' component={Issues} />
+                            <Route path='/repositories/:owner/:name/import' component={Import}/>
                             <Route path='/repositories/:owner/:name/saved_games' component={GamesList} />
                             <Route path="/repositories/:owner/:name/create_game" component={CreateGame} />
                             <Route path="/repositories/:owner/:name/create_list" component={CreateList} />
-                            <Route path="/repositories/:owner/:name/issues_lists" component={IssuesLists} />
                             <Route path="//repositories/:owner/:name/account" component={Account} />
                             <Redirect to={`${match.url}/issues`} />
                         </Switch >

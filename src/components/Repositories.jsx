@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Pagination from "react-js-pagination";
 import RepositoryItem from "./RepositoryItem";
 import Github from 'github-api';
+import classnames from 'classnames';
 
 class Repositories extends Component {
 
@@ -21,7 +22,8 @@ class Repositories extends Component {
             itemsCountPerPage: 10,
             activePage: 1,
             totalItemsCount: undefined,
-            pageRangeDisplayed: 10
+            pageRangeDisplayed: 10,
+            refreshDisabled: false
         }
     }
 
@@ -52,6 +54,9 @@ class Repositories extends Component {
 
     refresh() {
         var me = this.gh.getUser();
+        this.setState({
+            refreshDisabled: true
+        })
         me.listRepos({
             affiliation: 'owner'
         }).then(result => {
@@ -59,12 +64,13 @@ class Repositories extends Component {
                 data: result.data,
                 totalItemsCount: result.data.length,
                 partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
+                refreshDisabled: false
             })
         })
     }
 
     render() {
-        const { partData } = this.state;
+        const { partData, refreshDisabled } = this.state;
         const { match } = this.props;
         if (partData) {
             return (
@@ -74,7 +80,7 @@ class Repositories extends Component {
                             <h1>Your Github Repositories</h1>
                         </div>
                         <div className="col-4">
-                            <button type="button" onClick={this.refresh} className="btn btn-light float-right">Refresh</button>
+                            <button type="button" onClick={this.refresh} className={classnames('btn', 'btn-light', 'float-right', { disabled: refreshDisabled })}>Refresh</button>
                         </div>
                     </div>
                     <hr />
@@ -90,9 +96,9 @@ class Repositories extends Component {
                         totalItemsCount={this.state.totalItemsCount}
                         pageRangeDisplayed={10}
                         onChange={this.handlePageChange}
-                        innerclassName="pagination justify-content-center"
-                        itemclassName="page-item"
-                        linkclassName="page-link"
+                        innerClass="pagination justify-content-center"
+                        itemClass="page-item"
+                        linkClass="page-link"
                     />
                 </div>
             )
