@@ -9,6 +9,12 @@ class Repositories extends Component {
     constructor(props) {
         super(props);
         this.handlePageChange = this.handlePageChange.bind(this);
+        this.refresh = this.refresh.bind(this);
+        if (this.props.user) {
+            this.gh = new Github({
+                token: props.user.token
+            });
+        }
         this.state = {
             data: undefined,
             partData: undefined,
@@ -20,22 +26,16 @@ class Repositories extends Component {
     }
 
     componentDidMount() {
-        const { user } = this.props;
-        if (user) {
-            var gh = new Github({
-                token: user.token
+        var me = this.gh.getUser();
+        me.listRepos({
+            affiliation: 'owner'
+        }).then(result => {
+            this.setState({
+                data: result.data,
+                totalItemsCount: result.data.length,
+                partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
             })
-            var me = gh.getUser();
-            me.listRepos({
-                affiliation: 'owner'
-            }).then(result => {
-                this.setState({
-                    data: result.data,
-                    totalItemsCount: result.data.length,
-                    partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
-                })
-            })
-        }
+        })
     }
 
     paginate(array, page_size, page_number) {
@@ -50,17 +50,37 @@ class Repositories extends Component {
         })
     }
 
+    refresh() {
+        var me = this.gh.getUser();
+        me.listRepos({
+            affiliation: 'owner'
+        }).then(result => {
+            this.setState({
+                data: result.data,
+                totalItemsCount: result.data.length,
+                partData: this.paginate(result.data, this.state.itemsCountPerPage, 1),
+            })
+        })
+    }
+
     render() {
         const { partData } = this.state;
-        const {match} = this.props;
+        const { match } = this.props;
         if (partData) {
             return (
                 <div className="container">
-                    <h1>Your Github Repositories</h1>
+                    <div className="row">
+                        <div className="col-8">
+                            <h1>Your Github Repositories</h1>
+                        </div>
+                        <div className="col-4">
+                            <button type="button" onClick={this.refresh} className="btn btn-light float-right">Refresh</button>
+                        </div>
+                    </div>
                     <hr />
                     <ul className="list-group">
                         {partData.map(node => (
-                            <RepositoryItem repo={node} match={match} key={node.id}/>
+                            <RepositoryItem repo={node} match={match} key={node.id} />
                         ))}
                     </ul>
                     <hr />
@@ -70,9 +90,9 @@ class Repositories extends Component {
                         totalItemsCount={this.state.totalItemsCount}
                         pageRangeDisplayed={10}
                         onChange={this.handlePageChange}
-                        innerClass="pagination justify-content-center"
-                        itemClass="page-item"
-                        linkClass="page-link"
+                        innerclassName="pagination justify-content-center"
+                        itemclassName="page-item"
+                        linkclassName="page-link"
                     />
                 </div>
             )

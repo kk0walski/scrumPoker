@@ -9,11 +9,11 @@ export default class RepositoryItem extends Component {
         return (
             <li key={repo.id} className="list-group-item list-group-item-light">
                 <div className="row">
-                    <div className={classnames('col-6', 'col-md-8', 'pr-md-3')}>
+                    <div className={classnames('col-6', 'float-left', 'col-md-8', 'pr-md-3')}>
                         <h3>
                             <Link key={repo.id}
                                 className="v-align-middle"
-                                to={`${match.path}/${repo.id}`}>
+                                to={`${match.path}/${repo.owner.login}/${repo.name}`}>
                                 {repo.name}
                             </Link>
                         </h3>
@@ -30,7 +30,7 @@ export default class RepositoryItem extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className={classnames('flex-shrink-0', 'col-6', 'col-md-4', 'pt-2', 'pr-md-3')}>
+                    <div className={classnames('flex-shrink-0', 'float-right', 'col-6', 'col-md-4', 'pt-2', 'pr-md-3')}>
                         <div className={classnames('text-right')}>
                             {repo.language}
                         </div>

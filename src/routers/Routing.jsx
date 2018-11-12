@@ -11,7 +11,7 @@ export default class Routing extends Component {
             return (
                 <Switch >
                     <Route exact path="/repositories" component={Repositories} />
-                    <Route path="/repositories/:id" component={Dashboard} />
+                    <Route path="/repositories/:user/:repo" component={Dashboard} />
                     <Redirect to='/repositories' />
                 </Switch >
             )
