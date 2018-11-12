@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 
 export default class RepositoryItem extends Component {
     render() {
-        const { repo, match } = this.props;
+        const { repo } = this.props;
         return (
             <li key={repo.id} className="list-group-item list-group-item-light">
                 <div className="row">
@@ -13,7 +13,7 @@ export default class RepositoryItem extends Component {
                         <h3>
                             <Link key={repo.id}
                                 className="v-align-middle"
-                                to={`${match.path}/${repo.owner.login}/${repo.name}`}>
+                                to={`/repositories/${repo.owner.login}/${repo.name}`}>
                                 {repo.name}
                             </Link>
                         </h3>
