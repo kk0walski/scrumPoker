@@ -16,8 +16,7 @@ export default class IssueItem extends Component {
                             {issue.title}
                         </Link>
                         {issue.labels.map(label => (
-                            <span key={label.id} className="badge" style={{
-                                color: "#fff",
+                            <span key={label.id} className="badge badge-light" style={{
                                 backgroundColor: `#${label.color}`
                             }}>
                                 {label.name}
