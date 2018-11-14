@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ListIssues from "./IssuesList";
 import { connect } from "react-redux";
-import Github from 'github-api';
 
 class ImportIssues extends Component {
 
@@ -9,11 +8,20 @@ class ImportIssues extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.importData = this.importData.bind(this);
-        if (this.props.user) {
-            this.gh = new Github({
-                token: props.user.token
-            });
-        }
+        this.octokit = require("@octokit/rest")({
+            timeout: 0,
+            headers: {
+                accept: "application/vnd.github.v3+json",
+                "user-agent": "octokit/rest.js v1.2.3" // v1.2.3 will be current version
+            },
+
+            // custom GitHub Enterprise URL
+            baseUrl: "https://api.github.com"
+        });
+        this.octokit.authenticate({
+            type: "app",
+            token: props.user.token
+        });
         this.state = {
             organisation: undefined,
             repository: undefined,
@@ -21,15 +29,19 @@ class ImportIssues extends Component {
         }
     }
 
-    importData(data, toMove) {
+    importData(toMove) {
         const { owner, name } = this.props.match.params;
-        var issues = this.gh.getIssues(owner, name);
-        const filteredData = toMove.map(element => data[element]);
-        filteredData.forEach((element) => {
-            const newLabels = Array.from(new Set(element.labels.map(label => label.name)))
-            const importIssue = { body: element.body, title: element.title, labels: newLabels }
-            issues.createIssue(importIssue).catch(error => {
-                alert("ERROR: ", error);
+        const { organisation, repository } = this.state;
+        toMove.forEach(issue => {
+            this.octokit.issues.get({
+                owner: organisation,
+                repo: repository,
+                number: issue
+            }).then(result => {
+                const { data } = result;
+                const newLabels = Array.from(new Set(data.labels.map(label => label.name)))
+                const importIssue = { owner, repo:name, body: data.body, title: data.title, labels: newLabels}
+                this.octokit.issues.create(importIssue)
             })
         })
     }

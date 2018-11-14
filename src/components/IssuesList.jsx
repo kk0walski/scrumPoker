@@ -39,6 +39,7 @@ class IssuesList extends Component {
             itemsCountPerPage: 20,
             totalItemsCount: 0,
             milestone: undefined,
+            checkedIssues: [],
             owner,
             repo
         };
@@ -127,7 +128,6 @@ class IssuesList extends Component {
                         per_page: itemsCountPerPage,
                     })
                     .then(result => {
-                        console.log("RESULT: ", result);
                         this.setState({
                             result,
                             filterLabels,
@@ -359,9 +359,23 @@ class IssuesList extends Component {
             });
     }
 
+    checkIssue(e, IssueNumber) {
+        e.preventDefault();
+        const { checkedIssues } = this.state;
+        if (!checkedIssues.includes(IssueNumber)) {
+            this.setState({
+                checkedIssues: [...checkedIssues, IssueNumber]
+            })
+        } else {
+            this.setState({
+                checkedIssues: checkedIssues.filter(issue => issue !== IssueNumber)
+            })
+        }
+    }
+
     render() {
-        const { data } = this.state;
-        const { match, owner, repo } = this.props;
+        const { data, checkedIssues } = this.state;
+        const { match, owner, repo, buttonText } = this.props;
         if (data) {
             return (
                 <div className="container-fluid">
@@ -371,6 +385,9 @@ class IssuesList extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
+                                <li class="nav-item" onClick={() => this.props.moveIssues(checkedIssues)}>
+                                    <a class="nav-link">{buttonText}</a>
+                                </li>
                                 <li className="nav-item" onClick={this.checkPage}>
                                     <a className="nav-link">Check Page</a>
                                 </li>
@@ -382,7 +399,7 @@ class IssuesList extends Component {
                     </nav>
                     <ul className="list-group" >
                         {data.map(node => (
-                            <li key={node.id} className={classnames('list-group-item')} onClick={(e) => this.checkIssue(e, node)}>
+                            <li key={node.id} className={classnames('list-group-item', { 'list-group-item-primary': checkedIssues.includes(node.number) })} onClick={(e) => this.checkIssue(e, node.number)}>
                                 <IssueItem issue={node} match={match} key={node.id} />
                             </li>
                         ))}
