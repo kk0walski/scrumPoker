@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import IssueItem from './IssueItem';
 import Labels from "./Labels";
 import Autor from "./Autor";
-import Milestone from "./Milestone"
+import Milestone from "./Milestone";
 
 class IssuesList extends Component {
 
@@ -16,6 +16,7 @@ class IssuesList extends Component {
         this.handleLabelsFilter = this.handleLabelsFilter.bind(this);
         this.handleAutorFilter = this.handleAutorFilter.bind(this);
         this.handleMileStoneFilter = this.handleMileStoneFilter.bind(this);
+        this.refresh = this.refresh.bind(this);
         this.octokit = require("@octokit/rest")({
             timeout: 0,
             headers: {
@@ -41,7 +42,8 @@ class IssuesList extends Component {
             milestone: undefined,
             checkedIssues: [],
             owner,
-            repo
+            repo,
+            refreshDisabled: false
         };
     }
 
@@ -340,6 +342,101 @@ class IssuesList extends Component {
         }
     }
 
+    refresh() {
+        const { owner, repo, itemsCountPerPage, filterLabels, autor, milestone } = this.state;
+        this.setState({
+            refreshDisabled: true
+        })
+        if (autor !== null) {
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
+                        milestone,
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            milestone,
+                            data: result.data,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            milestone,
+                            data: result.data,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
+        } else {
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        milestone,
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
+        }
+        this.setState({
+            refreshDisabled: false
+        })
+    }
+
     handlePageChange(pageNumber) {
         const { owner, repo, filterLabels, itemsCountPerPage } = this.state;
         this.octokit.issues
@@ -374,11 +471,20 @@ class IssuesList extends Component {
     }
 
     render() {
-        const { data, checkedIssues, filterLabels } = this.state;
+        const { data, checkedIssues, filterLabels, refreshDisabled} = this.state;
         const { match, owner, repo, buttonText } = this.props;
         if (data) {
             return (
                 <div className="container-fluid">
+                    <div className="row">
+                        <div className="col">
+                            <h1>{repo}</h1>
+                        </div>
+                        <div className="col">
+                            <button type="button" onClick={this.refresh} className={classnames('btn', 'btn-light', 'float-right', { disabled: refreshDisabled })}>Refresh</button>
+                        </div>
+                    </div>
+                    <hr />
                     <nav className="navbar navbar-expand-lg navbar-light bg-light">
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
