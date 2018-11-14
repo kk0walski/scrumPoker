@@ -39,7 +39,7 @@ class ImportIssues extends Component {
         this.setState({
             organisation: event.target.elements.organisation.value,
             repository: event.target.elements.repository.value,
-            filterLabels: event.target.elements.labels.value.split(',')
+            filterLabels: (event.target.elements.labels.value === "" ? [] : event.target.elements.labels.value.split(','))
         })
     }
 

@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
 import GamesList from "../components/GamesList"
 import CreateGame from "../components/CreateGame"
-import CreateList from "../components/CreateList"
 import Account from "../components/Account";
 import Issues from "../components/Issues";
 import Import from "../components/ImportIssues";
@@ -35,9 +34,6 @@ export default class Dasboard extends Component {
                                         <NavLink exact to={`${match.url}/create_game`} className="nav-link" activeClassName="active">Create game</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink exact to={`${match.url}/create_list`} className="nav-link" activeClassName="active">Create List</NavLink>
-                                    </li>
-                                    <li className="nav-item">
                                         <NavLink exact to={`${match.url}/account`} className="nav-link" activeClassName="active">My Account</NavLink>
                                     </li>
                                 </ul>
@@ -50,7 +46,6 @@ export default class Dasboard extends Component {
                             <Route path='/repositories/:owner/:name/import' component={Import}/>
                             <Route path='/repositories/:owner/:name/saved_games' component={GamesList} />
                             <Route path="/repositories/:owner/:name/create_game" component={CreateGame} />
-                            <Route path="/repositories/:owner/:name/create_list" component={CreateList} />
                             <Route path="//repositories/:owner/:name/account" component={Account} />
                             <Redirect to={`${match.url}/issues`} />
                         </Switch >
