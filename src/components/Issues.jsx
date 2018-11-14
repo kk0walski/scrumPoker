@@ -3,7 +3,7 @@ import ListIssues from "./IssuesList";
 
 export default class Issues extends Component {
 
-    createList(data, toMove) {
+    createList(toMove) {
         console.log("IT WORKS!")
     }
 

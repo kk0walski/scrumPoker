@@ -17,6 +17,7 @@ class IssuesList extends Component {
         this.handleAutorFilter = this.handleAutorFilter.bind(this);
         this.handleMileStoneFilter = this.handleMileStoneFilter.bind(this);
         this.refresh = this.refresh.bind(this);
+        this.checkPage = this.checkPage.bind(this);
         this.octokit = require("@octokit/rest")({
             timeout: 0,
             headers: {
@@ -496,6 +497,19 @@ class IssuesList extends Component {
                     activePage: pageNumber
                 });
             });
+    }
+
+    checkPage() {
+        if (this.state.checkedIssues.length > 0) {
+            this.setState({
+                checkedIssues: []
+            })
+        }
+        else {
+            this.setState({
+                checkedIssues: this.state.data.map(issue => issue.number)
+            })
+        }
     }
 
     checkIssue(e, IssueNumber) {
