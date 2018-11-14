@@ -47,7 +47,7 @@ class Milestone extends Component {
 
     checMilestone(event, newMilestone){
         this.setState({
-            milestoneSearch: (newMilestone.toString() === this.state.milestoneSearch ? '*' : newMilestone.toString())
+            milestoneSearch: (newMilestone.toString() === this.state.milestoneSearch ? undefined : newMilestone.toString())
         })
     }
 

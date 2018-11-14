@@ -38,7 +38,7 @@ class IssuesList extends Component {
             activePage: 1,
             itemsCountPerPage: 20,
             totalItemsCount: 0,
-            milestone: '*',
+            milestone: undefined,
             owner,
             repo
         };
@@ -53,8 +53,7 @@ class IssuesList extends Component {
     }
 
     componentDidMount() {
-        const { owner, repo, filterLabels } = this.props;
-        const { itemsCountPerPage } = this.state;
+        const { owner, repo, filterLabels, itemsCountPerPage } = this.state;
         this.octokit.issues
             .getForRepo({
                 owner,
@@ -63,7 +62,6 @@ class IssuesList extends Component {
                 per_page: itemsCountPerPage
             })
             .then(result => {
-                console.log("RESULT: ", result);
                 this.setState({
                     result,
                     data: result.data,
@@ -74,151 +72,276 @@ class IssuesList extends Component {
     }
 
     handleLabelsFilter(filterLabels) {
-        const { owner, repo } = this.props;
-        const { itemsCountPerPage, autor, milestone } = this.state;
-        console.log("AUTOR: ", autor);
+        const { owner, repo, itemsCountPerPage, autor, milestone } = this.state;
         if (autor !== null) {
-            this.octokit.issues
-                .getForRepo({
-                    owner,
-                    repo,
-                    labels: filterLabels.toString(),
-                    creator: autor,
-                    milestone,
-                    per_page: itemsCountPerPage,
-                })
-                .then(result => {
-                    this.setState({
-                        result,
-                        filterLabels,
-                        autor,
-                        data: result.data,
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
                         milestone,
-                        activePage: 1,
-                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
                     });
-                });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
         } else {
-            this.octokit.issues
-                .getForRepo({
-                    owner,
-                    repo,
-                    labels: filterLabels.toString(),
-                    milestone,
-                    per_page: itemsCountPerPage,
-                })
-                .then(result => {
-                    console.log("RESULT: ", result);
-                    this.setState({
-                        result,
-                        filterLabels,
-                        autor,
-                        data: result.data,
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
                         milestone,
-                        activePage: 1,
-                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
-                    });
-                })
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        console.log("RESULT: ", result);
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    })
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        console.log("RESULT: ", result);
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    })
+            }
         }
     }
 
     handleAutorFilter(autor) {
-        const { owner, repo } = this.props;
-        const { itemsCountPerPage, filterLabels, milestone } = this.state;
+        const { owner, repo, itemsCountPerPage, filterLabels, milestone } = this.state;
         if (autor !== null) {
-            this.octokit.issues
-                .getForRepo({
-                    owner,
-                    repo,
-                    labels: filterLabels.toString(),
-                    creator: autor,
-                    milestone,
-                    per_page: itemsCountPerPage,
-                })
-                .then(result => {
-                    this.setState({
-                        result,
-                        filterLabels,
-                        autor,
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
                         milestone,
-                        data: result.data,
-                        activePage: 1,
-                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            milestone,
+                            data: result.data,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
                     });
-                });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            milestone,
+                            data: result.data,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
         } else {
-            this.octokit.issues
-                .getForRepo({
-                    owner,
-                    repo,
-                    labels: filterLabels.toString(),
-                    milestone,
-                    per_page: itemsCountPerPage,
-                })
-                .then(result => {
-                    this.setState({
-                        result,
-                        filterLabels,
-                        autor,
-                        data: result.data,
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
                         milestone,
-                        activePage: 1,
-                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
                     });
-                });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
         }
     }
 
     handleMileStoneFilter(milestone) {
-        const { owner, repo } = this.props;
-        const { itemsCountPerPage, filterLabels, autor } = this.state;
+        const { owner, repo, itemsCountPerPage, filterLabels, autor } = this.state;
         if (autor !== null) {
-            this.octokit.issues
-                .getForRepo({
-                    owner,
-                    repo,
-                    labels: filterLabels.toString(),
-                    creator: autor,
-                    milestone,
-                    per_page: itemsCountPerPage,
-                })
-                .then(result => {
-                    this.setState({
-                        result,
-                        filterLabels,
-                        autor,
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
                         milestone,
-                        data: result.data,
-                        activePage: 1,
-                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            milestone,
+                            data: result.data,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
                     });
-                });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        creator: autor,
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            milestone,
+                            data: result.data,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
         } else {
-            this.octokit.issues
-                .getForRepo({
-                    owner,
-                    repo,
-                    labels: filterLabels.toString(),
-                    milestone,
-                    per_page: itemsCountPerPage,
-                })
-                .then(result => {
-                    this.setState({
-                        result,
-                        filterLabels,
-                        autor,
-                        data: result.data,
+            if (milestone) {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
                         milestone,
-                        activePage: 1,
-                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
                     });
-                });
+            } else {
+                this.octokit.issues
+                    .getForRepo({
+                        owner,
+                        repo,
+                        labels: filterLabels.toString(),
+                        per_page: itemsCountPerPage,
+                    })
+                    .then(result => {
+                        this.setState({
+                            result,
+                            filterLabels,
+                            autor,
+                            data: result.data,
+                            milestone,
+                            activePage: 1,
+                            totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage)
+                        });
+                    });
+            }
         }
     }
 
     handlePageChange(pageNumber) {
-        const { owner, repo, filterLabels } = this.props;
-        const { itemsCountPerPage } = this.state;
+        const { owner, repo, filterLabels, itemsCountPerPage } = this.state;
         this.octokit.issues
             .getForRepo({
                 owner,
@@ -253,7 +376,7 @@ class IssuesList extends Component {
                                 </li>
                                 <Labels owner={owner} repo={repo} labelFilter={this.handleLabelsFilter} />
                                 <Autor owner={owner} repo={repo} autorFilter={this.handleAutorFilter} />
-                                <Milestone owner={owner} repo={repo} milestoneFilter={this.handleMileStoneFilter}/>
+                                <Milestone owner={owner} repo={repo} milestoneFilter={this.handleMileStoneFilter} />
                             </ul>
                         </div>
                     </nav>

@@ -32,6 +32,7 @@ class Repositories extends Component {
         me.listRepos({
             affiliation: 'owner'
         }).then(result => {
+            console.log("DATA: ", result);
             this.setState({
                 data: result.data,
                 totalItemsCount: result.data.length,
