@@ -6,7 +6,7 @@ class Labels extends Component {
 
     constructor(props) {
         super(props);
-        const { owner, repo } = this.props;
+        const { owner, repo, filterLabels } = this.props;
         this.getAllLabels = this.getAllLabels.bind(this);
         this.changeFilter = this.changeFilter.bind(this);
         this.checkLabel = this.checkLabel.bind(this);
@@ -28,7 +28,7 @@ class Labels extends Component {
             result: undefined,
             data: undefined,
             filterText: '',
-            filterLabels: [],
+            filterLabels,
             owner,
             repo
         };

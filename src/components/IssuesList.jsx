@@ -11,7 +11,7 @@ class IssuesList extends Component {
 
     constructor(props) {
         super(props);
-        const { owner, repo } = this.props;
+        const { owner, repo, filterLabels } = this.props;
         this.handlePageChange = this.handlePageChange.bind(this);
         this.handleLabelsFilter = this.handleLabelsFilter.bind(this);
         this.handleAutorFilter = this.handleAutorFilter.bind(this);
@@ -33,7 +33,7 @@ class IssuesList extends Component {
         this.state = {
             result: undefined,
             data: undefined,
-            filterLabels: [],
+            filterLabels,
             autor: null,
             activePage: 1,
             itemsCountPerPage: 20,
@@ -374,7 +374,7 @@ class IssuesList extends Component {
     }
 
     render() {
-        const { data, checkedIssues } = this.state;
+        const { data, checkedIssues, filterLabels } = this.state;
         const { match, owner, repo, buttonText } = this.props;
         if (data) {
             return (
@@ -391,7 +391,7 @@ class IssuesList extends Component {
                                 <li className="nav-item" onClick={this.checkPage}>
                                     <a className="nav-link">Check Page</a>
                                 </li>
-                                <Labels owner={owner} repo={repo} labelFilter={this.handleLabelsFilter} />
+                                <Labels owner={owner} repo={repo} filterLabels={filterLabels} labelFilter={this.handleLabelsFilter} />
                                 <Autor owner={owner} repo={repo} autorFilter={this.handleAutorFilter} />
                                 <Milestone owner={owner} repo={repo} milestoneFilter={this.handleMileStoneFilter} />
                             </ul>
