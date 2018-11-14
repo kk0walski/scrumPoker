@@ -55,6 +55,48 @@ class IssuesList extends Component {
         }
     }
 
+    checkLabels(arr1, arr2) {
+        if (arr1.length !== arr2.length)
+            return false;
+        for (var i = arr1.length; i--;) {
+            if (arr1[i] !== arr2[i])
+                return false;
+        }
+
+        return true;
+    }
+
+    componentDidUpdate(prevProps) {
+        const { itemsCountPerPage } = this.state;
+        const { owner, repo, filterLabels } = this.props;
+        if (prevProps.owner !== this.props.owner ||
+            prevProps.repo !== this.props.repo ||
+            !this.checkLabels(prevProps.filterLabels, this.props.filterLabels)) {
+                console.log("UPDATE")
+                this.octokit.issues
+                .getForRepo({
+                    owner,
+                    repo,
+                    labels: filterLabels.toString(),
+                    per_page: itemsCountPerPage
+                })
+                .then(result => {
+                    console.log("RESULT", result);
+                    this.setState({
+                        result,
+                        data: result.data,
+                        filterLabels,
+                        totalItemsCount: this.parser(this.octokit.hasLastPage(result), result.data, itemsCountPerPage),
+                        autor: null,
+                        activePage: 1,
+                        milestone: undefined,
+                        checkedIssues: [],
+                        refreshDisabled: false
+                    });
+                });     
+        }
+    }
+
     componentDidMount() {
         const { owner, repo, filterLabels, itemsCountPerPage } = this.state;
         this.octokit.issues
@@ -471,7 +513,7 @@ class IssuesList extends Component {
     }
 
     render() {
-        const { data, checkedIssues, filterLabels, refreshDisabled} = this.state;
+        const { data, checkedIssues, filterLabels, refreshDisabled } = this.state;
         const { match, owner, repo, buttonText } = this.props;
         if (data) {
             return (

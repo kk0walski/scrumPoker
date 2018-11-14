@@ -64,10 +64,27 @@ class Labels extends Component {
         })
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevState.filterLabels.length !== this.state.filterLabels.length){
-            console.log("LABELS: ", this.state.filterLabels);
+    checkLabels(arr1, arr2) {
+        if (arr1.length !== arr2.length)
+            return false;
+        for (var i = arr1.length; i--;) {
+            if (arr1[i] !== arr2[i])
+                return false;
+        }
+
+        return true;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.filterLabels.length !== this.state.filterLabels.length ||
+            !this.checkLabels(prevState.filterLabels, this.state.filterLabels)) {
             this.props.labelFilter(this.state.filterLabels)
+        }
+        if (prevProps.filterLabels.length !== this.props.filterLabels.length ||
+            !this.checkLabels(prevProps.filterLabels, this.props.filterLabels)) {
+            this.setState({
+                filterLabels: this.props.filterLabels
+            })
         }
     }
 
@@ -90,7 +107,7 @@ class Labels extends Component {
                         <input type="text" className="form-control" placeholder="Filter" onChange={this.changeFilter} />
                         <div style={{ maxHeight: "200px", overflow: 'auto' }} >
                             {data.filter(label => label.name.search(filterText) !== -1).map(label => (
-                                <a className={classnames('dropdown-item', {"active": filterLabels.includes(label.name)})} key={label.id} onClick={(e) => this.checkLabel(e, label.name)}>
+                                <a className={classnames('dropdown-item', { "active": filterLabels.includes(label.name) })} key={label.id} onClick={(e) => this.checkLabel(e, label.name)}>
                                     {label.name}
                                 </a>
                             ))}
