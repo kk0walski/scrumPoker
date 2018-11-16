@@ -35,7 +35,7 @@ export default class ImportModal extends Component {
                         </ul>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-primary" onClick={this.props.import(issues)}>Import</button>
+                        <button type="button" className="btn btn-primary" onClick={() => this.props.import(issues)}>Import</button>
                     </div>
                 </div>
             </Modal>

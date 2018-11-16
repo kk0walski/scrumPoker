@@ -47,10 +47,13 @@ class ImportIssues extends Component {
             const importIssue = { owner, repo: name, body: issue.body, title: issue.title, labels: newLabels }
             this.octokit.issues.create(importIssue)
         })
+        this.setState({
+            issues: [],
+            modalOpen: false
+        })
     }
 
     showModal(toMove) {
-        console.log("IMPORT_DATA: ", toMove)
         this.setState({
             issues: Object.values(toMove),
             modalOpen: true
