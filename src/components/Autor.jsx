@@ -81,16 +81,16 @@ class Autor extends Component {
         if (data) {
             return (
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <p className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Autor
-                    </a>
+                    </p>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <input type="text" className="form-control" placeholder="Filter" onChange={this.changeFilter} />
                         <div style={{ maxHeight: "200px", overflow: 'auto' }} >
                             {data.filter(autor => autor.login.search(filterText) !== -1).map(autor => (
-                                <a className={classnames('dropdown-item', { 'active': autor.login == autorSearch })} key={autor.id} onClick={(e) => this.checkAutor(e, autor.login)}>
+                                <p className={classnames('dropdown-item', { 'active': autor.login === autorSearch })} key={autor.id} onClick={(e) => this.checkAutor(e, autor.login)}>
                                     {autor.login}
-                                </a>
+                                </p>
                             ))}
                         </div>
                     </div>

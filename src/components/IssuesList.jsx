@@ -532,7 +532,7 @@ class IssuesList extends Component {
 
     render() {
         const { data, checkedIssues, filterLabels, refreshDisabled } = this.state;
-        const { match, owner, repo, buttonText } = this.props;
+        const { owner, repo, buttonText } = this.props;
         if (data) {
             return (
                 <div className="container-fluid">
@@ -552,10 +552,10 @@ class IssuesList extends Component {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item" onClick={() => this.props.moveIssues(checkedIssues)}>
-                                    <a className="nav-link">{buttonText}</a>
+                                    <p className="nav-link">{buttonText}</p>
                                 </li>
                                 <li className="nav-item" onClick={this.checkPage}>
-                                    <a className="nav-link">Check Page</a>
+                                    <p className="nav-link">Check Page</p>
                                 </li>
                                 <Labels owner={owner} repo={repo} filterLabels={filterLabels} labelFilter={this.handleLabelsFilter} />
                                 <Autor owner={owner} repo={repo} autorFilter={this.handleAutorFilter} />

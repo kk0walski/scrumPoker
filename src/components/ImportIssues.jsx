@@ -8,6 +8,7 @@ class ImportIssues extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.showModal = this.showModal.bind(this);
         this.importData = this.importData.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.octokit = require("@octokit/rest")({
@@ -33,32 +34,27 @@ class ImportIssues extends Component {
         }
     }
 
-    closeModal(){
+    closeModal() {
         this.setState({
             modalOpen: false
         })
     }
 
     importData(toMove) {
+        const { owner, name } = this.props.match.params;
+        toMove.forEach(issue => {
+            const newLabels = Array.from(new Set(issue.labels.map(label => label.name)))
+            const importIssue = { owner, repo: name, body: issue.body, title: issue.title, labels: newLabels }
+            this.octokit.issues.create(importIssue)
+        })
+    }
+
+    showModal(toMove) {
         console.log("IMPORT_DATA: ", toMove)
         this.setState({
             issues: Object.values(toMove),
             modalOpen: true
         })
-        // const { owner, name } = this.props.match.params;
-        // const { organisation, repository } = this.state;
-        // toMove.forEach(issue => {
-        //     this.octokit.issues.get({
-        //         owner: organisation,
-        //         repo: repository,
-        //         number: issue
-        //     }).then(result => {
-        //         const { data } = result;
-        //         const newLabels = Array.from(new Set(data.labels.map(label => label.name)))
-        //         const importIssue = { owner, repo:name, body: data.body, title: data.title, labels: newLabels}
-        //         this.octokit.issues.create(importIssue)
-        //     })
-        // })
     }
 
     handleSubmit(event) {
@@ -93,12 +89,12 @@ class ImportIssues extends Component {
                     <button type="submit" className="btn btn-primary">SEARCH</button>
                 </form>
                 {organisation && repository && <ListIssues owner={organisation}
-                 repo={repository}
-                filterLabels={filterLabels}
-                 match={match}
-                  buttonText={"Import Issues"}
-                   moveIssues={this.importData} />}
-                <ImportModal issues={issues} modalOpen={modalOpen} closeModal={this.closeModal}/>
+                    repo={repository}
+                    filterLabels={filterLabels}
+                    match={match}
+                    buttonText={"Import Issues"}
+                    moveIssues={this.showModal} />}
+                <ImportModal issues={issues} modalOpen={modalOpen} import={this.importData} closeModal={this.closeModal} />
             </div>
         )
     }

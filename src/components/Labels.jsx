@@ -100,16 +100,16 @@ class Labels extends Component {
         if (data) {
             return (
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <p className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Labels
-                </a>
+                </p>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <input type="text" className="form-control" placeholder="Filter" onChange={this.changeFilter} />
                         <div style={{ maxHeight: "200px", overflow: 'auto' }} >
                             {data.filter(label => label.name.search(filterText) !== -1).map(label => (
-                                <a className={classnames('dropdown-item', { "active": filterLabels.includes(label.name) })} key={label.id} onClick={(e) => this.checkLabel(e, label.name)}>
+                                <p className={classnames('dropdown-item', { "active": filterLabels.includes(label.name) })} key={label.id} onClick={(e) => this.checkLabel(e, label.name)}>
                                     {label.name}
-                                </a>
+                                </p>
                             ))}
                         </div>
                     </div>

@@ -80,16 +80,16 @@ class Milestone extends Component {
         if (data) {
             return (
                 <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <p className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Milestones
-                    </a>
+                    </p>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <input type="text" className="form-control" placeholder="Filter" onChange={this.changeFilter} />
                         <div style={{ maxHeight: "200px", overflow: 'auto' }} >
                         {data.filter(milestone => milestone.title.search(filterText) !== -1).map(milestone => (
-                                <a className={classnames('dropdown-item', {'active': milestone.number.toString() === milestoneSearch})} key={milestone.id} onClick={(e) => this.checMilestone(e, milestone.number)}>
+                                <p className={classnames('dropdown-item', {'active': milestone.number.toString() === milestoneSearch})} key={milestone.id} onClick={(e) => this.checMilestone(e, milestone.number)}>
                                     {milestone.title}
-                                </a>
+                                </p>
                             ))}
                         </div>
                     </div>
