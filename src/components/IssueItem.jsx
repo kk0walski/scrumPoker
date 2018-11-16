@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
 import classnames from "classnames";
-import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 
 export default class IssueItem extends Component {
     render() {
-        const { issue, match } = this.props;
+        const { issue } = this.props;
         return (
                 <div className={classnames('float-left', 'col-9', 'p-2')}>
                     <h5>
-                        <Link key={issue.id}
-                            className="v-align-middle"
-                            to={`${match.url}/${issue.number}`}>
-                            {issue.title}
-                        </Link>
+                          <a href={issue.html_url}>{issue.title}</a>  
                         {issue.labels.map(label => (
                             <span key={label.id} className="badge badge-light" style={{
                                 backgroundColor: `#${label.color}`

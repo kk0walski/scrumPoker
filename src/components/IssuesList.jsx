@@ -41,7 +41,7 @@ class IssuesList extends Component {
             itemsCountPerPage: 20,
             totalItemsCount: 0,
             milestone: undefined,
-            checkedIssues: [],
+            checkedIssues: {},
             owner,
             repo,
             refreshDisabled: false
@@ -73,7 +73,6 @@ class IssuesList extends Component {
         if (prevProps.owner !== this.props.owner ||
             prevProps.repo !== this.props.repo ||
             !this.checkLabels(prevProps.filterLabels, this.props.filterLabels)) {
-                console.log("UPDATE")
                 this.octokit.issues
                 .getForRepo({
                     owner,
@@ -82,7 +81,6 @@ class IssuesList extends Component {
                     per_page: itemsCountPerPage
                 })
                 .then(result => {
-                    console.log("RESULT", result);
                     this.setState({
                         result,
                         data: result.data,
@@ -91,7 +89,7 @@ class IssuesList extends Component {
                         autor: null,
                         activePage: 1,
                         milestone: undefined,
-                        checkedIssues: [],
+                        checkedIssues: {},
                         refreshDisabled: false
                     });
                 });     
@@ -500,28 +498,34 @@ class IssuesList extends Component {
     }
 
     checkPage() {
-        if (this.state.checkedIssues.length > 0) {
+        if (Object.values(this.state.checkedIssues).length > 0) {
             this.setState({
-                checkedIssues: []
+                checkedIssues: {}
             })
         }
         else {
+            var newIssues = {}
+            this.state.data.forEach(issue => {
+                newIssues[issue.number] = issue
+            })
             this.setState({
-                checkedIssues: this.state.data.map(issue => issue.number)
+                checkedIssues: newIssues
             })
         }
     }
 
-    checkIssue(e, IssueNumber) {
+    checkIssue(e, issue) {
         e.preventDefault();
         const { checkedIssues } = this.state;
-        if (!checkedIssues.includes(IssueNumber)) {
+        if (checkedIssues[issue.number]) {
+            var newIssues = {...checkedIssues}
+            delete newIssues[issue.number];
             this.setState({
-                checkedIssues: [...checkedIssues, IssueNumber]
+                checkedIssues: newIssues
             })
         } else {
             this.setState({
-                checkedIssues: checkedIssues.filter(issue => issue !== IssueNumber)
+                checkedIssues: {...checkedIssues, [issue.number]: {...issue}}
             })
         }
     }
@@ -547,8 +551,8 @@ class IssuesList extends Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav mr-auto">
-                                <li class="nav-item" onClick={() => this.props.moveIssues(checkedIssues)}>
-                                    <a class="nav-link">{buttonText}</a>
+                                <li className="nav-item" onClick={() => this.props.moveIssues(checkedIssues)}>
+                                    <a className="nav-link">{buttonText}</a>
                                 </li>
                                 <li className="nav-item" onClick={this.checkPage}>
                                     <a className="nav-link">Check Page</a>
@@ -561,8 +565,8 @@ class IssuesList extends Component {
                     </nav>
                     <ul className="list-group" >
                         {data.map(node => (
-                            <li key={node.id} className={classnames('list-group-item', { 'list-group-item-primary': checkedIssues.includes(node.number) })} onClick={(e) => this.checkIssue(e, node.number)}>
-                                <IssueItem issue={node} match={match} key={node.id} />
+                            <li key={node.number} className={classnames('list-group-item', { 'list-group-item-primary': checkedIssues[node.number]  !== undefined })} onClick={(e) => this.checkIssue(e, node)}>
+                                <IssueItem issue={node} key={node.number} />
                             </li>
                         ))}
                     </ul>

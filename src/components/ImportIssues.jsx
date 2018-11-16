@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListIssues from "./IssuesList";
 import { connect } from "react-redux";
+import ImportModal from './ImportModal';
 
 class ImportIssues extends Component {
 
@@ -8,6 +9,7 @@ class ImportIssues extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.importData = this.importData.bind(this);
+        this.closeModal = this.closeModal.bind(this);
         this.octokit = require("@octokit/rest")({
             timeout: 0,
             headers: {
@@ -25,25 +27,38 @@ class ImportIssues extends Component {
         this.state = {
             organisation: undefined,
             repository: undefined,
-            filterLabels: []
+            filterLabels: [],
+            issues: [],
+            modalOpen: false
         }
     }
 
-    importData(toMove) {
-        const { owner, name } = this.props.match.params;
-        const { organisation, repository } = this.state;
-        toMove.forEach(issue => {
-            this.octokit.issues.get({
-                owner: organisation,
-                repo: repository,
-                number: issue
-            }).then(result => {
-                const { data } = result;
-                const newLabels = Array.from(new Set(data.labels.map(label => label.name)))
-                const importIssue = { owner, repo:name, body: data.body, title: data.title, labels: newLabels}
-                this.octokit.issues.create(importIssue)
-            })
+    closeModal(){
+        this.setState({
+            modalOpen: false
         })
+    }
+
+    importData(toMove) {
+        console.log("IMPORT_DATA: ", toMove)
+        this.setState({
+            issues: Object.values(toMove),
+            modalOpen: true
+        })
+        // const { owner, name } = this.props.match.params;
+        // const { organisation, repository } = this.state;
+        // toMove.forEach(issue => {
+        //     this.octokit.issues.get({
+        //         owner: organisation,
+        //         repo: repository,
+        //         number: issue
+        //     }).then(result => {
+        //         const { data } = result;
+        //         const newLabels = Array.from(new Set(data.labels.map(label => label.name)))
+        //         const importIssue = { owner, repo:name, body: data.body, title: data.title, labels: newLabels}
+        //         this.octokit.issues.create(importIssue)
+        //     })
+        // })
     }
 
     handleSubmit(event) {
@@ -56,7 +71,7 @@ class ImportIssues extends Component {
     }
 
     render() {
-        const { organisation, repository, filterLabels } = this.state;
+        const { organisation, repository, filterLabels, issues, modalOpen } = this.state;
         const { match } = this.props
         return (
             <div>
@@ -77,7 +92,13 @@ class ImportIssues extends Component {
                     </div>
                     <button type="submit" className="btn btn-primary">SEARCH</button>
                 </form>
-                {organisation && repository && <ListIssues owner={organisation} repo={repository} filterLabels={filterLabels} match={match} buttonText={"Import Issues"} moveIssues={this.importData} />}
+                {organisation && repository && <ListIssues owner={organisation}
+                 repo={repository}
+                filterLabels={filterLabels}
+                 match={match}
+                  buttonText={"Import Issues"}
+                   moveIssues={this.importData} />}
+                <ImportModal issues={issues} modalOpen={modalOpen} closeModal={this.closeModal}/>
             </div>
         )
     }
