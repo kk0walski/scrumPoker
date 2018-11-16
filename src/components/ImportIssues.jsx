@@ -9,7 +9,7 @@ class ImportIssues extends Component {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showModal = this.showModal.bind(this);
-        this.importData = this.importData.bind(this);
+        this.closeModalAndClear = this.closeModalAndClear.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.octokit = require("@octokit/rest")({
             timeout: 0,
@@ -40,13 +40,21 @@ class ImportIssues extends Component {
         })
     }
 
-    importData(toMove) {
-        const { owner, name } = this.props.match.params;
-        toMove.forEach(issue => {
-            const newLabels = Array.from(new Set(issue.labels.map(label => label.name)))
-            const importIssue = { owner, repo: name, body: issue.body, title: issue.title, labels: newLabels }
-            this.octokit.issues.create(importIssue)
+    closeModalAndClear(){
+        this.setState({
+            issues: [],
+            modalOpen: false
         })
+    }
+
+    async importData(toMove) {
+        const { owner, name } = this.props.match.params;
+        var i;
+        for(i = 0; i < toMove.length; i++ ){
+            const newLabels = Array.from(new Set(toMove[i].labels.map(label => label.name)))
+            const importIssue = { owner, repo: name, body: toMove[i].body, title: toMove[i].title, labels: newLabels }
+           await this.octokit.issues.create(importIssue)
+        }
         this.setState({
             issues: [],
             modalOpen: false
@@ -97,7 +105,7 @@ class ImportIssues extends Component {
                     match={match}
                     buttonText={"Import Issues"}
                     moveIssues={this.showModal} />}
-                <ImportModal issues={issues} modalOpen={modalOpen} import={this.importData} closeModal={this.closeModal} />
+                <ImportModal issues={issues} match={match} modalOpen={modalOpen} repo={repository} closeAndClear={this.closeModalAndClear} closeModal={this.closeModal} />
             </div>
         )
     }
