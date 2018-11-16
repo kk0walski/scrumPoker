@@ -47,20 +47,6 @@ class ImportIssues extends Component {
         })
     }
 
-    async importData(toMove) {
-        const { owner, name } = this.props.match.params;
-        var i;
-        for(i = 0; i < toMove.length; i++ ){
-            const newLabels = Array.from(new Set(toMove[i].labels.map(label => label.name)))
-            const importIssue = { owner, repo: name, body: toMove[i].body, title: toMove[i].title, labels: newLabels }
-           await this.octokit.issues.create(importIssue)
-        }
-        this.setState({
-            issues: [],
-            modalOpen: false
-        })
-    }
-
     showModal(toMove) {
         this.setState({
             issues: Object.values(toMove),

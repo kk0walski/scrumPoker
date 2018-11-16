@@ -53,7 +53,14 @@ class ImportModal extends Component {
         for (i = 0; i < issues.length; i++) {
             const newLabels = Array.from(new Set(issues[i].labels.map(label => label.name)))
             const importIssue = { owner, repo: name, body: issues[i].body, title: issues[i].title, labels: newLabels }
-            await this.octokit.issues.create(importIssue)
+            try{
+                await this.octokit.issues.create(importIssue)
+            }catch(error){
+                this.setState({
+                    progress: 0
+                })
+                break;
+            }
             this.setState({
                 progress: (i * 100) / issues.length
             })

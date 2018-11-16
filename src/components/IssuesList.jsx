@@ -124,7 +124,7 @@ class IssuesList extends Component {
 
     handleLabelsFilter(filterLabels) {
         const { per_page } = this.state.toFilter;
-        this.octokit.issues.getForRepo(this.removeEmpty({ ...this.state.toFilter, labels: filterLabels.toString()}))
+        this.octokit.issues.getForRepo(this.removeEmpty({ ...this.state.toFilter, labels: filterLabels.toString() }))
             .then(result => {
                 this.setState({
                     result,
@@ -200,20 +200,17 @@ class IssuesList extends Component {
     }
 
     checkPage() {
-        if (Object.values(this.state.checkedIssues).length > 0) {
-            this.setState({
-                checkedIssues: {}
-            })
-        }
-        else {
-            var newIssues = {}
-            this.state.data.forEach(issue => {
+        var newIssues = this.state.checkedIssues
+        this.state.data.forEach(issue => {
+            if (!newIssues[issue.number]) {
                 newIssues[issue.number] = issue
-            })
-            this.setState({
-                checkedIssues: newIssues
-            })
-        }
+            } else {
+                delete newIssues[issue.number]
+            }
+        })
+        this.setState({
+            checkedIssues: newIssues
+        })
     }
 
     checkIssue(e, issue) {
@@ -275,7 +272,7 @@ class IssuesList extends Component {
                     <hr />
                     <Pagination
                         activePage={this.state.activePage}
-                        itemsCountPerPage={this.state.itemsCountPerPage}
+                        itemsCountPerPage={this.state.toFilter.per_page}
                         totalItemsCount={this.state.totalItemsCount}
                         pageRangeDisplayed={10}
                         onChange={this.handlePageChange}
