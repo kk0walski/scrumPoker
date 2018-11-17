@@ -1,11 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import user from "../reducers/user";
+import lists from "../reducers/Lists";
 import thunk from "redux-thunk";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default () => {
   const appReducer = combineReducers({
+    lists,
     user
   });
 
