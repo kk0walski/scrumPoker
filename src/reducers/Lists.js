@@ -14,6 +14,7 @@ const Lists = (state = {}, action) => {
                     [owner]: {
                         [repo]: {
                             [id]: {
+                                id,
                                 title,
                                 list
                             }

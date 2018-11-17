@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import db from "../firebase/firebase";
 import { justAddList } from "../actions/Lists";
 import { connect } from "react-redux";
+import ListItem from "./ListItem";
 
 class Lists extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            progress: 0,
+            title: ''
+        }
+    }
 
     componentWillMount = () => {
         const { owner, name } = this.props.match.params;
@@ -32,28 +40,39 @@ class Lists extends Component {
         this.lists();
     };
     render() {
-        console.log("LISTS: ", this.props.lists)
-        return (
-            <div>
+        const { lists } = this.props
+        const { owner, name } = this.props.match.params;
+        if (lists) {
+            console.log("LISTS: ", lists);
+            return (
+                <div id="accordion">
+                    {lists.map(list => 
+                    <ListItem owner={owner} repo={name} id={list.id} title={list.title} issues={list.list} />)
+                    }
+                </div>
+            )
+        } else {
+            return (
+                <div>
 
-            </div>
-        )
+                </div>
+            )
+        }
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    const { owner, name }  = ownProps.match.params;
-    console.log("PROPS: ", state.lists);
+    const { owner, name } = ownProps.match.params;
     return {
-      lists: state.lists[owner] && state.lists[owner][name] ? Object.values(state.lists[owner][name]) : []
+        lists: state.lists[owner] && state.lists[owner][name] ? Object.values(state.lists[owner][name]) : []
     };
-  };
+};
 
 const mapDispatchToProps = dispatch => ({
-    justAddList:  (owner, name, id, title, issues) => dispatch(justAddList (owner, name, id, title, issues))
-  });
-  
-  export default connect(
+    justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues))
+});
+
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(Lists);
+)(Lists);
