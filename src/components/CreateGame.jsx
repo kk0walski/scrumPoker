@@ -5,6 +5,19 @@ class CreateGame extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const data =  new FormData(event.target);
+    const reasult = {
+      name: data.get('gameName'),
+      desc: data.get('gameDescription'),
+      velocity:  data.get("teamVelocity"),
+      shareVelocityEnabled: data.get("shareVelocityWithAllPlayers"),
+      creatorCanEstimateEnabled: data.get("isCreatorEffortPointing"),
+      cardSet: data.get("selectedCardSet"),
+      autoFlipEnabled: data.get("isAutoFlipEnabled"),
+      changeVoteEnabled: data.get("isChangeVoteEnabled"),
+      calculateEnabled: data.get("calculateScore"),
+      storyTimerEnabled: data.get("isStoryTimerEnabled")
+    }
   }
 
   render() {
@@ -12,7 +25,7 @@ class CreateGame extends Component {
     return (
       <div>
         <h3>Create Games</h3>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="gameName">Game Name:</label>
             <input id="gameName" name="gameName" type="text" aria-describedby="gameNameHelpBlock" required="required" className="form-control here" />
@@ -25,7 +38,7 @@ class CreateGame extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="teamVelocity">Team Velocity</label>
-            <input id="teamVelocity" name="teamVelocity" type="number" aria-describedby="teamVelocityHelpBlock" className="form-control here" />
+            <input id="teamVelocity" name="teamVelocity" type="number" aria-describedby="teamVelocityHelpBlock" min="0" valse="0" className="form-control here" />
             <small id="teamVelocityHelpBlock" className="form-text text-muted">
               Agile teams can often predict how many effort points can be completed in one sprint. Enter your team's velocity here,
              and we'll let you know when your estimates hit their max.</small>
@@ -68,25 +81,25 @@ class CreateGame extends Component {
             <label>Choose your card set</label>
             <div>
               <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-1" value="true" defaultChecked />
+                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-1" value="1" defaultChecked />
                 <label className="form-check-label" htmlFor="selectedCardSet-1">
                   Fibonacci ( 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?, Pass )
             </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-2" value="false" />
+                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-2" value="2" />
                 <label className="form-check-label" htmlFor="selectedCardSet-2">
                   Modified Fibonacci ( 0, ½, 1, 2, 3, 5, 8, 13, 20, 40, 100, ?, Pass )
               </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-3" value="false" />
+                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-3" value="3" />
                 <label className="form-check-label" htmlFor="selectedCardSet-3">
                   T-shirts ( xxs, xs, s, m, l, xl, xxl, ?, Pass )
               </label>
               </div>
               <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-4" value="false" />
+                <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-4" value="4" />
                 <label className="form-check-label" htmlFor="selectedCardSet-4">
                   Powers of 2 ( 0, 1, 2, 4, 8, 16, 32, 64, ?, Pass )
               </label>
