@@ -39,7 +39,12 @@ export const addList = (owner, repo, listId, listTitle, issues) => ({
     }
 });
 
-export const startAddList = (owner, repo, listTitle, issues) => {
+export const justAddList = (listData = {}) => ({
+    type: "ADD_LIST",
+    payload: listData
+})
+
+export const startAddList = (owner, repo, title, list) => {
     return dispatch => {
         const ref = db
             .collection("users")
@@ -49,13 +54,13 @@ export const startAddList = (owner, repo, listTitle, issues) => {
             .collection("lists")
             .doc();
         const key = ref.id;
-        const list = {
+        const newList = {
             id: key,
-            title: listTitle,
-            issues
+            title,
+            list
         }
-        ref.set(list).then(() => {
-            dispatch(addList(owner, repo, key, listTitle, issues))
+        ref.set(newList).then(() => {
+            dispatch(addList(owner, repo, key, title, list))
         })
     }
 }
