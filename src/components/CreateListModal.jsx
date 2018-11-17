@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { connect } from "react-redux";
 import Modal from 'react-modal';
 import IssueItem from './IssueItem';
+import  {startAddList } from "../actions/Lists";
 
 class CreateListModal extends Component {
     constructor(props) {
@@ -54,13 +55,16 @@ class CreateListModal extends Component {
 
     async createList(issues) {
         const { owner, name } = this.props.match.params;
+        const { title } = this.state;
+        var issuesList = []
         var i;
         for (i = 0; i < issues.length; i++) {
-            
+            issuesList.push(issues[i].number)
             this.setState({
                 progress: (i * 100) / issues.length
             })
         }
+        this.props.startAddList(owner, name, title, issuesList);
         this.props.closeAndClear();
     }
 
@@ -108,4 +112,8 @@ class CreateListModal extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(CreateListModal);
+const mapDispatchToProps = dispatch => ({
+    startAddList: (owner, repo, listTitle, issues) => dispatch(startAddList(owner, repo, listTitle, issues))
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateListModal);
