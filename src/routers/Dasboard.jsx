@@ -5,7 +5,6 @@ import GamesList from "../components/GamesList"
 import CreateGame from "../components/CreateGame"
 import Account from "../components/Account";
 import Issues from "../components/Issues";
-import Import from "../components/ImportIssues";
 
 export default class Dasboard extends Component {
     render() {
@@ -25,9 +24,6 @@ export default class Dasboard extends Component {
                                         <NavLink exact to={`${match.url}/issues`} className="nav-link" activeClassName="active">Issues</NavLink>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink exact to={`${match.url}/import`} className="nav-link" activeClassName="active">Import issues</NavLink>
-                                    </li>
-                                    <li className="nav-item">
                                         <NavLink exact to={`${match.url}/saved_games`} className="nav-link" activeClassName="active">Saved games</NavLink>
                                     </li>
                                     <li className="nav-item">
@@ -43,7 +39,6 @@ export default class Dasboard extends Component {
                     <main className="col bg-faded py-3">
                         <Switch >
                             <Route path='/repositories/:owner/:name/issues' component={Issues} />
-                            <Route path='/repositories/:owner/:name/import' component={Import}/>
                             <Route path='/repositories/:owner/:name/saved_games' component={GamesList} />
                             <Route path="/repositories/:owner/:name/create_game" component={CreateGame} />
                             <Route path="//repositories/:owner/:name/account" component={Account} />
