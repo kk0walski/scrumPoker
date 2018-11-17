@@ -6,8 +6,39 @@ import CreateGame from "../components/CreateGame"
 import Account from "../components/Account";
 import Issues from "../components/Issues";
 import Lists from "../components/Lists";
+import { connect } from "react-redux";
+import db from "../firebase/firebase";
+import { justAddList } from "../actions/Lists";
 
-export default class Dasboard extends Component {
+class Dasboard extends Component {
+
+    componentWillMount = () => {
+        const { user, repo } = this.props.match.params;
+        this.lists = db
+            .collection("users")
+            .doc(user.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("lists")
+            .onSnapshot(querySnapchot => {
+                querySnapchot.docChanges().forEach(change => {
+                    if (change.type === "added") {
+                        this.props.justAddList({ ...change.doc.data(), owner: user, repo });
+                    }
+                    if (change.type === "modified") {
+                        this.props.justAddList({ ...change.doc.data(), owner: user, repo });
+                    }
+                    if (change.type === "removed") {
+                        console.log("REMOVE CARD: ", change.doc.data());
+                    }
+                });
+            });
+    };
+
+    componentWillUnmount = () => {
+        this.lists();
+    };
+
     render() {
         const { match } = this.props;
         return (
@@ -55,3 +86,12 @@ export default class Dasboard extends Component {
         )
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues))
+});
+
+export default connect(
+    undefined,
+    mapDispatchToProps
+)(Dasboard);
