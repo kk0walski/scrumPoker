@@ -3,12 +3,12 @@ import { NavLink } from "react-router-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
 import GamesList from "../components/GamesList"
 import CreateGame from "../components/CreateGame"
-import Account from "../components/Account";
 import Issues from "../components/Issues";
 import Lists from "../components/Lists";
 import { connect } from "react-redux";
 import db from "../firebase/firebase";
 import { justAddList } from "../actions/Lists";
+import { addGame } from "../actions/Game";
 
 class Dasboard extends Component {
 
@@ -33,10 +33,31 @@ class Dasboard extends Component {
                     }
                 });
             });
+        this.games = db
+        .collection("users")
+        .doc(user.toString())
+        .collection("repos")
+        .doc(repo.toString())
+        .collection("games")
+        .onSnapshot(querySnapchot => {
+            querySnapchot.docChanges().forEach(change => {
+                if (change.type === "added") {
+                    console.log("GAME_ADDED: ", change.doc.data())
+                    this.props.addGame({ ...change.doc.data(), owner: user, repo });
+                }
+                if (change.type === "modified") {
+                    this.props.addGame({ ...change.doc.data(), owner: user, repo });
+                }
+                if (change.type === "removed") {
+                    console.log("REMOVE CARD: ", change.doc.data());
+                }
+            });
+        });
     };
 
     componentWillUnmount = () => {
         this.lists();
+        this.games();
     };
 
     render() {
@@ -64,9 +85,6 @@ class Dasboard extends Component {
                                     <li className="nav-item">
                                         <NavLink exact to={`${match.url}/create_game`} className="nav-link" activeClassName="active">Create game</NavLink>
                                     </li>
-                                    <li className="nav-item">
-                                        <NavLink exact to={`${match.url}/account`} className="nav-link" activeClassName="active">My Account</NavLink>
-                                    </li>
                                 </ul>
                             </div>
                         </nav>
@@ -77,7 +95,6 @@ class Dasboard extends Component {
                             <Route path='/repositories/:owner/:name/lists' component={Lists} />
                             <Route path='/repositories/:owner/:name/saved_games' component={GamesList} />
                             <Route path="/repositories/:owner/:name/create_game" component={CreateGame} />
-                            <Route path="//repositories/:owner/:name/account" component={Account} />
                             <Redirect to={`${match.url}/issues`} />
                         </Switch >
                     </main>
@@ -88,7 +105,8 @@ class Dasboard extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues))
+    justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues)),
+    addGame: (game) => dispatch(addGame(game))
 });
 
 export default connect(

@@ -14,7 +14,6 @@ class Lists extends Component {
         const { lists } = this.props
         const { owner, name } = this.props.match.params;
         if (lists) {
-            console.log("LISTS: ", lists);
             return (
                 <div id="accordion">
                     {lists.map(list => 

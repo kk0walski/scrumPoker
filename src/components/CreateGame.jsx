@@ -47,7 +47,7 @@ class CreateGame extends Component {
             </div>
             <div className="form-group">
               <label htmlFor="teamVelocity">Team Velocity</label>
-              <input id="teamVelocity" name="teamVelocity" type="number" aria-describedby="teamVelocityHelpBlock" min="0" placeholder="0" className="form-control here" />
+              <input id="teamVelocity" name="teamVelocity" type="number" aria-describedby="teamVelocityHelpBlock" min="0" className="form-control here" />
               <small id="teamVelocityHelpBlock" className="form-text text-muted">
                 Agile teams can often predict how many effort points can be completed in one sprint. Enter your team's velocity here,
              and we'll let you know when your estimates hit their max.</small>
