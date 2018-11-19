@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Home from '../components/Home';
 import { connect } from "react-redux";
+import GamePanel from "../components/GamePanel";
 
 class App extends Component {
   static propTypes = {
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
+        <Route path="/:owner/:repo/play/:game" component={GamePanel} />
         <Route path="/" component={Home} />
       </Switch>
     );

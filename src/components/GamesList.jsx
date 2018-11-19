@@ -6,15 +6,13 @@ import GameItem from './GameItem';
 class GamesList extends Component {
 
   render() {
-    const { games} = this.props;
-    const { owner, name } = this.props.match.params;
+    const { games, match} = this.props;
     if(games){
-      console.log("GAMES: ", games);
       return (
         <ul className="list-group" >
         {games.map(game => (
             <li key={game.id} className={classnames('list-group-item')}>
-                <GameItem game={game} key={game.id} />
+                <GameItem game={game} match={match} key={game.id} />
             </li>
         ))}
     </ul>
