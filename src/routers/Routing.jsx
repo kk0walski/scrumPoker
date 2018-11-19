@@ -3,12 +3,11 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import Login from "../components/Login";
 import Dashboard from "./Dasboard";
 import Repositories from "../components/Repositories";
-import GamePanel from "../components/GamePanel";
 
 export default class Routing extends Component {
     render() {
         const { user } = this.props;
-        if (user) {
+        if (user && !user.isAnonymous) {
             return (
                 <Switch >
                     <Route exact path="/repositories" component={Repositories} />

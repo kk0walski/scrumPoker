@@ -1,7 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { firebase } from "../firebase/firebase";
+import { connect } from "react-redux";
 
-export default class Navigation extends Component {
+class Navigation extends Component {
+
+  handleLogOut = () => {
+    const { dispatch } = this.props;
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: "LOG_OUT" });
+      });
+  };
+
   render() {
     const { user } = this.props;
     return (
@@ -24,20 +37,17 @@ export default class Navigation extends Component {
               {user ? <ul className="navbar-nav">
                 <li className="nav-item dropdown">
                   <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Karol Kowalski
+                    {user.displayName}
                   </button>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <Link to="/profile" className="dropdown-item" >Account</Link>
                     <Link to="/projects" className="dropdown-item" >Projects</Link>
                     <Link to="/issues" className="dropdown-item">Issues</Link>
+                    <Link to="/" className="dropdown-item" onClick={this.handleLogOut}>Log out</Link>
                   </div>
                 </li>
               </ul> :
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link className="nav-link" to="login">Log in <span className="sr-only">(current)</span></Link>
-                  </li>
-                </ul>}
+                null}
             </div>
           </div>
         </div>
@@ -45,3 +55,8 @@ export default class Navigation extends Component {
     )
   }
 }
+
+
+const mapStateToProps = ({ user }) => ({ user });
+
+export default connect(mapStateToProps)(Navigation);

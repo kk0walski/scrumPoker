@@ -6,3 +6,9 @@ export const enterAsUser = (user, token) => ({
     }
   });
   
+  export const enterAsGuest = (user) => ({
+    type: "ENTER_AS_GUEST",
+    payload: {
+      user
+    }
+  })
