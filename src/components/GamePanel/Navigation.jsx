@@ -23,7 +23,7 @@ class Navigation extends Component {
         <div className="justify-content-end">
           {!user.isAnonymous ? <li className="nav-item dropdown">
             <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {user.displayName}
+              {user.email}
             </button>
             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <Link to="/profile" className="dropdown-item" >Account</Link>
@@ -33,7 +33,7 @@ class Navigation extends Component {
             </div>
           </li> : <li className="nav-item dropdown">
               <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {user.displayName}
+                {user.email}
               </button>
               <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <Link to="/" className="dropdown-item" onClick={this.handleLogOut}>Logo out</Link>

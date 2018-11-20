@@ -37,7 +37,7 @@ class Navigation extends Component {
               {user ? <ul className="navbar-nav">
                 <li className="nav-item dropdown">
                   <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {user.displayName}
+                    {user.email}
                   </button>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <Link to="/profile" className="dropdown-item" >Account</Link>
