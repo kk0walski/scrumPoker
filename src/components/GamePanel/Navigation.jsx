@@ -21,7 +21,7 @@ class Navigation extends Component {
       <nav class="navbar navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">PlanningPoker.pl</Link>
         <div className="justify-content-end">
-          {!user.isAnonymous ? <li className="nav-item dropdown">
+          {user ?  !user.isAnonymous ? <li className="nav-item dropdown">
             <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {user.email}
             </button>
@@ -38,7 +38,7 @@ class Navigation extends Component {
               <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <Link to="/" className="dropdown-item" onClick={this.handleLogOut}>Logo out</Link>
               </div>
-            </li>}
+            </li> : null}
 
         </div>
       </nav>

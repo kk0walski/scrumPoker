@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 import Navigation from "./Navigation";
 import { connect } from "react-redux";
 import { firebase } from "../../firebase/firebase";
-import { enterAsGuest, enterAsUser } from "../../actions/User"
+import { enterAsGuest, enterAsUser } from "../../actions/User";
+import Modal from "./UserModal";
 
 class GamePanel extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      modalOpen: false
+    }
+  }
 
   componentWillMount(){
       firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -14,14 +22,10 @@ class GamePanel extends Component {
             if(!firebaseUser.isAnonymous){
               this.props.enterAsUser(firebaseUser)
             }else {
-              const email = prompt("Podaj email: ")
-              this.props.enterAsGuest({...firebaseUser, email})
+              this.setState({modalOpen: true})
             }
           }else {
-            firebase.auth().signInAnonymously().then(annonymousUser => {
-              const email = prompt("Podaj email: ")
-              this.props.enterAsGuest({...annonymousUser, email});
-            })
+            this.setState({modalOpen: true})
           }
         }
       });
@@ -29,19 +33,13 @@ class GamePanel extends Component {
 
   render() {
     const { user } = this.props;
-    if(user){
-      return (
+    const { modalOpen } = this.state;
+    return (
         <div>
           <Navigation user={user}/>
+          <Modal modalOpen={modalOpen}/>
         </div>
       )
-    }else {
-      return (
-        <div>
-
-        </div>
-      )
-    }
   }
 }
 
