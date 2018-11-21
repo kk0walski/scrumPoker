@@ -3,13 +3,12 @@ import { Route, Redirect, Switch } from "react-router-dom";
 import Login from "../components/Login";
 import Dashboard from "./Dasboard";
 import Repositories from "../components/Repositories";
-import { firebase } from "../firebase/firebase";
 
 export default class Routing extends Component {
 
     render() {
         const { user } = this.props;
-        if (user && !user.isAnonymous && user.token) {
+        if (user && user.token) {
             return (
                 <Switch >
                     <Route exact path="/repositories" component={Repositories} />

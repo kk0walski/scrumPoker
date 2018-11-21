@@ -9,8 +9,10 @@ class GamePanel extends Component {
 
   constructor(props){
     super(props);
+    this.updateUser = this.updateUser.bind(this);
     this.state = {
-      modalOpen: false
+      modalOpen: false,
+      user: undefined
     }
   }
 
@@ -22,13 +24,27 @@ class GamePanel extends Component {
             if(!firebaseUser.isAnonymous){
               this.props.enterAsUser(firebaseUser)
             }else {
-              this.setState({modalOpen: true})
+              if(firebaseUser.email && firebaseUser.displayName){
+                this.props.enterAsGuest(firebaseUser)
+              }else{
+                this.setState({modalOpen: true, user: firebaseUser})
+              }
             }
           }else {
-            this.setState({modalOpen: true})
+            firebase.auth().signInAnonymously()
+            this.setState({modalOpen: true, user: firebase.auth().currentUser})
           }
         }
       });
+  }
+
+  updateUser(name, email){
+    this.state.user.updateProfile({
+      displayName: name
+  }).then(() => {
+    this.state.user.updateEmail(email).then(() => this.props.enterAsGuest(firebase.auth().currentUser))
+  })
+  this.setState({modalOpen: false})
   }
 
   render() {
@@ -37,7 +53,7 @@ class GamePanel extends Component {
     return (
         <div>
           <Navigation user={user}/>
-          <Modal modalOpen={modalOpen}/>
+          <Modal modalOpen={modalOpen} updateUser={this.updateUser}/>
         </div>
       )
   }

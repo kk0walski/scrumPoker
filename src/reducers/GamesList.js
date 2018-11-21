@@ -2,7 +2,6 @@ const GamesList = (state = {}, action) => {
     switch (action.type) {
         case "ADD_GAME":
             {
-                console.log("NEW_GAME: ", action.payload);
                 const {
                     owner,
                     repo,

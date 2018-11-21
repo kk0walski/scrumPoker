@@ -18,7 +18,7 @@ class Navigation extends Component {
   render() {
     const { user } = this.props
     return (
-      <nav class="navbar navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-dark">
         <Link className="navbar-brand" to="/">PlanningPoker.pl</Link>
         <div className="justify-content-end">
           {user ?  !user.isAnonymous ? <li className="nav-item dropdown">
