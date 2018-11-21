@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { firebase } from "../../firebase/firebase";
 import { Redirect } from 'react-router-dom';
 
 export default class UserModal extends Component {
