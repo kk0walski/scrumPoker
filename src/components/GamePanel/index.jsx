@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Navigation from "./Navigation";
 import { connect } from "react-redux";
 import db, { firebase } from "../../firebase/firebase";
 import { enterAsGuest, enterAsUser } from "../../actions/User";
 import Modal from "./UserModal";
-import Content from "./GameContent";
 import { addGame } from "../../actions/Game";
 import { justAddList } from "../../actions/Lists";
+import GameContainer from "./GameContainer"
 
 class GamePanel extends Component {
 
@@ -103,10 +102,7 @@ class GamePanel extends Component {
     const { owner, repo, game } = this.props.match.params
     return (
       <div>
-        <Navigation user={user} />
-        <div className="container-fluid">
-          <Content owner={owner} repo={repo} gameId={game} />
-        </div>
+        <GameContainer owner={owner} repo={repo} gameId={game}  user={user}/>
         <Modal modalOpen={modalOpen} updateUser={this.updateUser} />
       </div>
     )
