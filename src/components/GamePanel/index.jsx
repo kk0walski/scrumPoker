@@ -104,7 +104,9 @@ class GamePanel extends Component {
     return (
       <div>
         <Navigation user={user} />
-        <Content owner={owner} repo={repo} gameId={game} />
+        <div className="container-fluid">
+          <Content owner={owner} repo={repo} gameId={game} />
+        </div>
         <Modal modalOpen={modalOpen} updateUser={this.updateUser} />
       </div>
     )

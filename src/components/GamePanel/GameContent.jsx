@@ -16,14 +16,14 @@ class GameContent extends Component {
         const { game, lista, owner, repo } = this.props;
         if (lista && game) {
             return (
-                <div className="row">
-                    <div className="col-sm-9 float-left">
-                        <ActiveIssue issues={lista.list} issueId={this.state.activeIssue} />
+                    <div className="row">
+                        <div className="col-sm-9 float-left">
+                            <ActiveIssue issues={lista.list} issueId={this.state.activeIssue} />
+                        </div>
+                        <GameNav issues={lista.list} game={game} owner={owner} repo={repo} />
                     </div>
-                    <GameNav issues={lista.list} game={game} owner={owner} repo={repo} />
-                </div>
             )
-        }else {
+        } else {
             return (<div> </div>)
         }
     }

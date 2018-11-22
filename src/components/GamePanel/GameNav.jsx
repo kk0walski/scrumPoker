@@ -51,8 +51,8 @@ class GameNav extends Component {
                         Score
                     </div>
                 </div>
-                <div className="row">
-                <div class="list-group scrollable">
+                <div style={{marginRight: "-15px",marginLeft: "-15px"}}>
+                <div class="list-group">
                     {Object.values(issuesObject).map(issue =>
                         <p className="list-group-item">
                             <div className="row">
