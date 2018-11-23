@@ -7,12 +7,10 @@ export default class UserModal extends Component {
     constructor(props) {
         super(props);
         this.changeName = this.changeName.bind(this);
-        this.changeEmail = this.changeEmail.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             name: '',
-            email: '',
             isSeparator: false,
             redirect: false
         }
@@ -34,18 +32,12 @@ export default class UserModal extends Component {
         })
     }
 
-    changeEmail(event) {
-        event.preventDefault();
-        this.setState({
-            email: event.target.value
-        })
-    }
 
     handleSubmit(event){
         event.preventDefault();
-        const {name, email} = this.state
-        if(name !== '' && email !== ''){
-            this.props.updateUser(name, email)
+        const {name} = this.state
+        if(name !== ''){
+            this.props.updateUser(name)
         }
     }
 
@@ -63,10 +55,6 @@ export default class UserModal extends Component {
                         <div className="form-group">
                             <label htmlFor="displayName">Display Name:</label>
                             <input id="displayName" name="displayName" type="text" required="required" className="form-control" onChange={this.changeName} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email:</label>
-                            <input id="email" name="email" type="email" required="required" className="form-control" onChange={this.changeEmail} />
                         </div>
                         <div className="form-check">
                             <input type="checkbox" className="form-check-input" name="isSeparator" id="isSeparator" onClick={this.handleChange} />

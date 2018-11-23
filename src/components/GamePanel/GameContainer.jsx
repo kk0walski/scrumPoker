@@ -22,31 +22,33 @@ class GameContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.game && nextProps.lista) {
+        if (nextProps.game) {
             const { owner, repo } = nextProps;
-            const issues = nextProps.lista.list;
-            issues.map(issueId => {
-                this.octokit.issues.get({ owner, repo, number: issueId }).then(issue => {
-                    this.setState({
-                        issuesObject: {
-                            ...this.state.issuesObject,
-                            [issueId]: {
-                                ...issue.data
+            const issues = nextProps.game.storyList;
+            if(issues){
+                issues.map(issue => {
+                    this.octokit.issues.get({ owner, repo, number: issue.id }).then(result => {
+                        this.setState({
+                            issuesObject: {
+                                ...this.state.issuesObject,
+                                [issue.id]: {
+                                    ...result.data
+                                }
                             }
-                        }
+                        })
                     })
                 })
-            })
+            }
         }
     }
 
     render() {
-        const { user, game, lista } = this.props
+        const { user, game } = this.props
         const { issuesObject } = this.state
-        if (game && lista) {
-            if (Object.values(issuesObject).length === lista.list.length) {
+        if (game && issuesObject) {
+            if (Object.values(issuesObject).length === game.storyList.length) {
                 return (
-                   <Game user={user} game={game} issues={lista.list} dictonary={issuesObject}/>
+                    <Game user={user} game={game} issues={game.storyList} dictonary={issuesObject} />
                 )
             } else {
                 return (
@@ -68,24 +70,11 @@ const mapStateToProps = (state, ownProps) => {
         state.games[owner][repo] &&
         state.games[owner][repo][gameId]) {
         const newGame = state.games[owner][repo][gameId]
-        if (state.lists[owner] &&
-            state.lists[owner][repo] &&
-            state.lists[owner][repo][newGame.selectedList]) {
-            return {
-                game: newGame,
-                lista: state.lists[owner][repo][newGame.selectedList]
-            }
-        } else {
-            return {
-                game: newGame,
-            }
-        }
-    }else {
         return {
-            game: undefined,
-            lista: undefined
+            game: newGame
         }
-    }
+    } else return { game: undefined }
+
 }
 
 export default connect(mapStateToProps)(GameContainer);

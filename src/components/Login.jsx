@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { FaGithub } from "react-icons/fa";
 import { firebase } from "../firebase/firebase";
 import { enterAsUser } from "../actions/User";
-
 class Login extends Component {
     constructor(props) {
         super(props);

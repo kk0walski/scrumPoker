@@ -28,15 +28,14 @@ class Navigation extends Component {
             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <Link to="/profile" className="dropdown-item" >Account</Link>
               <Link to="/projects" className="dropdown-item" >Projects</Link>
-              <Link to="/issues" className="dropdown-item">Issues</Link>
               <Link to="/" className="dropdown-item" onClick={this.handleLogOut}>Log out</Link>
             </div>
           </li> : <li className="nav-item dropdown">
               <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {user.email}
+                {user.displayName}
               </button>
               <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <Link to="/" className="dropdown-item" onClick={this.handleLogOut}>Logo out</Link>
+              <Link to="/support" className="dropdown-item">Support</Link>
               </div>
             </li> : null}
 

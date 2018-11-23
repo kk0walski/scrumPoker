@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import IssueItem from "../IssueItem";
 
 export default class Backlog extends Component {
+
     render() {
         const { title, issues, issuesObject } = this.props;
         return (
@@ -18,10 +19,10 @@ export default class Backlog extends Component {
                     <div className="card-body">
                         <ul className="list-group" >
                             {issues.map(node => {
-                                if (issuesObject[node]) {
+                                if (issuesObject[node.id]) {
                                     return (
-                                        <li key={node} className={classnames('list-group-item')}>
-                                            <IssueItem issue={issuesObject[node]} key={node} />
+                                        <li key={node.id} className={classnames('list-group-item', {'active':this.props.selectedStory.number === node.id})} onClick={(e) => this.props.selectStory(e, node)}>
+                                            <IssueItem issue={issuesObject[node.id]} key={node.id} />
                                         </li>
                                     )
                                 } else {

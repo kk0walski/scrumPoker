@@ -19,7 +19,7 @@ export default class IssueItem extends Component {
                     </h5>
                     <div className={classnames('d-flex', 'flex-wrap')}>
                         <p className={classnames('f6', 'text-gray', 'mr-3', 'mb-0', 'mt-2')}>
-                            #{issue.number} id: {issue.id}
+                            #{issue.number}
                         </p>
                         <p className={classnames('f6', 'text-gray', 'mr-3', 'mb-0', 'mt-2')}>
                             Updated: <Moment date={issue.updated_at} durationFromNow /> ago by {issue.user.login}

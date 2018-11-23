@@ -16,7 +16,8 @@ const GamesList = (state = {}, action) => {
                     changeVoteEnabled,
                     calculateEnabled,
                     storyTimerEnabled,
-                    selectedList
+                    storyList,
+                    users
                 } = action.payload;
                 return {
                     ...state,
@@ -34,11 +35,51 @@ const GamesList = (state = {}, action) => {
                                 changeVoteEnabled,
                                 calculateEnabled,
                                 storyTimerEnabled,
-                                selectedList
+                                storyList,
+                                users
                             }
                         }
                     }
                 };
+            }
+        case "ADD_USER_TO_GAME":
+            {
+                console.log("PAYLOAD: ", action.payload);
+                const {
+                    owner,
+                    repo,
+                    game,
+                    user
+                } = action.payload
+                if (state[owner] && state[owner][repo] && state[owner][repo][game]) {
+                    return {
+                        ...state,
+                        [owner]: {
+                            [repo]: {
+                                [game]: {
+                                    ...state[owner][repo][game],
+                                    users: {
+                                        ...state[owner][repo][game].users,
+                                        user
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    return {
+                        ...state,
+                        [owner]: {
+                            [repo]: {
+                                [game]: {
+                                    users: {
+                                        user
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         case "DELETE_GAME":
             {

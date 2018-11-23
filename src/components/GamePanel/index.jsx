@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import db, { firebase } from "../../firebase/firebase";
 import { enterAsGuest, enterAsUser } from "../../actions/User";
 import Modal from "./UserModal";
-import { addGame } from "../../actions/Game";
+import { addGame, startAddUserToGame } from "../../actions/Game";
 import { justAddList } from "../../actions/Lists";
 import GameContainer from "./GameContainer"
 
@@ -12,6 +12,7 @@ class GamePanel extends Component {
   constructor(props) {
     super(props);
     this.updateUser = this.updateUser.bind(this);
+    this.addUserToGame = this.addUserToGame.bind(this);
     this.state = {
       modalOpen: false,
       user: undefined
@@ -72,8 +73,9 @@ class GamePanel extends Component {
         if (firebaseUser) {
           if (!firebaseUser.isAnonymous) {
             this.props.enterAsUser(firebaseUser)
+            this.addUserToGame(firebaseUser)
           } else {
-            if (firebaseUser.email && firebaseUser.displayName) {
+            if (firebaseUser.displayName) {
               this.props.enterAsGuest(firebaseUser)
             } else {
               this.setState({ modalOpen: true, user: firebaseUser })
@@ -87,13 +89,19 @@ class GamePanel extends Component {
     });
   }
 
-  updateUser(name, email) {
+  updateUser(name) {
     this.state.user.updateProfile({
       displayName: name
     }).then(() => {
-      this.state.user.updateEmail(email).then(() => this.props.enterAsGuest(firebase.auth().currentUser))
+      this.setState({ modalOpen: false })
+      this.addUserToGame(this.state.user)
+      this.props.enterAsGuest(firebase.auth().currentUser)
     })
-    this.setState({ modalOpen: false })
+  }
+
+  addUserToGame(user) {
+    const { owner, repo, game } = this.props.match.params;
+    this.props.startAddUserToGame(owner, repo, game, user);
   }
 
   render() {
@@ -102,7 +110,7 @@ class GamePanel extends Component {
     const { owner, repo, game } = this.props.match.params
     return (
       <div>
-        <GameContainer owner={owner} repo={repo} gameId={game}  user={user}/>
+        <GameContainer owner={owner} repo={repo} gameId={game} user={user} />
         <Modal modalOpen={modalOpen} updateUser={this.updateUser} />
       </div>
     )
@@ -115,7 +123,8 @@ const mapDispatchToProps = dispatch => ({
   enterAsGuest: (user) => dispatch(enterAsGuest(user)),
   enterAsUser: (user, token) => dispatch(enterAsUser(user, token)),
   addGame: (game) => dispatch(addGame(game)),
-  justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues))
+  justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues)),
+  startAddUserToGame: (owner, name, game, user) => dispatch(startAddUserToGame(owner, name, game, user))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GamePanel);
