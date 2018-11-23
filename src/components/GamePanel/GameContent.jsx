@@ -19,8 +19,8 @@ export default class GameContent extends Component {
 
     render() {
         const { issues, dictonary, game } = this.props;
+        console.log("GAME: ", game);
         const { activeIssue } = this.state;
-        console.log("ISSUE: ", activeIssue)
         return (
             <div>
                 <div className="card" style={{width: "100%" , textAlign: "center"}}>

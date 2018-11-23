@@ -44,13 +44,13 @@ const GamesList = (state = {}, action) => {
             }
         case "ADD_USER_TO_GAME":
             {
-                console.log("PAYLOAD: ", action.payload);
                 const {
                     owner,
                     repo,
                     game,
                     user
                 } = action.payload
+                console.log("USER: ", user)
                 if (state[owner] && state[owner][repo] && state[owner][repo][game]) {
                     return {
                         ...state,
@@ -60,7 +60,7 @@ const GamesList = (state = {}, action) => {
                                     ...state[owner][repo][game],
                                     users: {
                                         ...state[owner][repo][game].users,
-                                        user
+                                        [user.uid]: user
                                     }
                                 }
                             }
@@ -73,7 +73,7 @@ const GamesList = (state = {}, action) => {
                             [repo]: {
                                 [game]: {
                                     users: {
-                                        user
+                                        [user.uid]: user
                                     }
                                 }
                             }
