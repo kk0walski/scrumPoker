@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Card from "./Card";
 export default class GameContent extends Component {
 
     constructor(props) {
@@ -10,10 +11,13 @@ export default class GameContent extends Component {
 
 
     render() {
-        const { issues, dictonary } = this.props;
+        const { issues, dictonary, game } = this.props;
+        console.log("GAME: ", game)
         return (
-            <div>
-
+            <div className="d-flex flex-wrap justify-content-center">
+                {game.cardSet.map(card => 
+                    <Card value={card}/>
+                )}
             </div>
         )
     }
