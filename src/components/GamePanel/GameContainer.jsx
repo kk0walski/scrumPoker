@@ -80,6 +80,11 @@ const mapStateToProps = (state, ownProps) => {
                 game: newGame,
             }
         }
+    }else {
+        return {
+            game: undefined,
+            lista: undefined
+        }
     }
 }
 
