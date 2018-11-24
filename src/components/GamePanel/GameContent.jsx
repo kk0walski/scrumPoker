@@ -16,7 +16,7 @@ class GameContent extends Component {
         this.vote = this.vote.bind(this);
     }
 
-    selectStoryToExam(e,node){
+    selectStoryToExam(node){
         const { owner, repo, game, user } = this.props;
         if(user.uid === game.firebaseOwner){
             this.props.startSelectStory(owner, repo, game.id, node);
@@ -81,11 +81,11 @@ class GameContent extends Component {
                 </div>
                 {user.uid === game.firebaseOwner &&
                 <div style={{textAlign:"center", margin:"20px 0"}}>
-                     <button type="button" class="btn btn-warning">Reset</button>
-                     <button type="button" class="btn btn-success">Flip</button>
-                     <button type="button" class="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
-                     <button type="button" class="btn btn-primary" onClick={this.selectNextStory}>Next</button>
-                     <button type="button" class="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
+                     <button type="button" className="btn btn-warning">Reset</button>
+                     <button type="button" className="btn btn-success">Flip</button>
+                     <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
+                     <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
+                     <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
                 </div>
                 }
                 <VouteDeck selectedStory={selectedStory} game={game}  storyInfo={game.storyList[selectedStory]} />

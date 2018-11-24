@@ -21,7 +21,7 @@ export default class Backlog extends Component {
                             {issues.map((node, index) => {
                                 if (issuesObject[node.id]) {
                                     return (
-                                        <li key={node.id} className={classnames('list-group-item', {'active':this.props.selectedStory === index})} onClick={(e) => this.props.selectStory(e, index)}>
+                                        <li key={node.id} className={classnames('list-group-item', {'active':this.props.selectedStory === index})} onClick={(e) => this.props.selectStory(index)}>
                                             <IssueItem issue={issuesObject[node.id]} key={node.id} />
                                         </li>
                                     )

@@ -63,7 +63,7 @@ const GamesList = (state = {}, action) => {
                                     ...state[owner][repo][game],
                                     users: {
                                         ...state[owner][repo][game].users,
-                                        [user.uid]: user
+                                        [user.id]: user
                                     }
                                 }
                             }

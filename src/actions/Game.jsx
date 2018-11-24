@@ -40,13 +40,14 @@ export const addUserToGame = (owner, repo, game, user = {}) => {
 export const startAddUserToGame = (owner, repo, game, user = {}) => {
     return dispatch => {
         var userUpdate = {}
-        userUpdate["users." + user.uid.toString()] = {
+        const tempUser = {
             email: user.email,
             isAnonymous: user.isAnonymous,
             id: user.uid,
             name: user.displayName,
             online: true
         };
+        userUpdate["users." + user.uid.toString()] = tempUser
         const gameRef = db
             .collection("users")
             .doc(owner.toString())
@@ -56,7 +57,7 @@ export const startAddUserToGame = (owner, repo, game, user = {}) => {
             .doc(game.toString())
 
         gameRef.update(userUpdate).then(() => {
-            dispatch(addUserToGame(owner, repo, game, user))
+            dispatch(addUserToGame(owner, repo, game, tempUser ))
         });
     }
 }
