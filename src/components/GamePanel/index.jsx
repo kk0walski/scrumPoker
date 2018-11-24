@@ -15,7 +15,7 @@ class GamePanel extends Component {
     this.addUserToGame = this.addUserToGame.bind(this);
     this.state = {
       modalOpen: false,
-      user: undefined
+      user: undefined,
     }
   }
 
@@ -77,6 +77,7 @@ class GamePanel extends Component {
           } else {
             if (firebaseUser.displayName) {
               this.props.enterAsGuest(firebaseUser)
+              this.addUserToGame(firebaseUser)
             } else {
               this.setState({ modalOpen: true, user: firebaseUser })
             }

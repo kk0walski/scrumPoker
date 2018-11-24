@@ -60,3 +60,31 @@ export const startAddUserToGame = (owner, repo, game, user = {}) => {
         });
     }
 }
+
+export const selectStory = (owner, repo, game, story) => ({
+    type: "SELECT_STORY",
+    payload: {
+        owner,
+        repo,
+        game,
+        story: story.id
+    }
+})
+
+export const startSelectStory = (owner, repo, game, story) => {
+    return dispatch => {
+        const gameRef = db
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString())
+
+        gameRef.update({
+            selectedStory: story.id
+        }).then(() => {
+            dispatch(selectStory(owner, repo, game, story))
+        })
+    }
+}

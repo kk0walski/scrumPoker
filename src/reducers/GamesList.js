@@ -4,6 +4,8 @@ const GamesList = (state = {}, action) => {
             {
                 const {
                     owner,
+                    firebaseOwner,
+                    selectedStory,
                     repo,
                     id,
                     name,
@@ -26,6 +28,8 @@ const GamesList = (state = {}, action) => {
                             [id]: {
                                 id,
                                 name,
+                                firebaseOwner,
+                                selectedStory,
                                 desc,
                                 velocity,
                                 shareVelocityEnabled,
@@ -50,7 +54,6 @@ const GamesList = (state = {}, action) => {
                     game,
                     user
                 } = action.payload
-                console.log("USER: ", user)
                 if (state[owner] && state[owner][repo] && state[owner][repo][game]) {
                     return {
                         ...state,
@@ -81,6 +84,25 @@ const GamesList = (state = {}, action) => {
                     }
                 }
             }
+        case "SELECT_STORY": {
+            const {
+                owner,
+                repo,
+                game,
+                story
+            } = action.payload;
+            return {
+                ...state,
+                [owner]: {
+                    [repo]: {
+                        [game]: {
+                            ...state[owner][repo][game],
+                            selectedStory: story
+                        }
+                    }
+                }
+            }
+        }
         case "DELETE_GAME":
             {
                 const {

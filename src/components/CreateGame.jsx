@@ -15,10 +15,22 @@ class CreateGame extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const { owner, name } = this.props.match.params;
+    const { user } = this.props;
     const data = new FormData(event.target);
+    const { owner, name } = this.props.match.params;
+    const storyListToPush = this.props.lists[Number(data.get("listChose"))].list.map(listNumber => {
+      return {
+        id: listNumber,
+        owner,
+        project: name,
+        finalScore: "",
+        votes: {},
+      }
+    });
     const reasult = {
       name: data.get('gameName'),
+      selectedStory: storyListToPush[0].id,
+      firebaseOwner: user.uid,
       desc: data.get('gameDescription'),
       velocity: Number(data.get("teamVelocity")),
       shareVelocityEnabled: (data.get("shareVelocityWithAllPlayers") === "true"),
@@ -28,16 +40,16 @@ class CreateGame extends Component {
       changeVoteEnabled: (data.get("isChangeVoteEnabled") === "true"),
       calculateEnabled: (data.get("calculateScore") === "true"),
       storyTimerEnabled: (data.get("isStoryTimerEnabled") === "true"),
-      storyList: this.props.lists[Number(data.get("listChose"))].list.map(listNumber => {
-        return {
-          id: listNumber,
-          owner,
-          project: name,
-          finalScore: "",
-          votes: [],
+      storyList: storyListToPush,
+      users: {
+        [user.uid]: {
+          email: user.email,
+          isAnonymous: user.isAnonymous,
+          id: user.uid,
+          name: user.displayName,
+          online: true
         }
-      }),
-      users: {}
+      }
     }
     this.props.startAddGame(owner, name, reasult);
     this.setState({gameCreated: true})
@@ -234,7 +246,8 @@ class CreateGame extends Component {
 const mapStateToProps = (state, ownProps) => {
   const { owner, name } = ownProps.match.params;
   return ({
-    lists: state.lists[owner] && state.lists[owner][name] ? Object.values(state.lists[owner][name]) : []
+    lists: state.lists[owner] && state.lists[owner][name] ? Object.values(state.lists[owner][name]) : [],
+    user: state.user
   });
 };
 

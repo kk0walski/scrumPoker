@@ -25,7 +25,7 @@ class GameContainer extends Component {
         if (nextProps.game) {
             const { owner, repo } = nextProps;
             const issues = nextProps.game.storyList;
-            if(issues){
+            if (issues) {
                 issues.map(issue => {
                     this.octokit.issues.get({ owner, repo, number: issue.id }).then(result => {
                         this.setState({
@@ -43,12 +43,12 @@ class GameContainer extends Component {
     }
 
     render() {
-        const { user, game } = this.props
+        const { user, game, owner, repo } = this.props
         const { issuesObject } = this.state
-        if (game && issuesObject) {
+        if (game && game.storyList && issuesObject) {
             if (Object.values(issuesObject).length === game.storyList.length) {
                 return (
-                    <Game user={user} game={game} issues={game.storyList} dictonary={issuesObject} />
+                    <Game owner={owner} repo={repo} user={user} game={game} issues={game.storyList} dictonary={issuesObject} />
                 )
             } else {
                 return (
