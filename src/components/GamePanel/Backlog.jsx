@@ -18,10 +18,10 @@ export default class Backlog extends Component {
                 <div id="collapseOne"className="collapse" aria-labelledby="headingOne"data-parent="#accordionExample">
                     <div className="card-body">
                         <ul className="list-group" >
-                            {issues.map(node => {
+                            {issues.map((node, index) => {
                                 if (issuesObject[node.id]) {
                                     return (
-                                        <li key={node.id} className={classnames('list-group-item', {'active':this.props.selectedStory === node.id})} onClick={(e) => this.props.selectStory(e, node)}>
+                                        <li key={node.id} className={classnames('list-group-item', {'active':this.props.selectedStory === index})} onClick={(e) => this.props.selectStory(e, index)}>
                                             <IssueItem issue={issuesObject[node.id]} key={node.id} />
                                         </li>
                                     )

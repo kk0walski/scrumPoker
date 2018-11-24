@@ -8,7 +8,7 @@ export default class IssueItem extends Component {
         return (
                 <div className={classnames('float-left', 'col-9', 'p-2')}>
                     <h5>
-                          <a href={issue.html_url}>{issue.title}</a>  
+                          <a href={issue.html_url} className="list-group-item-action">{issue.title}</a>  
                         {issue.labels.map(label => (
                             <span key={label.id} className="badge badge-light" style={{
                                 backgroundColor: `#${label.color}`

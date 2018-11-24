@@ -67,7 +67,7 @@ export const selectStory = (owner, repo, game, story) => ({
         owner,
         repo,
         game,
-        story: story.id
+        story: story
     }
 })
 
@@ -82,7 +82,7 @@ export const startSelectStory = (owner, repo, game, story) => {
             .doc(game.toString())
 
         gameRef.update({
-            selectedStory: story.id
+            selectedStory: story
         }).then(() => {
             dispatch(selectStory(owner, repo, game, story))
         })
