@@ -10,7 +10,16 @@ export default class VouteDeck extends Component {
                     return (
                         <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
                             {user.name}
-                            <span className="badge badge-primary badge-pill">{storyInfo.votes[user.id] ? storyInfo.flipped ? storyInfo.votes[user.id] : <FaCheck /> : "none"}</span>
+                            <span className="badge badge-primary badge-pill">
+                                {
+                                    storyInfo.votes[user.id] ?
+                                        storyInfo.votes[user.id].vote ? 
+                                            storyInfo.flipped ? storyInfo.vote[user.id].vote 
+                                            : <FaCheck /> 
+                                            :"none" 
+                                    : "none"
+                                }
+                            </span>
                         </li>
                     )
                 })

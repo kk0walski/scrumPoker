@@ -107,11 +107,14 @@ export const startAddUserToStory = (owner, repo, game, story, user) => {
             .doc(repo.toString())
             .collection("games")
             .doc(game.toString())
+            .collection("backlog")
+            .doc(story.id.toString())
+        const storyUpdate = {}
         const tempUser = {
             id: user.uid,
             name: user.displayName
         }
-
-        console.log("STORY: ", story)
+        storyUpdate["votes." + user.uid.toString()] = tempUser
+        gameRef.update(storyUpdate);
     }
 }

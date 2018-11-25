@@ -24,11 +24,11 @@ class GameContainer extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.props.game && nextProps.game) {
+        if (this.props.game && nextProps.game && nextProps.game.storyList) {
             const { owner, repo, game, user } = nextProps
-            if (game.storyList && Object.values(game.storyList)[game.selectedStory] &&
-                 !Object.values(game.storyList)[game.selectedStory].votes[user.uid]) {
-                nextProps.startAddUserToStory(owner, repo, game.id, game.selectedStory, user)
+            const issues = Object.values(game.storyList);
+            if (issues[game.selectedStory] && !issues[game.selectedStory].votes[user.uid]) {
+                nextProps.startAddUserToStory(owner, repo, game.id, issues[game.selectedStory], user)
             }
         }
         if (nextProps.game && nextProps.game.storyList) {
