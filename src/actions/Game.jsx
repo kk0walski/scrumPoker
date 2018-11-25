@@ -1,4 +1,5 @@
 import db from "../firebase/firebase";
+import { firebase } from "../firebase/firebase"
 
 export const addGame = (gameData = {}) => ({
     type: "ADD_GAME",
@@ -80,7 +81,7 @@ export const selectStory = (owner, repo, game, story) => ({
     }
 })
 
-export const startSelectStory = (owner, repo, game, story) => {
+export const startSelectStory = (owner, repo, game, story, previous) => {
     return dispatch => {
         const gameRef = db
             .collection("users")
@@ -89,6 +90,16 @@ export const startSelectStory = (owner, repo, game, story) => {
             .doc(repo.toString())
             .collection("games")
             .doc(game.toString())
+
+        if (previous.finalScore === "" || !previous.finalScore) {
+            for(var key in previous.votes){
+                if(!previous.votes.hasOwnProperty(key)) continue;
+                    delete previous.votes[key].value
+            }
+            gameRef.collection("backlog").doc(previous.id.toString()).update({
+                votes: previous.votes
+            })
+        }
 
         gameRef.update({
             selectedStory: story

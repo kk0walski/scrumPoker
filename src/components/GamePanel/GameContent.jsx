@@ -17,35 +17,31 @@ class GameContent extends Component {
     }
 
     selectStoryToExam(node){
-        const { owner, repo, game, user } = this.props;
+        const { owner, repo, game,  issues, user } = this.props;
         if(user.uid === game.firebaseOwner){
-            this.props.startSelectStory(owner, repo, game.id, node);
+            this.props.startSelectStory(owner, repo, game.id, node, issues[game.selectedStory]);
         }
     }
 
     selectNextStory(){
-        const { owner, repo, game, user, issues } = this.props;
+        const { game, issues } = this.props;
         const {selectedStory } = game
         const newStory = (selectedStory + 1)%issues.length;
-        if(user.uid === game.firebaseOwner){
-            this.props.startSelectStory(owner, repo, game.id, newStory);
-        }
+        this.selectStoryToExam(newStory);
     }
 
     selectPreviousStory(){
-        const { owner, repo, game, user, issues } = this.props;
+        const {game, issues } = this.props;
         const {selectedStory } = game
         const newStory = (selectedStory - 1) >= 0 ? (selectedStory - 1) : (issues.length - 1)
-        if(user.uid === game.firebaseOwner){
-            this.props.startSelectStory(owner, repo, game.id, newStory);
-        }
+        this.selectStoryToExam(newStory);
     }
 
     selectNextUnpointed(){
-        const { owner, repo, game, user, issues } = this.props;
+        const { owner, repo, game, issues } = this.props;
         const {selectedStory } = game;
-        if(user.uid === game.firebaseOwner && 
-            issues.some((story) => story.finalScore === "" || story.finalScore === undefined)
+        if(issues.some((story) => story.finalScore === "" ||
+         story.finalScore === undefined)
         ){
             const unpointed = issues.reduce((state, currentStory, index) => {
                 if(currentStory.finalScore === "" || currentStory.finalScore === undefined){
@@ -58,9 +54,10 @@ class GameContent extends Component {
             if(unpointed.length > 0){
                 const filterMore = unpointed.filter((index) => index > selectedStory)
                 if(filterMore.length > 0){
+                    this.selectStoryToExam(filterMore[0]);
                     this.props.startSelectStory(owner, repo, game.id, filterMore[0])
                 }else {
-                    this.props.startSelectStory(owner, repo, game.id, unpointed[0])
+                    this.selectStoryToExam(filterMore[0]);
                 }
             }
         }
@@ -107,7 +104,7 @@ class GameContent extends Component {
 
 
   const mapDispatchToProps = dispatch => ({
-    startSelectStory: (owner, repo, game, story) => dispatch(startSelectStory(owner, repo, game, story))
+    startSelectStory: (owner, repo, game, story, previous) => dispatch(startSelectStory(owner, repo, game, story, previous))
   });
   
   export default connect(

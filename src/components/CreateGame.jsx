@@ -29,7 +29,7 @@ class CreateGame extends Component {
     });
     const reasult = {
       name: data.get('gameName'),
-      selectedStory: storyListToPush[0].id,
+      selectedStory: 0,
       firebaseOwner: user.uid,
       desc: data.get('gameDescription'),
       velocity: Number(data.get("teamVelocity")),
