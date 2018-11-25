@@ -27,7 +27,7 @@ class ListItem extends Component {
 
     componentDidMount() {
         const { owner, repo, issues } = this.props;
-        issues.map(issueId => {
+        issues.forEach(issueId => {
             this.octokit.issues.get({ owner, repo, number: issueId }).then(issue => {
                 this.setState({
                     issuesObject: {

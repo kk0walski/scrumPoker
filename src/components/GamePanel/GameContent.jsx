@@ -51,6 +51,9 @@ class GameContent extends Component {
                 if(currentStory.finalScore === "" || currentStory.finalScore === undefined){
                     return [...state, index]
                 }
+                else{
+                    return state
+                }
             }, [])
             if(unpointed.length > 0){
                 const filterMore = unpointed.filter((index) => index > selectedStory)
@@ -64,7 +67,7 @@ class GameContent extends Component {
     }
 
     vote(card){
-        const { owner, repo, game, user } = this.props;
+        //const { owner, repo, game, user } = this.props;
         //this.props.startVote(owner, repo, game.id, user.uid, this.state.activeIssue, card)
     }
 

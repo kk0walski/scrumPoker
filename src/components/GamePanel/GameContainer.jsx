@@ -26,8 +26,8 @@ class GameContainer extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.game && nextProps.game) {
             const { owner, repo, game, user } = nextProps
-            if (game.storyList && game.storyList[game.selectedStory] &&
-                 !game.storyList[game.selectedStory].votes[user.uid]) {
+            if (game.storyList && Object.values(game.storyList)[game.selectedStory] &&
+                 !Object.values(game.storyList)[game.selectedStory].votes[user.uid]) {
                 nextProps.startAddUserToStory(owner, repo, game.id, game.selectedStory, user)
             }
         }
@@ -35,7 +35,7 @@ class GameContainer extends Component {
             if (Object.keys(this.state.issuesObject).length !== nextProps.game.issuesCount) {
                 const { owner, repo } = nextProps;
                 const issues = Object.values(nextProps.game.storyList);
-                issues.map(issue => {
+                issues.forEach(issue => {
                     this.octokit.issues.get({ owner, repo, number: issue.id }).then(result => {
                         this.setState({
                             issuesObject: {
