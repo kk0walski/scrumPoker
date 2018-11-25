@@ -24,30 +24,30 @@ class GameContent extends Component {
     }
 
     selectNextStory(){
-        const { owner, repo, game, user } = this.props;
-        const { storyList, selectedStory } = game
-        const newStory = (selectedStory + 1)%storyList.length;
+        const { owner, repo, game, user, issues } = this.props;
+        const {selectedStory } = game
+        const newStory = (selectedStory + 1)%issues.length;
         if(user.uid === game.firebaseOwner){
             this.props.startSelectStory(owner, repo, game.id, newStory);
         }
     }
 
     selectPreviousStory(){
-        const { owner, repo, game, user } = this.props;
-        const { storyList, selectedStory } = game
-        const newStory = (selectedStory - 1) >= 0 ? (selectedStory - 1) : (storyList.length - 1)
+        const { owner, repo, game, user, issues } = this.props;
+        const {selectedStory } = game
+        const newStory = (selectedStory - 1) >= 0 ? (selectedStory - 1) : (issues.length - 1)
         if(user.uid === game.firebaseOwner){
             this.props.startSelectStory(owner, repo, game.id, newStory);
         }
     }
 
     selectNextUnpointed(){
-        const { owner, repo, game, user } = this.props;
-        const { storyList, selectedStory } = game;
+        const { owner, repo, game, user, issues } = this.props;
+        const {selectedStory } = game;
         if(user.uid === game.firebaseOwner && 
-            storyList.some((story) => story.finalScore === "" || story.finalScore === undefined)
+            issues.some((story) => story.finalScore === "" || story.finalScore === undefined)
         ){
-            const unpointed = storyList.reduce((state, currentStory, index) => {
+            const unpointed = issues.reduce((state, currentStory, index) => {
                 if(currentStory.finalScore === "" || currentStory.finalScore === undefined){
                     return [...state, index]
                 }
@@ -88,7 +88,7 @@ class GameContent extends Component {
                      <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
                 </div>
                 }
-                <VouteDeck selectedStory={selectedStory} game={game}  storyInfo={game.storyList[selectedStory]} />
+                <VouteDeck selectedStory={selectedStory} game={game}  storyInfo={issues[selectedStory]} />
                 <div className="d-flex flex-wrap justify-content-center">
                     {game.cardSet.map(card =>
                         <Card value={card} key={card} vote={this.vote}/>

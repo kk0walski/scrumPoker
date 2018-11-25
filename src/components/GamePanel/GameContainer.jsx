@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Game from "./Game"
 import { connect } from "react-redux";
+import { startAddUserToStory } from "../../actions/Game"
 
 class GameContainer extends Component {
 
@@ -17,15 +18,23 @@ class GameContainer extends Component {
             baseUrl: "https://api.github.com"
         });
         this.state = {
-            issuesObject: {}
+            issuesObject: {},
+            importing: true
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.game) {
-            const { owner, repo } = nextProps;
-            const issues = nextProps.game.storyList;
-            if (issues) {
+        if (this.props.game && nextProps.game) {
+            const { owner, repo, game, user } = nextProps
+            if (game.storyList && game.storyList[game.selectedStory] &&
+                 !game.storyList[game.selectedStory].votes[user.uid]) {
+                nextProps.startAddUserToStory(owner, repo, game.id, game.selectedStory, user)
+            }
+        }
+        if (nextProps.game && nextProps.game.storyList) {
+            if (Object.keys(this.state.issuesObject).length !== nextProps.game.issuesCount) {
+                const { owner, repo } = nextProps;
+                const issues = Object.values(nextProps.game.storyList);
                 issues.map(issue => {
                     this.octokit.issues.get({ owner, repo, number: issue.id }).then(result => {
                         this.setState({
@@ -46,9 +55,9 @@ class GameContainer extends Component {
         const { user, game, owner, repo } = this.props
         const { issuesObject } = this.state
         if (game && game.storyList && issuesObject) {
-            if (Object.values(issuesObject).length === game.storyList.length) {
+            if (Object.values(issuesObject).length === game.issuesCount) {
                 return (
-                    <Game owner={owner} repo={repo} user={user} game={game} issues={game.storyList} dictonary={issuesObject} />
+                    <Game owner={owner} repo={repo} user={user} game={game} issues={Object.values(game.storyList)} dictonary={issuesObject} />
                 )
             } else {
                 return (
@@ -71,10 +80,15 @@ const mapStateToProps = (state, ownProps) => {
         state.games[owner][repo][gameId]) {
         const newGame = state.games[owner][repo][gameId]
         return {
-            game: newGame
+            game: newGame,
+            user: state.user
         }
     } else return { game: undefined }
 
 }
 
-export default connect(mapStateToProps)(GameContainer);
+const mapDispatchToProps = dispatch => ({
+    startAddUserToStory: (owner, repo, game, story, user) => dispatch(startAddUserToStory(owner, repo, game, story, user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);

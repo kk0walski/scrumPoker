@@ -39,8 +39,8 @@ class CreateGame extends Component {
       autoFlipEnabled: (data.get("isAutoFlipEnabled") === "true"),
       changeVoteEnabled: (data.get("isChangeVoteEnabled") === "true"),
       calculateEnabled: (data.get("calculateScore") === "true"),
+      issuesCount: storyListToPush.length,
       storyTimerEnabled: (data.get("isStoryTimerEnabled") === "true"),
-      storyList: storyListToPush,
       users: {
         [user.uid]: {
           email: user.email,
@@ -51,7 +51,7 @@ class CreateGame extends Component {
         }
       }
     }
-    this.props.startAddGame(owner, name, reasult);
+    this.props.startAddGame(owner, name, reasult, storyListToPush);
     this.setState({gameCreated: true})
   }
 
@@ -252,7 +252,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  startAddGame: (owner, repo, gameData) => dispatch(startAddGame(owner, repo, gameData))
+  startAddGame: (owner, repo, gameData, storyList) => dispatch(startAddGame(owner, repo, gameData, storyList))
 });
 
 export default connect(

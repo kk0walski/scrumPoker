@@ -18,33 +18,85 @@ const GamesList = (state = {}, action) => {
                     changeVoteEnabled,
                     calculateEnabled,
                     storyTimerEnabled,
-                    storyList,
+                    issuesCount,
                     users
                 } = action.payload;
+                if (state[owner] && state[owner][repo] && state[owner][repo][id]) {
+                    return {
+                        ...state,
+                        [owner]: {
+                            [repo]: {
+                                [id]: {
+                                    ...state[owner][repo][id],
+                                    id,
+                                    name,
+                                    firebaseOwner,
+                                    selectedStory,
+                                    desc,
+                                    velocity,
+                                    shareVelocityEnabled,
+                                    creatorCanEstimateEnabled,
+                                    cardSet,
+                                    autoFlipEnabled,
+                                    changeVoteEnabled,
+                                    calculateEnabled,
+                                    storyTimerEnabled,
+                                    issuesCount,
+                                    users
+                                }
+                            }
+                        }
+                    };
+                } else {
+                    return {
+                        ...state,
+                        [owner]: {
+                            [repo]: {
+                                [id]: {
+                                    id,
+                                    name,
+                                    firebaseOwner,
+                                    selectedStory,
+                                    desc,
+                                    velocity,
+                                    shareVelocityEnabled,
+                                    creatorCanEstimateEnabled,
+                                    cardSet,
+                                    autoFlipEnabled,
+                                    changeVoteEnabled,
+                                    calculateEnabled,
+                                    storyTimerEnabled,
+                                    issuesCount,
+                                    storyList: [],
+                                    users
+                                }
+                            }
+                        }
+                    };
+                }
+            }
+        case "ADD_STORY_TO_GAME":
+            {
+                const {
+                    owner,
+                    repo,
+                    game,
+                    story
+                } = action.payload
                 return {
                     ...state,
                     [owner]: {
                         [repo]: {
-                            [id]: {
-                                id,
-                                name,
-                                firebaseOwner,
-                                selectedStory,
-                                desc,
-                                velocity,
-                                shareVelocityEnabled,
-                                creatorCanEstimateEnabled,
-                                cardSet,
-                                autoFlipEnabled,
-                                changeVoteEnabled,
-                                calculateEnabled,
-                                storyTimerEnabled,
-                                storyList,
-                                users
+                            [game]: {
+                                ...state[owner][repo][game],
+                                storyList: {
+                                    ...state[owner][repo][game].storyList,
+                                    [story.id]: story
+                                }
                             }
                         }
                     }
-                };
+                }
             }
         case "ADD_USER_TO_GAME":
             {
@@ -84,25 +136,26 @@ const GamesList = (state = {}, action) => {
                     }
                 }
             }
-        case "SELECT_STORY": {
-            const {
-                owner,
-                repo,
-                game,
-                story
-            } = action.payload;
-            return {
-                ...state,
-                [owner]: {
-                    [repo]: {
-                        [game]: {
-                            ...state[owner][repo][game],
-                            selectedStory: story
+        case "SELECT_STORY":
+            {
+                const {
+                    owner,
+                    repo,
+                    game,
+                    story
+                } = action.payload;
+                return {
+                    ...state,
+                    [owner]: {
+                        [repo]: {
+                            [game]: {
+                                ...state[owner][repo][game],
+                                selectedStory: story
+                            }
                         }
                     }
                 }
             }
-        }
         case "DELETE_GAME":
             {
                 const {

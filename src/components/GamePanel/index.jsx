@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import db, { firebase } from "../../firebase/firebase";
 import { enterAsGuest, enterAsUser } from "../../actions/User";
 import Modal from "./UserModal";
-import { addGame, startAddUserToGame } from "../../actions/Game";
-import { justAddList } from "../../actions/Lists";
+import { addGame, addStoryToGame, startAddUserToGame } from "../../actions/Game";
 import GameContainer from "./GameContainer"
 
 class GamePanel extends Component {
@@ -20,50 +19,43 @@ class GamePanel extends Component {
   }
 
   componentWillMount = () => {
-    const { owner, repo } = this.props.match.params
-    this.lists = db
-      .collection("users")
-      .doc(owner.toString())
-      .collection("repos")
-      .doc(repo.toString())
-      .collection("lists")
-      .onSnapshot(querySnapchot => {
-        querySnapchot.docChanges().forEach(change => {
-          if (change.type === "added") {
-            this.props.justAddList({ ...change.doc.data(), owner, repo });
-          }
-          if (change.type === "modified") {
-            this.props.justAddList({ ...change.doc.data(), owner, repo });
-          }
-          if (change.type === "removed") {
-            console.log("REMOVE CARD: ", change.doc.data());
-          }
-        });
-      });
-    this.games = db
+    const { owner, repo, game } = this.props.match.params
+    this.game = db
       .collection("users")
       .doc(owner.toString())
       .collection("repos")
       .doc(repo.toString())
       .collection("games")
+      .doc(game.toString())
+      .onSnapshot(doc => {
+        this.props.addGame({ ...doc.data(), owner, repo });
+      });
+    this.issues = db
+      .collection("users")
+      .doc(owner.toString())
+      .collection("repos")
+      .doc(repo.toString())
+      .collection("games")
+      .doc(game.toString())
+      .collection("backlog")
       .onSnapshot(querySnapchot => {
         querySnapchot.docChanges().forEach(change => {
           if (change.type === "added") {
-            this.props.addGame({ ...change.doc.data(), owner, repo });
+            this.props.addStoryToGame({ story: change.doc.data(), owner, repo, game });
           }
           if (change.type === "modified") {
-            this.props.addGame({ ...change.doc.data(), owner, repo });
+            this.props.addStoryToGame({ story: change.doc.data(), owner, repo, game });
           }
           if (change.type === "removed") {
             console.log("REMOVE CARD: ", change.doc.data());
           }
         });
       });
-  };
+}
 
   componentWillUnmount = () => {
-    this.lists();
-    this.games();
+    this.game();
+    this.issues();
   };
 
 
@@ -118,13 +110,14 @@ class GamePanel extends Component {
   }
 }
 
+
 const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
   enterAsGuest: (user) => dispatch(enterAsGuest(user)),
   enterAsUser: (user, token) => dispatch(enterAsUser(user, token)),
   addGame: (game) => dispatch(addGame(game)),
-  justAddList: (owner, name, id, title, issues) => dispatch(justAddList(owner, name, id, title, issues)),
+  addStoryToGame: (storyData) => dispatch(addStoryToGame(storyData)),
   startAddUserToGame: (owner, name, game, user) => dispatch(startAddUserToGame(owner, name, game, user))
 });
 
