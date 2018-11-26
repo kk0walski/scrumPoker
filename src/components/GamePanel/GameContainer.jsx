@@ -28,7 +28,9 @@ class GameContainer extends Component {
             const { owner, repo, game, user } = nextProps
             const issues = Object.values(game.storyList);
             if (issues[game.selectedStory] && !issues[game.selectedStory].votes[user.uid]) {
-                nextProps.startAddUserToStory(owner, repo, game.id, issues[game.selectedStory], user)
+                if((user.uid === game.firebaseOwner  && game.creatorCanEstimateEnabled) || user.uid !== game.firebaseOwner){
+                    nextProps.startAddUserToStory(owner, repo, game.id, issues[game.selectedStory], user)
+                }
             }
         }
         if (nextProps.game && nextProps.game.storyList) {

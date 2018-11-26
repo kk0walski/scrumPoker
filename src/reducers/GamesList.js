@@ -25,7 +25,9 @@ const GamesList = (state = {}, action) => {
                     return {
                         ...state,
                         [owner]: {
+                            ...state[owner],
                             [repo]: {
+                                ...state[owner][repo],
                                 [id]: {
                                     ...state[owner][repo][id],
                                     id,
@@ -42,6 +44,61 @@ const GamesList = (state = {}, action) => {
                                     calculateEnabled,
                                     storyTimerEnabled,
                                     issuesCount,
+                                    users
+                                }
+                            }
+                        }
+                    };
+                } else if (state[owner] && state[owner][repo]) {
+                    return {
+                        ...state,
+                        [owner]: {
+                            ...state[owner],
+                            [repo]: {
+                                ...state[owner][repo],
+                                [id]: {
+                                    id,
+                                    name,
+                                    firebaseOwner,
+                                    selectedStory,
+                                    desc,
+                                    velocity,
+                                    shareVelocityEnabled,
+                                    creatorCanEstimateEnabled,
+                                    cardSet,
+                                    autoFlipEnabled,
+                                    changeVoteEnabled,
+                                    calculateEnabled,
+                                    storyTimerEnabled,
+                                    issuesCount,
+                                    storyList: [],
+                                    users
+                                }
+                            }
+                        }
+                    };
+                } else if (state[owner]) {
+                    return {
+                        ...state,
+                        [owner]: {
+                            ...state[owner],
+                            [repo]: {
+                                [id]: {
+                                    id,
+                                    name,
+                                    firebaseOwner,
+                                    selectedStory,
+                                    desc,
+                                    velocity,
+                                    shareVelocityEnabled,
+                                    creatorCanEstimateEnabled,
+                                    cardSet,
+                                    autoFlipEnabled,
+                                    changeVoteEnabled,
+                                    calculateEnabled,
+                                    storyTimerEnabled,
+                                    issuesCount,
+                                    storyList: [],
                                     users
                                 }
                             }
@@ -83,19 +140,25 @@ const GamesList = (state = {}, action) => {
                     game,
                     story
                 } = action.payload
-                return {
-                    ...state,
-                    [owner]: {
-                        [repo]: {
-                            [game]: {
-                                ...state[owner][repo][game],
-                                storyList: {
-                                    ...state[owner][repo][game].storyList,
-                                    [story.id]: story
+                if (state[owner] && state[owner][repo] && state[owner][repo][game]) {
+                    return {
+                        ...state,
+                        [owner]: {
+                            ...state[owner],
+                            [repo]: {
+                                ...state[owner][repo],
+                                [game]: {
+                                    ...state[owner][repo][game],
+                                    storyList: {
+                                        ...state[owner][repo][game].storyList,
+                                        [story.id]: story
+                                    }
                                 }
                             }
                         }
                     }
+                } else {
+                    return state;
                 }
             }
         case "ADD_USER_TO_GAME":
@@ -110,7 +173,9 @@ const GamesList = (state = {}, action) => {
                     return {
                         ...state,
                         [owner]: {
+                            ...state[owner],
                             [repo]: {
+                                ...state[owner][repo],
                                 [game]: {
                                     ...state[owner][repo][game],
                                     users: {
@@ -122,18 +187,7 @@ const GamesList = (state = {}, action) => {
                         }
                     }
                 } else {
-                    return {
-                        ...state,
-                        [owner]: {
-                            [repo]: {
-                                [game]: {
-                                    users: {
-                                        [user.uid]: user
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    return state;
                 }
             }
         case "SELECT_STORY":
@@ -144,16 +198,22 @@ const GamesList = (state = {}, action) => {
                     game,
                     story
                 } = action.payload;
-                return {
-                    ...state,
-                    [owner]: {
-                        [repo]: {
-                            [game]: {
-                                ...state[owner][repo][game],
-                                selectedStory: story
+                if (state[owner] && state[owner][repo] && state[owner][repo][game]) {
+                    return {
+                        ...state,
+                        [owner]: {
+                            ...state[owner],
+                            [repo]: {
+                                ...state[owner][repo],
+                                [game]: {
+                                    ...state[owner][repo][game],
+                                    selectedStory: story
+                                }
                             }
                         }
                     }
+                } else {
+                    return state;
                 }
             }
         case "DELETE_GAME":
@@ -163,21 +223,26 @@ const GamesList = (state = {}, action) => {
                     repo,
                     id,
                 } = action.payload;
-                const {
-                    [owner]: {
-                        [repo]: {
-                            [id]: deleteGame,
-                            ...restOfGamse
+                if (state[owner] && state[owner][repo] && state[owner][repo][id]) {
+                    const {
+                        [owner]: {
+                            [repo]: {
+                                [id]: deleteGame,
+                                ...restOfGamse
+                            }
+                        }
+                    } = this.state;
+                    return {
+                        ...state,
+                        [owner]: {
+                            ...state[owner],
+                            [repo]: {
+                                ...restOfGamse
+                            }
                         }
                     }
-                } = this.state;
-                return {
-                    ...state,
-                    [owner]: {
-                        [repo]: {
-                            ...restOfGamse
-                        }
-                    }
+                } else {
+                    return state;
                 }
             }
         default:

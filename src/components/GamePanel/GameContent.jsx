@@ -98,6 +98,7 @@ class GameContent extends Component {
     render() {
         const { issues, dictonary, game, user } = this.props;
         const { selectedStory } = game;
+        const playCondition = (user.uid === game.firebaseOwner  && game.creatorCanEstimateEnabled) || user.uid !== game.firebaseOwner
         return (
             <div>
                 <div className="card" style={{ width: "100%", textAlign: "center" }}>
@@ -116,11 +117,11 @@ class GameContent extends Component {
                     </div>
                 }
                 <VouteDeck selectedStory={selectedStory} storyInfo={issues[selectedStory]} user={user} />
-                <div className="d-flex flex-wrap justify-content-center deck">
+                {playCondition && <div className="d-flex flex-wrap justify-content-center deck">
                     {game.cardSet.map(card =>
                         <Card value={card.value} display={card.display} key={card.value} user={user} vote={this.vote} story={issues[selectedStory]} />
                     )}
-                </div>
+                </div>}
                 <div className="accordion" id="accordionExample">
                     <Backlog title="BACKLOG" issues={issues} issuesObject={dictonary} selectedStory={selectedStory} selectStory={this.selectStoryToExam} />
                 </div>

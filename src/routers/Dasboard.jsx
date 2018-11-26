@@ -42,6 +42,7 @@ class Dasboard extends Component {
         .onSnapshot(querySnapchot => {
             querySnapchot.docChanges().forEach(change => {
                 if (change.type === "added") {
+                    console.log("GAMES: ", change.doc.data())
                     this.props.addGame({ ...change.doc.data(), owner: user, repo });
                 }
                 if (change.type === "modified") {
