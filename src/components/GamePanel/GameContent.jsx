@@ -19,6 +19,7 @@ class GameContent extends Component {
 
     selectStoryToExam(node){
         const { owner, repo, game,  issues, user } = this.props;
+        console.log("SELECTED_STORY: ", issues[game.selectedStory])
         if(user.uid === game.firebaseOwner){
             this.props.startSelectStory(owner, repo, game.id, node, issues[game.selectedStory]);
         }
@@ -39,7 +40,7 @@ class GameContent extends Component {
     }
 
     selectNextUnpointed(){
-        const { owner, repo, game, issues } = this.props;
+        const { game, issues } = this.props;
         const {selectedStory } = game;
         if(issues.some((story) => story.finalScore === "" ||
          story.finalScore === undefined)
@@ -53,12 +54,12 @@ class GameContent extends Component {
                 }
             }, [])
             if(unpointed.length > 0){
-                const filterMore = unpointed.filter((index) => index > selectedStory)
-                if(filterMore.length > 0){
-                    this.selectStoryToExam(filterMore[0]);
-                    this.props.startSelectStory(owner, repo, game.id, filterMore[0])
+                const indexOfSelectedStory = unpointed.indexOf(selectedStory)
+                const indexOfNewStory = indexOfSelectedStory === (unpointed.length - 1) ? 0 : (indexOfSelectedStory + 1)
+                if(unpointed.length > 0){
+                    this.selectStoryToExam(unpointed[indexOfNewStory]);
                 }else {
-                    this.selectStoryToExam(filterMore[0]);
+                    this.selectStoryToExam(unpointed[0]);
                 }
             }
         }
@@ -89,7 +90,7 @@ class GameContent extends Component {
                 </div>
                 {user.uid === game.firebaseOwner &&
                 <div style={{textAlign:"center", margin:"20px 0"}}>
-                     <button type="button" className="btn btn-warning">Reset</button>
+                     <button type="button" className="btn btn-warning">Reset Cards</button>
                      <button type="button" className="btn btn-success" onClick={this.flipCardsForStory}>Flip</button>
                      <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
                      <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
