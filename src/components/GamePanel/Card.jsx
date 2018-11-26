@@ -11,7 +11,7 @@ export default class Card extends Component {
             <div className={classnames(
                 "card",
                  {'selected': story.votes && story.votes[user.uid] && story.votes[user.uid].value === cardValue},
-                 {'disabled': story.finalScore !== undefined || story.finalScore !== "" || story.finalScore !== null}
+                 {'disabled': story.finalScore !== undefined && story.finalScore !== "" && story.finalScore !== null}
                  )} onClick={() => this.props.vote(story, cardValue)}>
                 {cardDisplay}
             </div>

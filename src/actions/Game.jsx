@@ -181,3 +181,24 @@ export const flipCards = (owner, repo, game, story) => {
         storyRef.update(newStory)
     }
 }
+
+export const resetCards = (owner, repo, game, story) => {
+    return dispatch => {
+        const storyRef = db
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString())
+            .collection("backlog")
+            .doc(story.id.toString())
+            var newStory = story
+            for (var key in newStory.votes) {
+                delete newStory.votes[key].value
+            }
+            newStory.finalScore = ""
+            newStory.flipped = false;
+            storyRef.update(newStory);
+    }
+}

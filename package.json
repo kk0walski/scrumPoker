@@ -6,6 +6,7 @@
     "@octokit/rest": "^15.17.0",
     "classnames": "^2.2.6",
     "firebase": "^5.5.8",
+    "firebase-tools": "^6.1.1",
     "github-api": "^3.0.0",
     "moment": "^2.22.2",
     "node-sass": "^4.10.0",
