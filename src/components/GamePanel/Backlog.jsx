@@ -21,8 +21,10 @@ export default class Backlog extends Component {
                             {issues.map((node, index) => {
                                 if (issuesObject[node.id]) {
                                     return (
-                                        <li key={node.id} className={classnames('list-group-item', {'active':this.props.selectedStory === index})} onClick={(e) => this.props.selectStory(index)}>
+                                        <li key={node.id} className={classnames('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center',
+                                         {'active':this.props.selectedStory === index})} onClick={(e) => this.props.selectStory(index)}>
                                             <IssueItem issue={issuesObject[node.id]} key={node.id} />
+                                            <span className="badge badge-secondary badge-pill">{node.finalScore === "" || !node.finalScore ? "none" : node.finalScore}</span>
                                         </li>
                                     )
                                 } else {

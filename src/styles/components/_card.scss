@@ -1,11 +1,11 @@
 .deck{
   .card{
     margin: 5px;
-    width: 125px;
+    width: 120px;
     height: 130px;
     border: 2px solid $dark-gray;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 800;
     line-height: 130px;
     color: $black;
@@ -16,7 +16,7 @@
     &.disabled{
      cursor: not-allowed;
     }
-    &.selected{
+    .selected{
       background: linear-gradient(45deg, #ff4048 0%, #ff8042 100%);
       color: $white;
     }

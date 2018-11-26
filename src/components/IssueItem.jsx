@@ -6,7 +6,7 @@ export default class IssueItem extends Component {
     render() {
         const { issue } = this.props;
         return (
-                <div className={classnames('float-left', 'col-9', 'p-2')}>
+                <div className={classnames('p-2')}>
                     <h5>
                           <a href={issue.html_url} className="list-group-item-action">{issue.title}</a>  
                         {issue.labels.map(label => (

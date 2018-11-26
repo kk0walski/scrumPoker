@@ -145,7 +145,7 @@ export const startVote = (owner, repo, game, story, user,  card) => {
         const tempUser = {
             id: user.uid,
             name: user.displayName,
-            value: card.value
+            value: card
         }
         storyUpdate["votes." + user.uid.toString()] = tempUser
         storyRef.update(storyUpdate);

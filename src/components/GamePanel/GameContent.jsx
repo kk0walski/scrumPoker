@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from "./Card";
 import Backlog from "./Backlog"
 import VouteDeck from "./VouteDeck";
-import { startSelectStory } from "../../actions/Game";
+import { startSelectStory, startVote } from "../../actions/Game";
 import { connect } from "react-redux";
 
 class GameContent extends Component {
@@ -63,9 +63,9 @@ class GameContent extends Component {
         }
     }
 
-    vote(card){
-        //const { owner, repo, game, user } = this.props;
-        //this.props.startVote(owner, repo, game.id, user.uid, this.state.activeIssue, card)
+    vote(issue, card){
+        const { owner, repo, game, user } = this.props;
+        this.props.startVote(owner, repo, game.id,  issue, user, card)
     }
 
     render() {
@@ -88,14 +88,14 @@ class GameContent extends Component {
                      <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
                 </div>
                 }
-                <VouteDeck selectedStory={selectedStory} game={game}  storyInfo={issues[selectedStory]} />
+                <VouteDeck selectedStory={selectedStory}  storyInfo={issues[selectedStory]} user={user}/>
                 <div className="d-flex flex-wrap justify-content-center deck">
                     {game.cardSet.map(card =>
-                        <Card value={card.value} display={card.display} key={card.value} vote={this.vote}/>
+                        <Card value={card.value} display={card.display} key={card.value} user={user} vote={this.vote} story={issues[selectedStory]}/>
                     )}
                 </div>
                 <div className="accordion" id="accordionExample">
-                    <Backlog title="Stories to mark" issues={issues} issuesObject={dictonary} selectedStory={selectedStory} selectStory={this.selectStoryToExam}/>
+                    <Backlog title="BACKLOG" issues={issues} issuesObject={dictonary} selectedStory={selectedStory} selectStory={this.selectStoryToExam}/>
                 </div>
             </div>
         )
@@ -104,7 +104,8 @@ class GameContent extends Component {
 
 
   const mapDispatchToProps = dispatch => ({
-    startSelectStory: (owner, repo, game, story, previous) => dispatch(startSelectStory(owner, repo, game, story, previous))
+    startSelectStory: (owner, repo, game, story, previous) => dispatch(startSelectStory(owner, repo, game, story, previous)),
+    startVote: (owner, repo, game, story, user,  card) => dispatch(startVote(owner, repo, game, story, user,  card))
   });
   
   export default connect(

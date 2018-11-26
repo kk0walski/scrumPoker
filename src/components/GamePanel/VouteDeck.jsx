@@ -3,7 +3,7 @@ import { FaCheck } from 'react-icons/fa'
 
 export default class VouteDeck extends Component {
     render() {
-        const { storyInfo, game } = this.props;
+        const { storyInfo, user } = this.props;
         return (
             <ul className="list-group">
                 {Object.values(storyInfo.votes).map(vote => {
@@ -12,7 +12,7 @@ export default class VouteDeck extends Component {
                             {vote.name}
                             <span className="badge badge-primary badge-pill">
                                 {
-                                    vote.value ?  storyInfo.flipped ? vote.value :  <FaCheck />  : "none"
+                                    vote.value ?  storyInfo.flipped ? vote.value :  vote.id === user.uid ? vote.value : <FaCheck />  : "none"
                                 }
                             </span>
                         </li>
