@@ -19,7 +19,6 @@ class GameContent extends Component {
 
     selectStoryToExam(node){
         const { owner, repo, game,  issues, user } = this.props;
-        console.log("SELECTED_STORY: ", issues[game.selectedStory])
         if(user.uid === game.firebaseOwner){
             this.props.startSelectStory(owner, repo, game.id, node, issues[game.selectedStory]);
         }

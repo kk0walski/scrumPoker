@@ -90,11 +90,10 @@ export const startSelectStory = (owner, repo, game, story, previous) => {
             .collection("games")
             .doc(game.toString())
 
-        console.log("PREVIOUS: ", previous)
         if (!previous.finalScore || previous.finalScore === "") {
-            for(var key in previous.votes){
-                if(!previous.votes.hasOwnProperty(key)) continue;
-                    delete previous.votes[key].value
+            for (var key in previous.votes) {
+                if (!previous.votes.hasOwnProperty(key)) continue;
+                delete previous.votes[key].value
             }
             gameRef.collection("backlog").doc(previous.id.toString()).update({
                 votes: previous.votes
@@ -130,17 +129,17 @@ export const startAddUserToStory = (owner, repo, game, story, user) => {
     }
 }
 
-export const startVote = (owner, repo, game, story, user,  card) => {
+export const startVote = (owner, repo, game, story, user, card) => {
     return dispatch => {
         const storyRef = db
-        .collection("users")
-        .doc(owner.toString())
-        .collection("repos")
-        .doc(repo.toString())
-        .collection("games")
-        .doc(game.toString())
-        .collection("backlog")
-        .doc(story.id.toString())
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString())
+            .collection("backlog")
+            .doc(story.id.toString())
         const storyUpdate = {}
         const tempUser = {
             id: user.uid,
@@ -155,29 +154,29 @@ export const startVote = (owner, repo, game, story, user,  card) => {
 export const flipCards = (owner, repo, game, story) => {
     return dispatch => {
         const storyRef = db
-        .collection("users")
-        .doc(owner.toString())
-        .collection("repos")
-        .doc(repo.toString())
-        .collection("games")
-        .doc(game.toString())
-        .collection("backlog")
-        .doc(story.id.toString())
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString())
+            .collection("backlog")
+            .doc(story.id.toString())
         var dlugosc = 0
         var suma = 0;
         var newStory = story
-        for(var key in newStory.votes){
-            const tempValue  = newStory.votes[key].value
-            if(typeof tempValue == 'number'){
+        for (var key in newStory.votes) {
+            const tempValue = newStory.votes[key].value
+            if (typeof tempValue == 'number') {
                 suma += newStory.votes[key].value
                 dlugosc++;
-            }else{
-                if(tempValue === undefined || tempValue === null || tempValue === ""){
+            } else {
+                if (tempValue === undefined || tempValue === null || tempValue === "") {
                     newStory.votes[key].value = "pass";
                 }
             }
         }
-        newStory.finalScore  = Math.round(suma/dlugosc)
+        newStory.finalScore = Math.round(suma / dlugosc)
         newStory.flipped = true;
         storyRef.update(newStory)
     }

@@ -48,6 +48,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### To run project you must add firebase configuration to src/firebase/firebase.jsx file
 
+To run this application properly you must have github login and annonymous login activated in your firebase project.
+
 ## Example Configuration
 
 ```javascript
