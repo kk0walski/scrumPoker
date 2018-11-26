@@ -165,16 +165,20 @@ export const flipCards = (owner, repo, game, story) => {
         .doc(story.id.toString())
         var dlugosc = 0
         var suma = 0;
-
-        for(var key in story.votes){
-            const tempValue  = story.votes[key].value
-            if((tempValue !== null && tempValue !== "?")  || !story.votes[key].value){
-                suma += story.votes[key].value
+        var newStory = story
+        for(var key in newStory.votes){
+            const tempValue  = newStory.votes[key].value
+            if(typeof tempValue == 'number'){
+                suma += newStory.votes[key].value
                 dlugosc++;
             }else{
-                story.votes[key].value = "pass";
+                if(tempValue === undefined || tempValue === null || tempValue === ""){
+                    newStory.votes[key].value = "pass";
+                }
             }
         }
-        const finalValue = suma/dlugosc
+        newStory.finalScore  = Math.round(suma/dlugosc)
+        newStory.flipped = true;
+        storyRef.update(newStory)
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from "./Card";
 import Backlog from "./Backlog"
 import VouteDeck from "./VouteDeck";
-import { startSelectStory, startVote } from "../../actions/Game";
+import { startSelectStory, startVote, flipCards } from "../../actions/Game";
 import { connect } from "react-redux";
 
 class GameContent extends Component {
@@ -13,6 +13,7 @@ class GameContent extends Component {
         this.selectNextStory = this.selectNextStory.bind(this);
         this.selectPreviousStory = this.selectPreviousStory.bind(this);
         this.selectNextUnpointed = this.selectNextUnpointed.bind(this);
+        this.flipCardsForStory = this.flipCardsForStory.bind(this)
         this.vote = this.vote.bind(this);
     }
 
@@ -65,7 +66,14 @@ class GameContent extends Component {
 
     vote(issue, card){
         const { owner, repo, game, user } = this.props;
-        this.props.startVote(owner, repo, game.id,  issue, user, card)
+        if(issue.finalScore === "" || !issue.finalScore || issue.finalScore === null){
+            this.props.startVote(owner, repo, game.id,  issue, user, card)
+        }
+    }
+
+    flipCardsForStory(){
+        const { owner, repo, game, issues } = this.props;
+        this.props.flipCards(owner, repo, game.id, issues[game.selectedStory])
     }
 
     render() {
@@ -82,7 +90,7 @@ class GameContent extends Component {
                 {user.uid === game.firebaseOwner &&
                 <div style={{textAlign:"center", margin:"20px 0"}}>
                      <button type="button" className="btn btn-warning">Reset</button>
-                     <button type="button" className="btn btn-success">Flip</button>
+                     <button type="button" className="btn btn-success" onClick={this.flipCardsForStory}>Flip</button>
                      <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
                      <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
                      <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
@@ -105,7 +113,8 @@ class GameContent extends Component {
 
   const mapDispatchToProps = dispatch => ({
     startSelectStory: (owner, repo, game, story, previous) => dispatch(startSelectStory(owner, repo, game, story, previous)),
-    startVote: (owner, repo, game, story, user,  card) => dispatch(startVote(owner, repo, game, story, user,  card))
+    startVote: (owner, repo, game, story, user,  card) => dispatch(startVote(owner, repo, game, story, user,  card)),
+    flipCards: (owner, repo, game, story)  => dispatch(flipCards(owner, repo, game, story))
   });
   
   export default connect(
