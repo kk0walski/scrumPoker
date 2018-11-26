@@ -46,9 +46,27 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Firebase
 
-To run project you must add firebase configuration to firebase/firebase.jsx file and export your firestore handler in export section, for example: firebase.initializeApp(config);
+### To run project you must add firebase configuration to src/firebase/firebase.jsx file
+
+## Example Configuration
+
+```javascript
+
+import * as firebase from 'firebase';
+
+var config = {
+    apiKey: "<API_KEY>",
+    authDomain: "<PROJECT_ID>.firebaseapp.com",
+    databaseURL: "https://<DATABASE_NAME>.firebaseio.com",
+    projectId: "<PROJECT_ID>",
+    storageBucket: "<BUCKET>.appspot.com",
+    messagingSenderId: "<SENDER_ID>",
+  };
+
+firebase.initializeApp(config);
 
 const database = firebase.firestore();
 const settings = { timestampsInSnapshots: true};
 database.settings(settings);
 export { firebase, database as default };
+``` 
