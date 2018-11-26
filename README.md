@@ -42,3 +42,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Firebase
+
+To run project you must add firebase configuration to firebase/firebase.jsx file and export your firestore handler in export section, for example: firebase.initializeApp(config);
+
+const database = firebase.firestore();
+const settings = { timestampsInSnapshots: true};
+database.settings(settings);
+export { firebase, database as default };

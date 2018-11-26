@@ -13,6 +13,39 @@ class CreateGame extends Component {
     }
   }
 
+  getCardsDeck(selectedCards) {
+    var cardsSet = []
+    switch (selectedCards) {
+      case "1":
+        cardsSet = [{ display: "0", value: 0 }, { display: "1", value: 1 }, { display: "2", value: 2 },
+        { display: "3", value: 3 }, { display: "5", value: 5 }, { display: "8", value: 8 }, { display: "13", value: 13 },
+        { display: "21", value: 21 }, { display: "34", value: 34 }, { display: "55", value: 55 }, { display: "89", value: 89 },
+        { display: "?", value: "?" }, { display: "Pass", value: "Pass" }]
+        break;
+      case "2":
+        cardsSet = [{ display: "0", value: 0 }, { display: "1/2", value: 0.5 }, { display: "1", value: 1 },
+        { display: "2", value: 2 }, { display: "3", value: 3 }, { display: "5", value: 5 }, { display: "8", value: 8 },
+        { display: "13", value: 13 }, { display: "20", value: 20 }, { display: "40", value: 40 }, { display: "100", value: 100 },
+        { display: "?", value: "?" }, { display: "Pass", value: "Pass" }]
+        break;
+      case "3":
+        cardsSet = [{ display: "xxs", value: 1 }, { display: "xs", value: 3 }, { display: "s", value: 8 },
+        { display: "m", value: 13 }, { display: "l", value: 20 }, { display: "xl", value: 40 }, { display: "xxl", value: 100 },
+        { display: "?", value: "?" }, { display: "Pass", value: "Pass" }]
+        break;
+      case "4":
+        cardsSet = [{ display: "0", value: 0 }, { display: "1", value: 1 }, { display: "2", value: 2 },
+        { display: "4", value: 4 }, { display: "8", value: 8 }, { display: "16", value: 16 }, { display: "32", value: 32 },
+        { display: "64", value: 64}, { display: "?", value: "?" }, { display: "Pass", value: "Pass" }]
+        break;
+      default:
+        cardsSet = []
+        break;
+    }
+    return cardsSet;
+  }
+
+
   handleSubmit(event) {
     event.preventDefault();
     const { user } = this.props;
@@ -35,7 +68,7 @@ class CreateGame extends Component {
       velocity: Number(data.get("teamVelocity")),
       shareVelocityEnabled: (data.get("shareVelocityWithAllPlayers") === "true"),
       creatorCanEstimateEnabled: (data.get("isCreatorEffortPointing") === "true"),
-      cardSet: data.get("selectedCardSet").split(','),
+      cardSet: this.getCardsDeck(data.get("selectedCardSet")),
       autoFlipEnabled: (data.get("isAutoFlipEnabled") === "true"),
       changeVoteEnabled: (data.get("isChangeVoteEnabled") === "true"),
       calculateEnabled: (data.get("calculateScore") === "true"),
@@ -119,25 +152,25 @@ class CreateGame extends Component {
                 <label>Choose your card set</label>
                 <div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-1" value="0,1,2,3,5,8,13,21,34,55,89,?,Pass" defaultChecked />
+                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-1" value="1" defaultChecked />
                     <label className="form-check-label" htmlFor="selectedCardSet-1">
                       Fibonacci ( 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?, Pass )
             </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-2" value="0,0.5,1,2,3,5,8,13,20,40,100,?,Pass" />
+                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-2" value="2" />
                     <label className="form-check-label" htmlFor="selectedCardSet-2">
                       Modified Fibonacci ( 0, ½, 1, 2, 3, 5, 8, 13, 20, 40, 100, ?, Pass )
               </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-3" value="xxs,xs,s,m,l,xl,xxl,?,Pass" />
+                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-3" value="3" />
                     <label className="form-check-label" htmlFor="selectedCardSet-3">
                       T-shirts ( xxs, xs, s, m, l, xl, xxl, ?, Pass )
               </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-4" value="0,1,2,4,8,16,32,64,?,Pass" />
+                    <input className="form-check-input" type="radio" name="selectedCardSet" id="selectedCardSet-4" value="4" />
                     <label className="form-check-label" htmlFor="selectedCardSet-4">
                       Powers of 2 ( 0, 1, 2, 4, 8, 16, 32, 64, ?, Pass )
               </label>
@@ -231,7 +264,7 @@ class CreateGame extends Component {
             </form>
           </div>
         )
-      }else {
+      } else {
         return <Redirect to="/" />
       }
     } else {

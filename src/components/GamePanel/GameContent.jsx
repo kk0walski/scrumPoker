@@ -91,7 +91,7 @@ class GameContent extends Component {
                 <VouteDeck selectedStory={selectedStory} game={game}  storyInfo={issues[selectedStory]} />
                 <div className="d-flex flex-wrap justify-content-center">
                     {game.cardSet.map(card =>
-                        <Card value={card} key={card} vote={this.vote}/>
+                        <Card value={card.value} display={card.display} key={card.value} vote={this.vote}/>
                     )}
                 </div>
                 <div className="accordion" id="accordionExample">

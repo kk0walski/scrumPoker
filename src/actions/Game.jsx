@@ -111,7 +111,7 @@ export const startSelectStory = (owner, repo, game, story, previous) => {
 
 export const startAddUserToStory = (owner, repo, game, story, user) => {
     return dispatch => {
-        const gameRef = db
+        const storyRef = db
             .collection("users")
             .doc(owner.toString())
             .collection("repos")
@@ -126,6 +126,55 @@ export const startAddUserToStory = (owner, repo, game, story, user) => {
             name: user.displayName
         }
         storyUpdate["votes." + user.uid.toString()] = tempUser
-        gameRef.update(storyUpdate);
+        storyRef.update(storyUpdate);
+    }
+}
+
+export const startVote = (owner, repo, game, story, user,  card) => {
+    return dispatch => {
+        const storyRef = db
+        .collection("users")
+        .doc(owner.toString())
+        .collection("repos")
+        .doc(repo.toString())
+        .collection("games")
+        .doc(game.toString())
+        .collection("backlog")
+        .doc(story.id.toString())
+        const storyUpdate = {}
+        const tempUser = {
+            id: user.uid,
+            name: user.displayName,
+            value: card.value
+        }
+        storyUpdate["votes." + user.uid.toString()] = tempUser
+        storyRef.update(storyUpdate);
+    }
+}
+
+export const flipCards = (owner, repo, game, story) => {
+    return dispatch => {
+        const storyRef = db
+        .collection("users")
+        .doc(owner.toString())
+        .collection("repos")
+        .doc(repo.toString())
+        .collection("games")
+        .doc(game.toString())
+        .collection("backlog")
+        .doc(story.id.toString())
+        var dlugosc = 0
+        var suma = 0;
+
+        for(var key in story.votes){
+            const tempValue  = story.votes[key].value
+            if((tempValue !== null && tempValue !== "?")  || !story.votes[key].value){
+                suma += story.votes[key].value
+                dlugosc++;
+            }else{
+                story.votes[key].value = "pass";
+            }
+        }
+        const finalValue = suma/dlugosc
     }
 }
