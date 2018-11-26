@@ -89,7 +89,7 @@ class GameContent extends Component {
                 </div>
                 }
                 <VouteDeck selectedStory={selectedStory} game={game}  storyInfo={issues[selectedStory]} />
-                <div className="d-flex flex-wrap justify-content-center">
+                <div className="d-flex flex-wrap justify-content-center deck">
                     {game.cardSet.map(card =>
                         <Card value={card.value} display={card.display} key={card.value} vote={this.vote}/>
                     )}

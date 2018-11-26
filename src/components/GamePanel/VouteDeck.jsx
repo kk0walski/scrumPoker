@@ -6,18 +6,13 @@ export default class VouteDeck extends Component {
         const { storyInfo, game } = this.props;
         return (
             <ul className="list-group">
-                {Object.values(game.users).map(user => {
+                {Object.values(storyInfo.votes).map(vote => {
                     return (
-                        <li key={user.id} className="list-group-item d-flex justify-content-between align-items-center">
-                            {user.name}
+                        <li key={vote.id} className="list-group-item d-flex justify-content-between align-items-center">
+                            {vote.name}
                             <span className="badge badge-primary badge-pill">
                                 {
-                                    storyInfo.votes[user.id] ?
-                                        storyInfo.votes[user.id].vote ? 
-                                            storyInfo.flipped ? storyInfo.vote[user.id].vote 
-                                            : <FaCheck /> 
-                                            :"none" 
-                                    : "none"
+                                    vote.value ?  storyInfo.flipped ? vote.value :  <FaCheck />  : "none"
                                 }
                             </span>
                         </li>
