@@ -35,7 +35,7 @@ export const addList = (owner, repo, listId, listTitle, issues) => ({
         repo,
         id: listId,
         title: listTitle,
-        issues
+        list: issues
     }
 });
 

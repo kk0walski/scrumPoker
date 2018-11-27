@@ -101,12 +101,11 @@ class GamePanel extends Component {
     const { user } = this.props;
     const { modalOpen } = this.state;
     const { owner, repo, game } = this.props.match.params
-    return (
-      <div>
-        <GameContainer owner={owner} repo={repo} gameId={game} user={user} />
-        <Modal modalOpen={modalOpen} updateUser={this.updateUser} />
-      </div>
-    )
+    if(user){
+      return <GameContainer owner={owner} repo={repo} gameId={game} user={user} />
+    }else {
+      return <Modal modalOpen={modalOpen} updateUser={this.updateUser} />
+    }
   }
 }
 

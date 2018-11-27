@@ -152,6 +152,7 @@ export const startVote = (owner, repo, game, story, user, card) => {
 }
 
 export const flipCards = (owner, repo, game, story) => {
+    console.log("OBJECT:  ", {owner, repo, game, story})
     return dispatch => {
         const storyRef = db
             .collection("users")

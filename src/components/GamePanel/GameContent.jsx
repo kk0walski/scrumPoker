@@ -110,7 +110,7 @@ class GameContent extends Component {
                 {user.uid === game.firebaseOwner &&
                     <div style={{ textAlign: "center", margin: "20px 0" }}>
                         <button type="button" className="btn btn-warning" onClick={this.resetCardsForStory}>Reset Cards</button>
-                        <button type="button" className="btn btn-success" onClick={(selectedStory) => this.flipCardsForStory(selectedStory)}>Flip</button>
+                        <button type="button" className="btn btn-success" onClick={() => this.flipCardsForStory(issues[selectedStory])}>Flip</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
