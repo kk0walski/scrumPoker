@@ -75,13 +75,13 @@ class GameContent extends Component {
     flipCardsForStory(examIssue) {
         const { owner, repo, game } = this.props;
         if (!examIssue.flipped) {
-            this.props.flipCards(owner, repo, game, examIssue)
+            this.props.flipCards(owner, repo, game, examIssue, game.calculateEnabled)
         }
     }
 
     resetCardsForStory() {
         const { owner, repo, game, issues } = this.props;
-        this.props.resetCards(owner, repo, game.id, issues[game.selectedStory], game.calculateEnabled)
+        this.props.resetCards(owner, repo, game.id, issues[game.selectedStory])
     }
 
     componentWillReceiveProps(nextPops) {
@@ -143,7 +143,7 @@ class GameContent extends Component {
 const mapDispatchToProps = dispatch => ({
     startSelectStory: (owner, repo, game, story, previous) => dispatch(startSelectStory(owner, repo, game, story, previous)),
     startVote: (owner, repo, game, story, user, card) => dispatch(startVote(owner, repo, game, story, user, card)),
-    flipCards: (owner, repo, game, story) => dispatch(flipCards(owner, repo, game, story)),
+    flipCards: (owner, repo, game, story, calculateEnabled) => dispatch(flipCards(owner, repo, game, story, calculateEnabled)),
     resetCards: (owner, repo, game, story) => dispatch(resetCards(owner, repo, game, story))
 });
 
