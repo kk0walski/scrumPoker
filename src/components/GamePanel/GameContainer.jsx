@@ -25,13 +25,16 @@ class GameContainer extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (this.props.game && nextProps.game && nextProps.game.storyList) {
-            const { owner, repo, game, user } = nextProps
+            const { owner, repo, game } = nextProps
             const issues = Object.values(game.storyList);
-            if (issues[game.selectedStory] && !issues[game.selectedStory].votes[user.uid]) {
-                if((user.uid === game.firebaseOwner  && game.creatorCanEstimateEnabled) || user.uid !== game.firebaseOwner){
-                    nextProps.startAddUserToStory(owner, repo, game.id, issues[game.selectedStory], user)
+            const users = Object.values(game.users);
+            users.forEach(user => {
+                if (issues[game.selectedStory] && !issues[game.selectedStory].votes[user.id]) {
+                    if ((user.id === game.firebaseOwner && game.creatorCanEstimateEnabled) || user.id !== game.firebaseOwner) {
+                        nextProps.startAddUserToStory(owner, repo, game.id, issues[game.selectedStory], user)
+                    }
                 }
-            }
+            })
         }
         if (nextProps.game && nextProps.game.storyList) {
             if (Object.keys(this.state.issuesObject).length !== nextProps.game.issuesCount) {

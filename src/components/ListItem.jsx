@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import IssueItem from "./IssueItem";
 import classnames from 'classnames';
+import { FaTrash } from 'react-icons/fa'
+import { startRemoveList } from "../actions/Lists"
+
 
 class ListItem extends Component {
     constructor(props) {
         super(props);
+        this.removeList = this.removeList.bind(this);
+        this.collapse = this.collapse.bind(this);
         this.octokit = require("@octokit/rest")({
             timeout: 0,
             headers: {
@@ -21,6 +26,7 @@ class ListItem extends Component {
             token: props.user.token
         });
         this.state = {
+            show: false,
             issuesObject: {}
         }
     }
@@ -41,19 +47,33 @@ class ListItem extends Component {
         })
     }
 
+    removeList() {
+        const { owner, repo, id } = this.props;
+        this.props.startRemoveList(owner, repo, id)
+    }
+
+    collapse() {
+        this.setState({
+            show: !this.state.show
+        })
+    }
+
     render() {
         const { title, id, issues } = this.props;
-        const { issuesObject } = this.state;
+        const { issuesObject, show } = this.state;
         return (
             <div className="card">
                 <div className="card-header" id={"heading" + id}>
                     <h5 className="mb-0">
-                        <button className="btn btn-link" data-toggle="collapse" data-target={"#"+id} aria-expanded="true" aria-controls={id}>
+                        <button className="btn btn-link" data-toggle="collapse" data-target={"#" + id} aria-expanded="true" aria-controls={id} onClick={this.collapse}>
                             {title}
+                        </button>
+                        <button type="button" className="btn btn-danger float-right" onClick={this.removeList}>
+                            <FaTrash />Remove
                         </button>
                     </h5>
                 </div>
-                <div id={id} className="collapse" aria-labelledby={id} data-parent="#accordion">
+                <div id={id} className={classnames('collapse', { "show": show })} aria-labelledby={id} data-parent="#accordion">
                     <div className="card-body">
                         <ul className="list-group" >
                             {issues.map(node => {
@@ -77,4 +97,8 @@ class ListItem extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(ListItem);
+const mapDispatchToPorps = dispatch => ({
+    startRemoveList: (owner, repo, list) => dispatch(startRemoveList(owner, repo, list))
+})
+
+export default connect(mapStateToProps, mapDispatchToPorps)(ListItem);

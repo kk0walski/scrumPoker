@@ -221,17 +221,17 @@ const GamesList = (state = {}, action) => {
                 const {
                     owner,
                     repo,
-                    id,
+                    game,
                 } = action.payload;
-                if (state[owner] && state[owner][repo] && state[owner][repo][id]) {
+                if (state[owner] && state[owner][repo] && state[owner][repo][game]) {
                     const {
                         [owner]: {
                             [repo]: {
-                                [id]: deleteGame,
+                                [game]: deleteGame,
                                 ...restOfGamse
                             }
                         }
-                    } = this.state;
+                    } = state;
                     return {
                         ...state,
                         [owner]: {

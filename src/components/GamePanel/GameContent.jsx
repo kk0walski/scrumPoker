@@ -75,13 +75,13 @@ class GameContent extends Component {
     flipCardsForStory(examIssue) {
         const { owner, repo, game } = this.props;
         if (!examIssue.flipped) {
-            this.props.flipCards(owner, repo, game.id, examIssue)
+            this.props.flipCards(owner, repo, game, examIssue)
         }
     }
 
     resetCardsForStory() {
         const { owner, repo, game, issues } = this.props;
-        this.props.resetCards(owner, repo, game.id, issues[game.selectedStory])
+        this.props.resetCards(owner, repo, game.id, issues[game.selectedStory], game.calculateEnabled)
     }
 
     componentWillReceiveProps(nextPops) {
@@ -89,7 +89,9 @@ class GameContent extends Component {
             const { game, issues } = nextPops;
             const nowStory = issues[game.selectedStory];
             const votes = Object.values(nowStory.votes);
-            if (votes.every((vote) => vote.value && vote.value !== "") ) {
+            const users = Object.values(game.users);
+            const lengthExam = game.creatorCanEstimateEnabled ? users.length : (users.length-1)
+            if (votes.length === lengthExam && votes.every((vote) => vote.value !== undefined && vote.value !== null && vote.value !== "") ) {
                 this.flipCardsForStory(nowStory)
             }
         }
@@ -102,6 +104,13 @@ class GameContent extends Component {
         return (
             <div>
                 <div className="card" style={{ width: "100%", textAlign: "center" }}>
+                <div className="card-header d-flex justify-content-center">
+                    <div className="deck">
+                        <div className="card">
+                            {issues[selectedStory].finalScore}
+                        </div>
+                    </div>
+                </div>
                     <div className="card-body">
                         <h5 className="card-title">{dictonary[issues[selectedStory].id].title}</h5>
                         <p className="card-text">{dictonary[issues[selectedStory].id].body}</p>
@@ -110,7 +119,7 @@ class GameContent extends Component {
                 {user.uid === game.firebaseOwner &&
                     <div style={{ textAlign: "center", margin: "20px 0" }}>
                         <button type="button" className="btn btn-warning" onClick={this.resetCardsForStory}>Reset Cards</button>
-                        <button type="button" className="btn btn-success" onClick={() => this.flipCardsForStory(issues[selectedStory])}>Flip</button>
+                        <button type="button" className="btn btn-success" onClick={(e) => this.flipCardsForStory(issues[selectedStory], e)}>Flip</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>

@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { FaTrash } from 'react-icons/fa';
+import { connect } from "react-redux";
+import { startRemoveGame } from "../actions/Game"
 
-export default class GameItem extends Component {
+class GameItem extends Component {
+
+    constructor(props){
+        super(props);
+        this.removeGame = this.removeGame.bind(this);
+    }
+
+    removeGame(){
+        const { game } = this.props;
+        const { owner, name } = this.props.match.params;
+        this.props.startRemoveGame(owner, name, game.id)
+    }
+
     render() {
         const { game } = this.props;
         const { owner, name } = this.props.match.params;
@@ -22,9 +37,18 @@ export default class GameItem extends Component {
                     </footer>
                 </div>
                 <div className="col-4">
-
+                    <button type="button" className="btn btn-danger float-right" onClick={this.removeGame}>
+                        <FaTrash />Remove
+                        </button>
                 </div>
             </div>
         )
     }
 }
+
+
+const mapDispatchToPorps = dispatch => ({
+    startRemoveGame: (owner, repo, game) => dispatch(startRemoveGame(owner, repo, game))
+})
+
+export default connect(undefined, mapDispatchToPorps)(GameItem);

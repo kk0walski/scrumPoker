@@ -20,7 +20,6 @@ export const startAddGame = (owner, repo, gameData = {}, storyList = []) => {
             ...gameData
         }
         ref.set(newGame).then(() => {
-            dispatch(addGame({ owner, repo, ...gameData }))
             storyList.forEach(story => {
                 ref.collection("backlog").doc(story.id.toString()).set(story)
             })
@@ -121,11 +120,10 @@ export const startAddUserToStory = (owner, repo, game, story, user) => {
             .doc(story.id.toString())
         const storyUpdate = {}
         const tempUser = {
-            id: user.uid,
-            name: user.displayName,
-            value: (story.finalScore !== "" && !story.finalScore) ? "Pass" : undefined
+            id: user.id,
+            name: user.name
         }
-        storyUpdate["votes." + user.uid.toString()] = tempUser
+        storyUpdate["votes." + user.id.toString()] = tempUser
         storyRef.update(storyUpdate);
     }
 }
@@ -152,8 +150,7 @@ export const startVote = (owner, repo, game, story, user, card) => {
     }
 }
 
-export const flipCards = (owner, repo, game, story) => {
-    console.log("OBJECT:  ", {owner, repo, game, story})
+export const flipCards = (owner, repo, game, story, calculateEnabled) => {
     return dispatch => {
         const storyRef = db
             .collection("users")
@@ -161,26 +158,37 @@ export const flipCards = (owner, repo, game, story) => {
             .collection("repos")
             .doc(repo.toString())
             .collection("games")
-            .doc(game.toString())
+            .doc(game.id.toString())
             .collection("backlog")
             .doc(story.id.toString())
-        var dlugosc = 0
-        var suma = 0;
         var newStory = story
-        for (var key in newStory.votes) {
-            const tempValue = newStory.votes[key].value
-            if (typeof tempValue == 'number') {
-                suma += newStory.votes[key].value
-                dlugosc++;
-            } else {
-                if (tempValue === undefined || tempValue === null || tempValue === "") {
-                    newStory.votes[key].value = "pass";
+        if(calculateEnabled){
+            var dlugosc = 0
+            var suma = 0;
+            for (var key in newStory.votes) {
+                const tempValue = newStory.votes[key].value
+                if (typeof tempValue == 'number') {
+                    suma += newStory.votes[key].value
+                    dlugosc++;
+                } else {
+                    if (tempValue === undefined || tempValue === null || tempValue === "") {
+                        newStory.votes[key].value = "pass";
+                    }
                 }
             }
+            if(dlugosc > 0){
+                newStory.finalScore = Math.round(suma / dlugosc)
+                newStory.flipped = true;
+                storyRef.update(newStory)
+            }else{
+                newStory.finalScore = 0;
+                newStory.flipped = true;
+                storyRef.update(newStory)
+            }
+        }else {
+            newStory.flipped = true;
+            storyRef.update(newStory);
         }
-        newStory.finalScore = Math.round(suma / dlugosc)
-        newStory.flipped = true;
-        storyRef.update(newStory)
     }
 }
 
@@ -195,12 +203,37 @@ export const resetCards = (owner, repo, game, story) => {
             .doc(game.toString())
             .collection("backlog")
             .doc(story.id.toString())
-            var newStory = story
-            for (var key in newStory.votes) {
-                delete newStory.votes[key].value
-            }
-            newStory.finalScore = ""
-            newStory.flipped = false;
-            storyRef.update(newStory);
+        var newStory = story
+        for (var key in newStory.votes) {
+            delete newStory.votes[key].value
+        }
+        newStory.finalScore = ""
+        newStory.flipped = false;
+        storyRef.update(newStory);
+    }
+}
+
+export const justRemoveGame = (owner, repo, game) => ({
+    type: "DELETE_GAME",
+    payload: {
+        owner,
+        repo,
+        game
+    }
+})
+
+export const startRemoveGame = (owner, repo, game) => {
+    return dispatch => {
+        const gameRef = db
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString())
+
+        gameRef.delete().then(() => {
+            dispatch(justRemoveGame(owner,repo,game))
+        })
     }
 }

@@ -55,6 +55,7 @@ class CreateGame extends Component {
       return {
         id: listNumber,
         owner,
+        flipped: false,
         project: name,
         finalScore: "",
         votes: {},
@@ -267,8 +268,7 @@ class CreateGame extends Component {
         )
       } else {
         return <Redirect to={{
-          pathname: url.replace("create_game", "issues"),
-          state: { reason: "Lack of list" }
+          pathname: url.replace("create_game", "saved_games"),
         }} />
       }
     } else {
