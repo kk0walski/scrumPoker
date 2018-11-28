@@ -77,7 +77,7 @@ const Lists = (state = {}, action) => {
                     listId,
                     listTitle,
                 } = action.payload;
-                if(state[owner] && state[owner][repo] && state[owner][repo][listId]){
+                if (    [owner] && state[owner][repo] && state[owner][repo][listId]) {
                     return {
                         ...state,
                         [owner]: {
@@ -89,7 +89,7 @@ const Lists = (state = {}, action) => {
                             }
                         }
                     }
-                }else{
+                } else {
                     return state;
                 }
             }
@@ -98,17 +98,17 @@ const Lists = (state = {}, action) => {
                 const {
                     owner,
                     repo,
-                    id,
+                    list,
                 } = action.payload;
-                if (state[owner] && state[owner][repo] && state[owner][repo][id]) {
+                if (state[owner] && state[owner][repo] && state[owner][repo][list]) {
                     const {
                         [owner]: {
                             [repo]: {
-                                [id]: deleteList,
+                                [list]: deleteList,
                                 ...restOfLists
                             }
                         }
-                    } = this.state;
+                    } = state;
                     return {
                         ...state,
                         [owner]: {
@@ -118,7 +118,7 @@ const Lists = (state = {}, action) => {
                             }
                         }
                     }
-                }else{
+                } else {
                     return state;
                 }
             }

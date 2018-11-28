@@ -36,7 +36,7 @@ class CreateGame extends Component {
       case "4":
         cardsSet = [{ display: "0", value: 0 }, { display: "1", value: 1 }, { display: "2", value: 2 },
         { display: "4", value: 4 }, { display: "8", value: 8 }, { display: "16", value: 16 }, { display: "32", value: 32 },
-        { display: "64", value: 64}, { display: "?", value: "?" }, { display: "Pass", value: "Pass" }]
+        { display: "64", value: 64 }, { display: "?", value: "?" }, { display: "Pass", value: "Pass" }]
         break;
       default:
         cardsSet = []
@@ -85,13 +85,14 @@ class CreateGame extends Component {
       }
     }
     this.props.startAddGame(owner, name, reasult, storyListToPush);
-    this.setState({gameCreated: true})
+    this.setState({ gameCreated: true })
   }
 
   render() {
     const { lists } = this.props;
     const { gameCreated } = this.state;
-    if (lists) {
+    const { url } = this.props.match;
+    if (lists && lists.length > 0) {
       if (!gameCreated) {
         return (
           <div>
@@ -265,12 +266,16 @@ class CreateGame extends Component {
           </div>
         )
       } else {
-        return <Redirect to="/" />
+        return <Redirect to={{
+          pathname: url.replace("create_game", "issues"),
+          state: { reason: "Lack of list" }
+        }} />
       }
     } else {
-      return (
-        <Redirect to="/" />
-      )
+      return <Redirect to={{
+          pathname: url.replace("create_game", "issues"),
+          state: { reason: "Lack of list" }
+        }} />
     }
   }
 }
@@ -279,7 +284,7 @@ class CreateGame extends Component {
 const mapStateToProps = (state, ownProps) => {
   const { owner, name } = ownProps.match.params;
   return ({
-    lists: state.lists[owner] && state.lists[owner][name] ? Object.values(state.lists[owner][name]) : [],
+    lists: state.lists[owner] && state.lists[owner][name] ? Object.values(state.lists[owner][name]) : undefined,
     user: state.user
   });
 };

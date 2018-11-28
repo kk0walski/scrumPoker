@@ -39,7 +39,7 @@ class Issues extends Component {
         })
     }
 
-    closeModalAndClear(){
+    closeModalAndClear() {
         this.setState({
             issues: [],
             modalOpen: false
@@ -55,7 +55,7 @@ class Issues extends Component {
 
     createList(toMove) {
         var list = prompt("Please enter list name", "Test")
-        if(list !== null && list !== ""){
+        if (list !== null && list !== "") {
             console.log(list)
         }
     }
@@ -63,18 +63,24 @@ class Issues extends Component {
     render() {
         const { owner, name } = this.props.match.params;
         const { issues, modalOpen } = this.state;
-        const { match } = this.props
+        const { match, location } = this.props
         return (
             <div>
+                {location.state && location.state.reason && <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>You have no list</strong> To create game first you mast create list to be you backlog
+                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>}
                 {owner &&
-                 name &&
-                  <ListIssues owner={owner}
-                   repo={name}
-                    match={match}
-                    filterLabels={[]}
-                    buttonText={"Create List"}
-                     moveIssues={this.showModal}/>}
-                     <CreateListModal issues={issues} match={match} modalOpen={modalOpen} repo={name} closeAndClear={this.closeModalAndClear} closeModal={this.closeModal} />
+                    name &&
+                    <ListIssues owner={owner}
+                        repo={name}
+                        match={match}
+                        filterLabels={[]}
+                        buttonText={"Create List"}
+                        moveIssues={this.showModal} />}
+                <CreateListModal issues={issues} match={match} modalOpen={modalOpen} repo={name} closeAndClear={this.closeModalAndClear} closeModal={this.closeModal} />
             </div>
         )
     }

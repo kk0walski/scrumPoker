@@ -122,7 +122,8 @@ export const startAddUserToStory = (owner, repo, game, story, user) => {
         const storyUpdate = {}
         const tempUser = {
             id: user.uid,
-            name: user.displayName
+            name: user.displayName,
+            value: (story.finalScore !== "" && !story.finalScore) ? "Pass" : undefined
         }
         storyUpdate["votes." + user.uid.toString()] = tempUser
         storyRef.update(storyUpdate);

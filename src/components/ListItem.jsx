@@ -46,14 +46,14 @@ class ListItem extends Component {
         const { issuesObject } = this.state;
         return (
             <div className="card">
-                <div className="card-header" id={id + "head"}>
+                <div className="card-header" id={"heading" + id}>
                     <h5 className="mb-0">
-                        <button className="btn btn-link" data-toggle="collapse" data-target={"#" + id} aria-expanded="true" aria-controls={id}>
+                        <button className="btn btn-link" data-toggle="collapse" data-target={"#"+id} aria-expanded="true" aria-controls={id}>
                             {title}
                         </button>
                     </h5>
                 </div>
-                <div id={id} className="collapse" aria-labelledby={id + "head"} data-parent="#accordion">
+                <div id={id} className="collapse" aria-labelledby={id} data-parent="#accordion">
                     <div className="card-body">
                         <ul className="list-group" >
                             {issues.map(node => {

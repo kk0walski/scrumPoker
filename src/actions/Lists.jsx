@@ -64,3 +64,28 @@ export const startAddList = (owner, repo, title, list) => {
         })
     }
 }
+
+export const justRemoveList = (owner, repo, list) => ({
+    type: "DELETE_LIST",
+    payload: {
+        owner,
+        repo,
+        list
+    }
+})
+
+export const startRemoveList = (owner, repo, list) => {
+    return dispatch => {
+        const ref = db
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("lists")
+            .doc(list.toString())
+            
+            ref.delete().then(() => {
+                dispatch(justRemoveList(owner, repo, list))
+            });
+    }
+}
