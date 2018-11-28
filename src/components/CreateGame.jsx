@@ -74,7 +74,6 @@ class CreateGame extends Component {
       changeVoteEnabled: (data.get("isChangeVoteEnabled") === "true"),
       calculateEnabled: (data.get("calculateScore") === "true"),
       issuesCount: storyListToPush.length,
-      storyTimerEnabled: (data.get("isStoryTimerEnabled") === "true"),
       users: {
         [user.uid]: {
           email: user.email,
@@ -230,23 +229,6 @@ class CreateGame extends Component {
                   <div className="form-check">
                     <input className="form-check-input" type="radio" name="calculateScore" id="calculateScore-false" value="false" />
                     <label className="form-check-label" htmlFor="calculateScore-false">
-                      No
-              </label>
-                  </div>
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Would you like a story timer?</label>
-                <div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isStoryTimerEnabled" id="isStoryTimerEnabled-true" value="true" defaultChecked />
-                    <label className="form-check-label" htmlFor="calculateScore-true">
-                      Yes
-            </label>
-                  </div>
-                  <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isStoryTimerEnabled" id="isStoryTimerEnabled-false" value="false" />
-                    <label className="form-check-label" htmlFor="isStoryTimerEnabled-false">
                       No
               </label>
                   </div>
