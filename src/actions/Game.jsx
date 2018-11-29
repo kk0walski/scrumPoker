@@ -19,12 +19,11 @@ export const startAddGame = (owner, repo, gameData = {}, storyList = []) => {
             id: key,
             ...gameData
         }
-        console.log("GAME: ", newGame)
-        // ref.set(newGame).then(() => {
-        //     storyList.forEach(story => {
-        //         ref.collection("backlog").doc(story.id.toString()).set(story)
-        //     })
-        // })
+        ref.set(newGame).then(() => {
+            storyList.forEach(story => {
+                ref.collection("backlog").doc(story.id.toString()).set(story)
+            })
+        })
     }
 }
 
