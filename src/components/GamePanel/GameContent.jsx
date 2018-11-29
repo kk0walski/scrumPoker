@@ -4,6 +4,7 @@ import Backlog from "./Backlog"
 import VouteDeck from "./VouteDeck";
 import { startSelectStory, startVote, flipCards, resetCards } from "../../actions/Game";
 import { connect } from "react-redux";
+import StoryPoint from "./StoryPoint"
 
 class GameContent extends Component {
 
@@ -67,15 +68,15 @@ class GameContent extends Component {
 
     vote(issue, card) {
         const { owner, repo, game, user } = this.props;
-        if(!game.changeVoteEnabled){
+        if (!game.changeVoteEnabled) {
             if (issue.finalScore === "" || !issue.finalScore || issue.finalScore === null) {
                 this.props.startVote(owner, repo, game, issue, user, card)
             }
-        }else {
+        } else {
             if (issue.finalScore === "" || !issue.finalScore || issue.finalScore === null) {
                 this.props.startVote(owner, repo, game, issue, user, card)
             }
-            else{
+            else {
                 this.props.startVote(owner, repo, game, issue, user, card);
             }
         }
@@ -83,11 +84,11 @@ class GameContent extends Component {
 
     flipCardsForStory(examIssue, changeVoteEnabled) {
         const { owner, repo, game } = this.props;
-        if(!changeVoteEnabled){
+        if (!changeVoteEnabled) {
             if (!examIssue.flipped) {
                 this.props.flipCards(owner, repo, game, examIssue, game.calculateEnabled)
             }
-        }else{
+        } else {
             this.props.flipCards(owner, repo, game, examIssue, game.calculateEnabled)
         }
     }
@@ -103,27 +104,27 @@ class GameContent extends Component {
             const nowStory = issues[game.selectedStory];
             const votes = Object.values(nowStory.votes);
             const users = Object.values(game.users);
-            const lengthExam = game.creatorCanEstimateEnabled ? users.length : (users.length-1)
-            if (votes.length === lengthExam && votes.every((vote) => vote.value !== undefined && vote.value !== null && vote.value !== "") ) {
+            const lengthExam = game.creatorCanEstimateEnabled ? users.length : (users.length - 1)
+            if (!nowStory.flipped && votes.length === lengthExam && votes.every((vote) => vote.value !== undefined && vote.value !== null && vote.value !== "")) {
                 this.flipCardsForStory(nowStory, nextPops.game.changeVoteEnabled)
             }
         }
     }
 
     render() {
-        const { issues, dictonary, game, user } = this.props;
+        const { owner, repo, issues, dictonary, game, user, sumOfPoints } = this.props;
         const { selectedStory } = game;
-        const playCondition = (user.uid === game.firebaseOwner  && game.creatorCanEstimateEnabled) || user.uid !== game.firebaseOwner
+        const playCondition = (user.uid === game.firebaseOwner && game.creatorCanEstimateEnabled) || user.uid !== game.firebaseOwner
         return (
             <div>
-                <div className="card" style={{ width: "100%", textAlign: "center" }}>
-                <div className="card-header d-flex justify-content-center">
-                    <div className="deck">
-                        <div className="card">
-                            {issues[selectedStory].finalScore}
-                        </div>
+                <div className="jumbotron jumbotron-fluid">
+                    <div className="container text-center">
+                        <h1 className="display-4">{sumOfPoints}/{game.velocity}</h1>
+                        <p className="lead">This is sum of all story points and your team velocity.</p>
                     </div>
                 </div>
+                <div className="card" style={{ width: "100%", textAlign: "center" }}>
+                    <StoryPoint owner={owner} repo={repo} game={game} story={issues[selectedStory]} />
                     <div className="card-body">
                         <h5 className="card-title">{dictonary[issues[selectedStory].id].title}</h5>
                         <p className="card-text">{dictonary[issues[selectedStory].id].body}</p>

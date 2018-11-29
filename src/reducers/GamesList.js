@@ -161,6 +161,39 @@ const GamesList = (state = {}, action) => {
                     return state;
                 }
             }
+        case "EDIT_STORY": 
+        {
+            const {
+                owner,
+                repo,
+                game,
+                story,
+                value
+            } = action.payload;
+            if (state[owner] && state[owner][repo] && state[owner][repo][game] && state[owner][repo][game][story]) {
+                return {
+                    ...state,
+                    [owner]: {
+                        ...state[owner],
+                        [repo]: {
+                            ...state[owner][repo],
+                            [game]: {
+                                ...state[owner][repo][game],
+                                storyList: {
+                                    ...state[owner][repo][game].storyList,
+                                    [story]: {
+                                        ...state[owner][repo][game].storyList[story],
+                                        finalScore: value
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } 
+            }else {
+                return state;
+            }
+        }
         case "ADD_USER_TO_GAME":
             {
                 const {

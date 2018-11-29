@@ -7,7 +7,7 @@
     text-align: center;
     font-size: 40px;
     font-weight: 800;
-    line-height: 130px;
+    padding-top: 25px;
     color: $black;
     background: $white;
     float: left;
@@ -19,5 +19,9 @@
     .selected{
       background: linear-gradient(45deg, #ff4048 0%, #ff8042 100%);
       color: $white;
+    }
+
+    .scoreEdit {
+      font-size: 15px;
     }
 }

@@ -162,13 +162,13 @@ export const flipCards = (owner, repo, game, story, calculateEnabled) => {
             .collection("backlog")
             .doc(story.id.toString())
         var newStory = story
-        if(calculateEnabled){
+        if (calculateEnabled) {
             var dlugosc = 0
             var suma = 0;
             const cardSet = game.cardSet.map(card => card.value);
             for (var key in newStory.votes) {
                 const tempValue = newStory.votes[key].value
-                if (typeof tempValue == 'number') {
+                if (!isNaN(tempValue)) {
                     suma += newStory.votes[key].value
                     dlugosc++;
                 } else {
@@ -177,18 +177,18 @@ export const flipCards = (owner, repo, game, story, calculateEnabled) => {
                     }
                 }
             }
-            if(dlugosc > 0){
+            if (dlugosc > 0) {
                 const reasult = Math.round(suma / dlugosc);
                 const moreThanResult = cardSet.filter(value => value >= reasult);
                 newStory.finalScore = moreThanResult[0]
                 newStory.flipped = true;
                 storyRef.update(newStory)
-            }else{
+            } else {
                 newStory.finalScore = 0;
                 newStory.flipped = true;
                 storyRef.update(newStory)
             }
-        }else {
+        } else {
             newStory.flipped = true;
             storyRef.update(newStory);
         }
@@ -236,7 +236,38 @@ export const startRemoveGame = (owner, repo, game) => {
             .doc(game.toString())
 
         gameRef.delete().then(() => {
-            dispatch(justRemoveGame(owner,repo,game))
+            dispatch(justRemoveGame(owner, repo, game))
         })
+    }
+}
+
+export const justEditStoryScore = (owner, repo, game, story, value) => ({
+    type: "EDIT_STORY",
+    payload: {
+        owner,
+        repo,
+        game,
+        story,
+        value
+    }
+})
+
+export const startEditStoreScore = (owner, repo, game, story, score) => {
+    return dispatch => {
+        const storyRef = db
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString())
+            .collection("backlog")
+            .doc(story.toString())
+
+            storyRef.update({
+                finalScore: score
+            }).then(
+                dispatch(justEditStoryScore(owner, repo, game, story, score))
+            )
     }
 }
