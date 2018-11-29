@@ -67,14 +67,27 @@ class GameContent extends Component {
 
     vote(issue, card) {
         const { owner, repo, game, user } = this.props;
-        if (issue.finalScore === "" || !issue.finalScore || issue.finalScore === null) {
-            this.props.startVote(owner, repo, game.id, issue, user, card)
+        if(!game.changeVoteEnabled){
+            if (issue.finalScore === "" || !issue.finalScore || issue.finalScore === null) {
+                this.props.startVote(owner, repo, game, issue, user, card)
+            }
+        }else {
+            if (issue.finalScore === "" || !issue.finalScore || issue.finalScore === null) {
+                this.props.startVote(owner, repo, game, issue, user, card)
+            }
+            else{
+                this.props.startVote(owner, repo, game, issue, user, card);
+            }
         }
     }
 
-    flipCardsForStory(examIssue) {
+    flipCardsForStory(examIssue, changeVoteEnabled) {
         const { owner, repo, game } = this.props;
-        if (!examIssue.flipped) {
+        if(!changeVoteEnabled){
+            if (!examIssue.flipped) {
+                this.props.flipCards(owner, repo, game, examIssue, game.calculateEnabled)
+            }
+        }else{
             this.props.flipCards(owner, repo, game, examIssue, game.calculateEnabled)
         }
     }
@@ -92,7 +105,7 @@ class GameContent extends Component {
             const users = Object.values(game.users);
             const lengthExam = game.creatorCanEstimateEnabled ? users.length : (users.length-1)
             if (votes.length === lengthExam && votes.every((vote) => vote.value !== undefined && vote.value !== null && vote.value !== "") ) {
-                this.flipCardsForStory(nowStory)
+                this.flipCardsForStory(nowStory, nextPops.game.changeVoteEnabled)
             }
         }
     }
@@ -119,7 +132,7 @@ class GameContent extends Component {
                 {user.uid === game.firebaseOwner &&
                     <div style={{ textAlign: "center", margin: "20px 0" }}>
                         <button type="button" className="btn btn-warning" onClick={this.resetCardsForStory}>Reset Cards</button>
-                        <button type="button" className="btn btn-success" onClick={(e) => this.flipCardsForStory(issues[selectedStory], e)}>Flip</button>
+                        <button type="button" className="btn btn-success" onClick={(e) => this.flipCardsForStory(issues[selectedStory], game.changeVoteEnabled, e)}>Flip</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
                         <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
@@ -128,7 +141,7 @@ class GameContent extends Component {
                 <VouteDeck selectedStory={selectedStory} storyInfo={issues[selectedStory]} user={user} />
                 {playCondition && <div className="d-flex flex-wrap justify-content-center deck">
                     {game.cardSet.map(card =>
-                        <Card value={card.value} display={card.display} key={card.value} user={user} vote={this.vote} story={issues[selectedStory]} />
+                        <Card value={card.value} display={card.display} key={card.value} user={user} vote={this.vote} story={issues[selectedStory]} canChange={game.changeVoteEnabled} />
                     )}
                 </div>}
                 <div className="accordion" id="accordionExample">

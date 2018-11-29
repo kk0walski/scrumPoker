@@ -136,7 +136,7 @@ export const startVote = (owner, repo, game, story, user, card) => {
             .collection("repos")
             .doc(repo.toString())
             .collection("games")
-            .doc(game.toString())
+            .doc(game.id.toString())
             .collection("backlog")
             .doc(story.id.toString())
         const storyUpdate = {}
@@ -165,6 +165,7 @@ export const flipCards = (owner, repo, game, story, calculateEnabled) => {
         if(calculateEnabled){
             var dlugosc = 0
             var suma = 0;
+            const cardSet = game.cardSet.map(card => card.value);
             for (var key in newStory.votes) {
                 const tempValue = newStory.votes[key].value
                 if (typeof tempValue == 'number') {
@@ -177,7 +178,9 @@ export const flipCards = (owner, repo, game, story, calculateEnabled) => {
                 }
             }
             if(dlugosc > 0){
-                newStory.finalScore = Math.round(suma / dlugosc)
+                const reasult = Math.round(suma / dlugosc);
+                const moreThanResult = cardSet.filter(value => value >= reasult);
+                newStory.finalScore = moreThanResult[0]
                 newStory.flipped = true;
                 storyRef.update(newStory)
             }else{
