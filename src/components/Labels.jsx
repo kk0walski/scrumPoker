@@ -37,7 +37,7 @@ class Labels extends Component {
     async  getAllLabels() {
         const { owner, repo } = this.props;
         let response = await this.octokit.issues
-            .getLabels({
+            .listLabelsForRepo({
                 owner,
                 repo,
                 per_page: 100

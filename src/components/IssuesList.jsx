@@ -84,7 +84,7 @@ class IssuesList extends Component {
             prevProps.repo !== this.props.repo ||
             !this.checkLabels(prevProps.filterLabels, this.props.filterLabels)) {
             this.octokit.issues
-                .getForRepo({
+                .listForRepo({
                     owner,
                     repo,
                     labels: filterLabels.toString(),
@@ -112,7 +112,7 @@ class IssuesList extends Component {
     componentDidMount() {
         const { per_page } = this.state.toFilter;
         this.octokit.issues
-            .getForRepo(this.removeEmpty(this.state.toFilter))
+            .listForRepo(this.removeEmpty(this.state.toFilter))
             .then(result => {
                 this.setState({
                     result,
@@ -124,7 +124,7 @@ class IssuesList extends Component {
 
     handleLabelsFilter(filterLabels) {
         const { per_page } = this.state.toFilter;
-        this.octokit.issues.getForRepo(this.removeEmpty({ ...this.state.toFilter, labels: filterLabels.toString() }))
+        this.octokit.issues.listForRepo(this.removeEmpty({ ...this.state.toFilter, labels: filterLabels.toString() }))
             .then(result => {
                 this.setState({
                     result,
@@ -140,7 +140,7 @@ class IssuesList extends Component {
 
     handleAutorFilter(autor) {
         const { per_page } = this.state.toFilter;
-        this.octokit.issues.getForRepo(this.removeEmpty({ ...this.state.toFilter, creator: autor }))
+        this.octokit.issues.listForRepo(this.removeEmpty({ ...this.state.toFilter, creator: autor }))
             .then(result => {
                 this.setState({
                     result,
@@ -156,7 +156,7 @@ class IssuesList extends Component {
 
     handleMileStoneFilter(milestone) {
         const { per_page } = this.state.toFilter;
-        this.octokit.issues.getForRepo(this.removeEmpty({ ...this.state.toFilter, milestone }))
+        this.octokit.issues.listForRepo(this.removeEmpty({ ...this.state.toFilter, milestone }))
             .then(result => {
                 this.setState({
                     result,
@@ -175,7 +175,7 @@ class IssuesList extends Component {
         this.setState({
             refreshDisabled: true
         })
-        this.octokit.issues.getForRepo(this.removeEmpty(this.state.toFilter))
+        this.octokit.issues.listForRepo(this.removeEmpty(this.state.toFilter))
             .then(result => {
                 this.setState({
                     result,
@@ -189,7 +189,7 @@ class IssuesList extends Component {
     }
 
     handlePageChange(pageNumber) {
-        this.octokit.issues.getForRepo(this.removeEmpty({ ...this.state.toFilter, page: pageNumber }))
+        this.octokit.issues.listForRepo(this.removeEmpty({ ...this.state.toFilter, page: pageNumber }))
             .then(result => {
                 this.setState({
                     result,

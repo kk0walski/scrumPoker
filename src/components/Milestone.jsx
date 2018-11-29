@@ -54,7 +54,7 @@ class Milestone extends Component {
     async  getAllMilestones() {
         const { owner, repo } = this.props;
         let response = await this.octokit.issues
-            .getMilestones({
+            .listMilestonesForRepo({
                 owner,
                 repo,
                 per_page: 100

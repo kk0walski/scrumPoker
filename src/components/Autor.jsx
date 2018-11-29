@@ -55,7 +55,7 @@ class Autor extends Component {
     async  getAllAutors() {
         const { owner, repo } = this.props;
         let response = await this.octokit.repos
-            .getContributors({
+            .listContributors({
                 owner,
                 repo,
                 per_page: 100

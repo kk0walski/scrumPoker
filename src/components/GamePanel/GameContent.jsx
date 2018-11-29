@@ -127,7 +127,7 @@ class GameContent extends Component {
                     </div>
                 </div>
                 <div className="card" style={{ width: "100%", textAlign: "center" }}>
-                    <StoryPoint owner={owner} repo={repo} game={game} story={issues[selectedStory]} />
+                    <StoryPoint owner={owner} repo={repo} game={game} user={user} story={issues[selectedStory]} />
                     <div className="card-body">
                         <h5 className="card-title">{dictonary[issues[selectedStory].id].title}</h5>
                         <p className="card-text">{dictonary[issues[selectedStory].id].body}</p>
