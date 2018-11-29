@@ -105,7 +105,10 @@ class GameContent extends Component {
             const votes = Object.values(nowStory.votes);
             const users = Object.values(game.users);
             const lengthExam = game.creatorCanEstimateEnabled ? users.length : (users.length - 1)
-            if (!nowStory.flipped && votes.length === lengthExam && votes.every((vote) => vote.value !== undefined && vote.value !== null && vote.value !== "")) {
+            if (votes.length === lengthExam &&
+                 votes.every((vote) => vote.value !== undefined && vote.value !== null && vote.value !== "") &&
+                 votes.some((vote) => this.props.issues[game.selectedStory].votes[vote.id].value !== vote.value)
+            ) {
                 this.flipCardsForStory(nowStory, nextPops.game.changeVoteEnabled)
             }
         }
