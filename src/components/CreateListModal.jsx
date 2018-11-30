@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { connect } from "react-redux";
 import Modal from 'react-modal';
 import IssueItem from './IssueItem';
-import  {startAddList } from "../actions/Lists";
+import { startAddList } from "../actions/Lists";
 
 class CreateListModal extends Component {
     constructor(props) {
@@ -50,8 +50,8 @@ class CreateListModal extends Component {
     }
 
     handleChange(event) {
-        this.setState({title: event.target.value});
-      }
+        this.setState({ title: event.target.value });
+    }
 
     async createList(issues) {
         const { owner, name } = this.props.match.params;
@@ -75,34 +75,36 @@ class CreateListModal extends Component {
             <Modal
                 isOpen={this.props.modalOpen}
                 contentLabel={repo}
-                tabindex="-1"
-                role="dialog"
-                aria-hidden="true"
+                overlayClassName="modal-overlay"
+                className="modal-dialog modal-dialog--scrollable"
             >
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <input className={classnames('form-control')} type="text" placeholder="List name" value={title} onChange={this.handleChange}/>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.closeModal}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                <div className="modal-wrapper">
+                    <div className="modal-header-blue">
+                        <h2 className="text-light">Create List</h2>
                     </div>
-                    <div className="modal-body">
-                        <ul className="list-group">
-                            {issues.map(node => {
-                                return (
-                                    <li key={node.number} className={classnames('list-group-item')}>
-                                        <IssueItem issue={node} key={node.number} />
-                                    </li>
-                                )
-                            }
-                            )}
-                        </ul>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" style={{ width: `${progress}%` }}></div>
-                    </div>
-                    <div className="modal-footer">
-                        <button type="button" className="btn btn-primary" onClick={() => this.createList(issues)}>CREATE_LIST</button>
+                    <div className="modal-content">
+                        <input className={classnames('form-control')} type="text" placeholder="List name" value={title} onChange={this.handleChange} />
+                        <div className="modal-body">
+                            <ul className="list-group">
+                                {issues.map(node => {
+                                    return (
+                                        <li key={node.number} className={classnames('list-group-item')}>
+                                            <IssueItem issue={node} key={node.number} />
+                                        </li>
+                                    )
+                                }
+                                )}
+                            </ul>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" style={{ width: `${progress}%` }}></div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" onClick={this.props.closeModal}>
+                                CANCEL
+                            </button>
+                            <button type="button" className="btn btn-primary" onClick={() => this.createList(issues)}>CREATE_LIST</button>
+                        </div>
                     </div>
                 </div>
             </Modal>
@@ -114,6 +116,6 @@ const mapStateToProps = ({ user }) => ({ user });
 
 const mapDispatchToProps = dispatch => ({
     startAddList: (owner, repo, listTitle, issues) => dispatch(startAddList(owner, repo, listTitle, issues))
-  });
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateListModal);

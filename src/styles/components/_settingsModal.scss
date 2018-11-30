@@ -1,0 +1,66 @@
+.modal-wrapper {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    background: white;
+    cursor: auto;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.22);
+    transition: all .28s cubic-bezier(0.626, 0.000, 0.000, 1.000);
+    transform-style: preserve-3d;
+    transform: rotateX(0deg);
+}
+
+.modal-dialog {
+    width: 90%;
+    margin: 10px auto;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal-dialog--scrollable {
+    overflow-y: initial;
+}
+
+@media (min-width: 480px) {
+    .modal-dialog {
+        width: 520px;
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(48, 52, 65, 0.7);
+    z-index: 1;
+    transition: all .2s cubic-bezier(0.626, 0.000, 0.000, 1.000);
+    cursor: pointer;
+}
+
+.modal-header-blue {
+    position: relative;
+    max-height: 44px;
+    background: #0466d2;
+    padding: 4px 15px;
+}
+
+.modal-dialog--scrollable {
+    .modal-content {
+        max-height: calc(80vh - 100px);
+        overflow-y: auto;
+    }
+}
+
+.modal-content {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 15px;
+}
