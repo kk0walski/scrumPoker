@@ -119,13 +119,13 @@ class CreateGame extends Component {
                 <label>Share the velocity with all players?</label>
                 <div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="shareVelocityWithAllPlayers" id="shareVelocityWithAllPlayers-true" value="true" defaultChecked />
+                    <input className="form-check-input" type="radio" name="shareVelocityWithAllPlayers" id="shareVelocityWithAllPlayers-true" value={true} defaultChecked />
                     <label className="form-check-label" htmlFor="shareVelocityWithAllPlayers-true">
                       Yes
             </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="shareVelocityWithAllPlayers" id="shareVelocityWithAllPlayers-false" value="false" />
+                    <input className="form-check-input" type="radio" name="shareVelocityWithAllPlayers" id="shareVelocityWithAllPlayers-false" value={false} />
                     <label className="form-check-label" htmlFor="shareVelocityWithAllPlayers-false">
                       No
             </label>
@@ -136,13 +136,13 @@ class CreateGame extends Component {
                 <label>Are you also effort pointing?</label>
                 <div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isCreatorEffortPointing" id="isCreatorEffortPointing-true" value="true" defaultChecked />
+                    <input className="form-check-input" type="radio" name="isCreatorEffortPointing" id="isCreatorEffortPointing-true" value={true} defaultChecked />
                     <label className="form-check-label" htmlFor="isCreatorEffortPointing-true">
                       Yes
             </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isCreatorEffortPointing" id="isCreatorEffortPointing-false" value="false" />
+                    <input className="form-check-input" type="radio" name="isCreatorEffortPointing" id="isCreatorEffortPointing-false" value={false} />
                     <label className="form-check-label" htmlFor="isCreatorEffortPointing-false">
                       No
             </label>
@@ -187,13 +187,13 @@ class CreateGame extends Component {
                 <label>Would you like to auto-flip the cards after everyone has voted?</label>
                 <div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isAutoFlipEnabled" id="isAutoFlipEnabled-true" value="true" defaultChecked />
+                    <input className="form-check-input" type="radio" name="isAutoFlipEnabled" id="isAutoFlipEnabled-true" value={true} defaultChecked />
                     <label className="form-check-label" htmlFor="isAutoFlipEnabled-true">
                       Yes
             </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isAutoFlipEnabled" id="isAutoFlipEnabled-false" value="false" />
+                    <input className="form-check-input" type="radio" name="isAutoFlipEnabled" id="isAutoFlipEnabled-false" value={false} />
                     <label className="form-check-label" htmlFor="isAutoFlipEnabled-false">
                       No
               </label>
@@ -204,13 +204,13 @@ class CreateGame extends Component {
                 <label>Would you like to allow players to change their vote after reveal?</label>
                 <div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isChangeVoteEnabled" id="isChangeVoteEnabled-true" value="true" defaultChecked />
+                    <input className="form-check-input" type="radio" name="isChangeVoteEnabled" id="isChangeVoteEnabled-true" value={true} defaultChecked />
                     <label className="form-check-label" htmlFor="isChangeVoteEnabled-true">
                       Yes
             </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="isChangeVoteEnabled" id="isChangeVoteEnabled-false" value="false" />
+                    <input className="form-check-input" type="radio" name="isChangeVoteEnabled" id="isChangeVoteEnabled-false" value={false} />
                     <label className="form-check-label" htmlFor="isChangeVoteEnabled-false">
                       No
               </label>
@@ -221,13 +221,13 @@ class CreateGame extends Component {
                 <label>Would you like Planning Poker to calculate the score?</label>
                 <div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="calculateScore" id="calculateScore-true" value="true" defaultChecked />
+                    <input className="form-check-input" type="radio" name="calculateScore" id="calculateScore-true" value={true} defaultChecked />
                     <label className="form-check-label" htmlFor="calculateScore-true">
                       Yes
             </label>
                   </div>
                   <div className="form-check">
-                    <input className="form-check-input" type="radio" name="calculateScore" id="calculateScore-false" value="false" />
+                    <input className="form-check-input" type="radio" name="calculateScore" id="calculateScore-false" value={false} />
                     <label className="form-check-label" htmlFor="calculateScore-false">
                       No
               </label>
