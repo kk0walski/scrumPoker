@@ -41,8 +41,7 @@ class Navigation extends Component {
                   </button>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <Link to="/profile" className="dropdown-item" >Account</Link>
-                    <Link to="/projects" className="dropdown-item" >Projects</Link>
-                    <Link to="/issues" className="dropdown-item">Issues</Link>
+                    <Link to="/repositories" className="dropdown-item" >Repositories</Link>
                     <Link to="/" className="dropdown-item" onClick={this.handleLogOut}>Log out</Link>
                   </div>
                 </li>
