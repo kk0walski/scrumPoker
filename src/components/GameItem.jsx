@@ -30,7 +30,7 @@ class GameItem extends Component {
                             {game.name}
                         </Link>
                     </h3>
-                    <footer class="blockquote-footer">
+                    <footer className="blockquote-footer">
                         <p>Share URL with your players:</p>
                         <p>{`${window.location.origin}/${owner}/${name}/play/${game.id}`}</p>
                         <p>{game.desc}</p>

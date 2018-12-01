@@ -46,6 +46,7 @@ class Navigation extends Component {
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">PlanningPoker.pl</Link>
             <ul className="nav justify-content-end">
+              {user.uid === game.firebaseOwner && <li><button type="button" className="btn btn-outline-secondary">End Game</button></li>}
               {user.uid === game.firebaseOwner && <li><button type="button" className="btn btn-outline-secondary" onClick={this.openModal}>Settings</button></li>}
               {user ? !user.isAnonymous ? <li className="nav-item dropdown">
                 <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
