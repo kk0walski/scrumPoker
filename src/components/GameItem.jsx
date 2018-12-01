@@ -40,6 +40,9 @@ class GameItem extends Component {
                     <button type="button" className="btn btn-danger float-right" onClick={this.removeGame}>
                         <FaTrash />Remove
                         </button>
+                        <button type="button" className="btn btn-success">
+                         Export results Github
+                        </button>
                 </div>
             </div>
         )

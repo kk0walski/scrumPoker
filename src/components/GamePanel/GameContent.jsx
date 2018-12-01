@@ -4,7 +4,8 @@ import Backlog from "./Backlog"
 import VouteDeck from "./VouteDeck";
 import { startSelectStory, startVote, flipCards, resetCards } from "../../actions/Game";
 import { connect } from "react-redux";
-import StoryPoint from "./StoryPoint"
+import StoryPoint from "./StoryPoint";
+import { MdRestore, MdFlipToFront, MdArrowBack, MdArrowForward } from "react-icons/md"
 
 class GameContent extends Component {
 
@@ -135,11 +136,11 @@ class GameContent extends Component {
                 </div>
                 {user.uid === game.firebaseOwner &&
                     <div style={{ textAlign: "center", margin: "20px 0" }}>
-                        <button type="button" className="btn btn-warning" onClick={this.resetCardsForStory}>Reset Cards</button>
-                        <button type="button" className="btn btn-success" onClick={(e) => this.flipCardsForStory(issues[selectedStory], game.changeVoteEnabled, e)}>Flip</button>
-                        <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}>Previous</button>
-                        <button type="button" className="btn btn-primary" onClick={this.selectNextStory}>Next</button>
-                        <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}>Next Unpointed</button>
+                        <button type="button" className="btn btn-warning" onClick={this.resetCardsForStory}><MdRestore/> Reset Cards</button>
+                        <button type="button" className="btn btn-success" onClick={(e) => this.flipCardsForStory(issues[selectedStory], game.changeVoteEnabled, e)}><MdFlipToFront/> Flip</button>
+                        <button type="button" className="btn btn-primary" onClick={this.selectPreviousStory}><MdArrowBack/> Previous</button>
+                        <button type="button" className="btn btn-primary" onClick={this.selectNextStory}><MdArrowForward/> Next</button>
+                        <button type="button" className="btn btn-primary" onClick={this.selectNextUnpointed}><MdArrowForward /> Next Unpointed</button>
                     </div>
                 }
                 <VouteDeck selectedStory={selectedStory} storyInfo={issues[selectedStory]} user={user} />
