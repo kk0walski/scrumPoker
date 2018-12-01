@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import configureStore from "../store/configureStore";
-import AppRouter from "../components/App";
+import AppRouter from "../routers/App";
 
 it("renders without crashing", () => {
   const store = configureStore();
