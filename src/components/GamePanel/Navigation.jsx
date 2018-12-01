@@ -9,6 +9,7 @@ class Navigation extends Component {
   constructor(props){
     super(props);
     this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.state = { 
       settingsOpen: false
     }
@@ -27,6 +28,12 @@ class Navigation extends Component {
   openModal(){
     this.setState({
       settingsOpen: true
+    })
+  }
+
+  closeModal(){
+    this.setState({
+      settingsOpen: false
     })
   }
 
@@ -60,7 +67,7 @@ class Navigation extends Component {
             </ul>
           </div>
         </nav>
-        <SettingsModal game={game} user={user} settingsOpen={settingsOpen}/>
+        <SettingsModal game={game} user={user} settingsOpen={settingsOpen} closeModal={this.closeModal}/>
       </div>
     )
   }
