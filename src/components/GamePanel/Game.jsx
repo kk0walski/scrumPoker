@@ -6,10 +6,17 @@ export default class Game extends Component {
 
   constructor(props){
     super(props);
+    var sumOfPoints = 0;
+    props.issues.forEach(issue => {
+      if(!isNaN(issue.finalScore)){
+        sumOfPoints += Number(issue.finalScore)
+      }
+    })
     this.state ={
-      points: 0
+      points: sumOfPoints
     }
   }
+
 
   componentWillReceiveProps(nextProps){
     var sumOfPoints = 0;
@@ -28,7 +35,7 @@ export default class Game extends Component {
     const { points } = this.state;
     return (
         <div>
-        <Navigation user={user}  game={game}/>
+        <Navigation owner={owner} repo={repo} user={user}  game={game}/>
         <div className="container">
             <Content owner={owner} repo={repo} issues={issues} dictonary={dictonary} game={game} sumOfPoints={points} user={user}/>
         </div>

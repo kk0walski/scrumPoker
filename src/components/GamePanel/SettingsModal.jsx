@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
+import { connect } from "react-redux";
+import { startUpdateGameSettings } from "../../actions/Game"
 
-export default class SettingsModal extends Component {
+class SettingsModal extends Component {
 
     constructor(props) {
         super(props);
         const { game } = props;
         this.resetGameData = this.resetGameData.bind(this);
+        this.updateData = this.updateData.bind(this);
         this.state = {
             name: game.name,
             desc: game.desc,
@@ -32,6 +35,17 @@ export default class SettingsModal extends Component {
             calculateEnabled: game.calculateEnabled
         })
         this.props.closeModal();
+    }
+
+    updateData(){
+        const { owner, repo, game } = this.props
+        const newGameData = this.state;
+        this.props.startUpdateGameSettings(owner, repo, game.id, newGameData)
+        this.props.closeModal();
+    }
+
+    componentWillMount(){
+        Modal.setAppElement("body")
     }
 
     render() {
@@ -184,7 +198,7 @@ export default class SettingsModal extends Component {
                                 <button type="button" className="btn btn-secondary" onClick={this.resetGameData}>
                                     CANCEL
                                 </button>
-                                <button name="submit" type="submit" className="btn btn-primary">Submit</button>
+                                <button type="button" className="btn btn-primary" onClick={this.updateData}>SUBMIT</button>
                             </div>
                         </form>
                     </div>
@@ -193,3 +207,10 @@ export default class SettingsModal extends Component {
         )
     }
 }
+
+
+const mapDispatchToProps = dispatch => ({
+    startUpdateGameSettings: (owner, repo, game, updateData) => dispatch(startUpdateGameSettings(owner, repo, game, updateData))
+});
+
+export default connect(undefined, mapDispatchToProps)(SettingsModal);

@@ -38,7 +38,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const { user, game } = this.props;
+    const { owner, repo, user, game } = this.props;
     const { settingsOpen } = this.state;
     return (
       <div>
@@ -67,7 +67,7 @@ class Navigation extends Component {
             </ul>
           </div>
         </nav>
-        <SettingsModal game={game} user={user} settingsOpen={settingsOpen} closeModal={this.closeModal}/>
+        <SettingsModal owner={owner} repo={repo} game={game} user={user} settingsOpen={settingsOpen} closeModal={this.closeModal}/>
       </div>
     )
   }

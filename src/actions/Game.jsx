@@ -27,6 +27,20 @@ export const startAddGame = (owner, repo, gameData = {}, storyList = []) => {
     }
 }
 
+export const startUpdateGameSettings = (owner, repo, game, updateData) => {
+    return dispatch => {
+        const gameRef = db
+            .collection("users")
+            .doc(owner.toString())
+            .collection("repos")
+            .doc(repo.toString())
+            .collection("games")
+            .doc(game.toString());
+
+        gameRef.update(updateData)
+    }
+}
+
 export const addStoryToGame = (storyData = {}) => ({
     type: "ADD_STORY_TO_GAME",
     payload: storyData
