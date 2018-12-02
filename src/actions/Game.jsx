@@ -7,6 +7,7 @@ export const addGame = (gameData = {}) => ({
 
 export const startAddGame = (owner, repo, gameData = {}, storyList = []) => {
     return dispatch => {
+        const regex = new RegExp('^scrumPoker:\\d+$', 'g')
         const ref = db
             .collection("users")
             .doc(owner.toString())
@@ -19,12 +20,22 @@ export const startAddGame = (owner, repo, gameData = {}, storyList = []) => {
             id: key,
             ...gameData
         }
-        console.log("STORY_LIST: ", storyList);
-        // ref.set(newGame).then(() => {
-        //     storyList.forEach(story => {
-        //         ref.collection("backlog").doc(story.id.toString()).set(story)
-        //     })
-        //})
+        const storyListToPush = storyList.map(listItem => {
+            const gitLabel = listItem.labels.find(label => label.name.match(regex))
+            return {
+                id: listItem.number,
+                owner,
+                flipped: false,
+                project: repo,
+                finalScore: gitLabel ? gitLabel.name.split(':')[1] : "",
+                votes: {}
+            }
+        })
+        ref.set(newGame).then(() => {
+            storyListToPush.forEach(story => {
+                ref.collection("backlog").doc(story.id.toString()).set(story)
+            })
+        })
     }
 }
 

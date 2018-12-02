@@ -6,7 +6,7 @@ export default class GameExport extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            issues: [],
+            issues: []
         }
         this.octokit = require("@octokit/rest")({
             timeout: 0,
@@ -25,7 +25,16 @@ export default class GameExport extends Component {
     }
 
     async exportToGithub(issues) {
-
+        const { owner, repo } = this.props;
+        const regex = new RegExp('^scrumPoker:\\d+$', 'g')
+        await issues.forEach(async issue => {
+            const toRemove = issue.labels.filter(label => label.name.match(regex))
+           await  toRemove.forEach( async remove => {
+                await this.octokit.issues.removeLabel({owner, repo, number: issue.number, name: remove.name})
+            })
+            await this.octokit.issues.addLabels({owner, repo, number: issue.number, labels: ["scrumPoker:" + issue.finalScore]})
+        })
+        this.props.closeModal()
     }
 
     async componentDidMount() {
@@ -40,10 +49,10 @@ export default class GameExport extends Component {
             .get().then(async querySnapchot => {
                 await querySnapchot.forEach(async issue => {
                     if (!isNaN(issue.data().finalScore)) {
-                        const finalScore = issue.data().finalScore;
-                        const newIssue = await this.octokit.issues.get({ owner, repo, game, number: issue.data().id })
+                        const fireIssue = issue.data();
+                        const newIssue = await this.octokit.issues.get({ owner, repo, game, number: fireIssue.id })
                         this.setState({
-                            issues: [...this.state.issues, { ...newIssue.data, finalScore }]
+                            issues: [...this.state.issues, { ...newIssue.data, finalScore: fireIssue.finalScore }]
                         })
                     }
                 })
@@ -62,9 +71,9 @@ export default class GameExport extends Component {
                         <ul className="list-group">
                             {issues.map(node => {
                                 return (
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <li  key={node.number} className="list-group-item d-flex justify-content-between align-items-center">
                                         {node.title}
-                                        <span class="badge badge-primary badge-pill">{node.finalScore}</span>
+                                        <span className="badge badge-primary badge-pill">{node.finalScore}</span>
                                     </li>
                                 )
                             }

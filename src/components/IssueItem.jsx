@@ -5,15 +5,17 @@ import Moment from 'react-moment';
 export default class IssueItem extends Component {
     render() {
         const { issue } = this.props;
+        const regex = new RegExp('^scrumPoker:\\d+$', 'g')
+        const filteredLabels = issue.labels.filter(label => !label.name.match(regex))
         return (
                 <div className={classnames('p-2')}>
                     <h5>
                           <a href={issue.html_url} className="list-group-item-action">{issue.title}</a>  
-                        {issue.labels.map(label => (
+                        {filteredLabels.map(label => (
                             <span key={label.id} className="badge badge-light" style={{
                                 backgroundColor: `#${label.color}`
                             }}>
-                                {label.name}
+                                { label.name}
                             </span>
                         ))}
                     </h5>
