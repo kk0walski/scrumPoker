@@ -8,6 +8,21 @@ class CreateGame extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getIssuesFromList = this.getIssuesFromList.bind(this);
+    this.octokit = require("@octokit/rest")({
+      timeout: 0,
+      headers: {
+        accept: "application/vnd.github.v3+json",
+        "user-agent": "octokit/rest.js v1.2.3" // v1.2.3 will be current version
+      },
+
+      // custom GitHub Enterprise URL
+      baseUrl: "https://api.github.com"
+    });
+    this.octokit.authenticate({
+      type: "app",
+      token: props.user.token
+    });
     this.state = {
       gameCreated: false
     }
@@ -45,22 +60,21 @@ class CreateGame extends Component {
     return cardsSet;
   }
 
+  async getIssuesFromList(owner, repo, lista) {
+    return await Promise.all(this.props.lists[lista].list.map(async (listNumber) => {
+      const response = await this.octokit.issues.get({ owner, repo, number: listNumber });
+      let { data } = response
+      return data;
+    }));
+  }
 
-  handleSubmit(event) {
+
+  async handleSubmit(event) {
     event.preventDefault();
     const { user } = this.props;
     const data = new FormData(event.target);
     const { owner, name } = this.props.match.params;
-    const storyListToPush = this.props.lists[Number(data.get("listChose"))].list.map(listNumber => {
-      return {
-        id: listNumber,
-        owner,
-        flipped: false,
-        project: name,
-        finalScore: "",
-        votes: {},
-      }
-    });
+    const storyListToPush = await this.getIssuesFromList(owner, name, Number(data.get("listChose")))
     const reasult = {
       name: data.get('gameName'),
       selectedStory: 0,
@@ -255,9 +269,9 @@ class CreateGame extends Component {
       }
     } else {
       return <Redirect to={{
-          pathname: url.replace("create_game", "issues"),
-          state: { reason: "Lack of list" }
-        }} />
+        pathname: url.replace("create_game", "issues"),
+        state: { reason: "Lack of list" }
+      }} />
     }
   }
 }

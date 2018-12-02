@@ -20,7 +20,7 @@ class Navigation extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container">
-          <Link className="navbar-brand" to="/">PlanningPoker.pl</Link>
+          <Link className="navbar-brand" to="/">PlanningPoker</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>

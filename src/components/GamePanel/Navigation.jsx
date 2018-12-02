@@ -45,7 +45,7 @@ class Navigation extends Component {
       <div>
         <nav className="navbar navbar-dark bg-dark">
           <div className="container-fluid">
-            <Link className="navbar-brand" to="/">PlanningPoker.pl</Link>
+            <Link className="navbar-brand" to="/">PlanningPoker</Link>
             <ul className="nav justify-content-end">
               {user.uid === game.firebaseOwner && <li><button type="button" className="btn btn-outline-secondary" onClick={this.openModal}><MdSettings/> Settings</button></li>}
               {user ? !user.isAnonymous ? <li className="nav-item dropdown">
