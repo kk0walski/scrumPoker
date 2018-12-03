@@ -3,13 +3,26 @@ import { connect } from "react-redux";
 import { FaGithub } from "react-icons/fa";
 import { firebase } from "../firebase/firebase";
 import { enterAsUser } from "../actions/User";
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
+
 class Login extends Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
+
     constructor(props) {
         super(props);
+        const { cookies } = props;
         this.handleSocialLogin = this.handleSocialLogin.bind(this);
+        this.state = {
+            token: cookies.get('accessToken'),
+            user: undefined
+        };
     }
 
     handleSocialLogin(event) {
+        const { cookies } = this.props;
         var provider = new firebase.auth.GithubAuthProvider();
         provider.addScope("repo");
         provider.addScope("user");
@@ -19,6 +32,7 @@ class Login extends Component {
             .then(result => {
                 if (result && result.credential && result.user) {
                     const token = result.credential.accessToken;
+                    cookies.set('token', token, { path: '/'})
                     this.props.enterAsUser(result.user, token);
                 }
             }).catch(error => {
@@ -51,4 +65,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     undefined,
     mapDispatchToProps
-)(Login);
+)(withCookies(Login));

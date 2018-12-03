@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { firebase } from "../firebase/firebase";
 import { connect } from "react-redux";
+import { withCookies, Cookies } from 'react-cookie';
+import { instanceOf } from 'prop-types';
 
 class Navigation extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired
+};
 
   constructor(props){
     super(props);
@@ -11,9 +16,10 @@ class Navigation extends Component {
   }
 
   async handleLogOut() {
-    const { dispatch } = this.props;
+    const { dispatch, cookies } = this.props;
     await firebase.auth().signOut()
     dispatch({ type: "LOG_OUT" })
+    cookies.remove('token', { path: '/' })
     return true;
   };
 
@@ -60,4 +66,4 @@ class Navigation extends Component {
 
 const mapStateToProps = ({ user }) => ({ user });
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps)(withCookies(Navigation));

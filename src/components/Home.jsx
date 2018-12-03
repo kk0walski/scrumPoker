@@ -4,7 +4,9 @@ import Footer from './Footer';
 import Routing from "../routers/Routing";
 import { connect } from "react-redux";
 
+
 class Home extends Component {
+
   render() {
     const { user } = this.props;
     return (
@@ -14,7 +16,7 @@ class Home extends Component {
           <Routing user={user} />
           <hr />
           <Footer />
-          </div>
+        </div>
       </div>
     )
   }
