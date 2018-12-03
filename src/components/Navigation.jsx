@@ -5,14 +5,16 @@ import { connect } from "react-redux";
 
 class Navigation extends Component {
 
-  handleLogOut = () => {
+  constructor(props){
+    super(props);
+    this.handleLogOut = this.handleLogOut.bind(this);
+  }
+
+  async handleLogOut() {
     const { dispatch } = this.props;
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        dispatch({ type: "LOG_OUT" });
-      });
+    await firebase.auth().signOut()
+    dispatch({ type: "LOG_OUT" })
+    return true;
   };
 
   render() {
