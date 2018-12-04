@@ -10,7 +10,7 @@ Zarządzanie projektami informatycznymi ściśle wiąże się z wykorzystaniem n
 
 \subsection{Microsoft Project}
 
-Najbardziej popularnym narzędziem stosowanym w metodykach klasycznych jest Microsoft Project. Pozwala on na rozpisanie całego harmonogramu działań, zaplanowanie budżetu czy stworzenie wykresu Gantta, tak niezbędnego w pracy kierownika. Pozwala także na tworzenie raportów, prezentacji i wykresów z postępów prac.\ref{rys:project}
+Najbardziej popularnym narzędziem stosowanym w metodykach klasycznych jest Microsoft Project. Pozwala on na rozpisanie całego harmonogramu działań, zaplanowanie budżetu czy stworzenie wykresu Gantta, tak niezbędnego w pracy kierownika. Pozwala także na tworzenie raportów, prezentacji i wykresów z postępów prac. rys.\ref{rys:project}
 
 \subsection{Gantt Project}
 
@@ -26,67 +26,94 @@ W niektórych przedsiębiorstwach w zarządzaniu projektami używa się programu
 \section{Najpopularniejsze narzędzia stosowane dla metod zwinnych ( team estimation game, kanban, planning poker).}
 
 W małych zespołach projektowych, które wykorzystują metodyki zwinne, odchodzi się zazwyczaj od Microsoft Project czy GanttProject stosując aplikacje webowe. Przykładem takich aplikacji są: Jira, Mantis, TFS, Trello, Sllack, KanbanTool. 
-Przy metodykach zwinnych, właściciel produktu tworzy rejestr produktowy (ang. Product Backlog), który ma formę listy zawierającej wymagania klienta z określoną wagą  (priorytetem) i czasochłonnością.\cite{Shwaber_2004} Wymienione wyżej narzędzia pozwalają na taką pracę i umieszczanie danych w chmurze, dzięki czemu każdy członek zespołu ma do nich dostęp, niezależnie od lokalizacji, czy pracuje w biurze czy poza nim. Zadania w backlogu\footnote{Backlog – rejestr sprintu / lista zadań\cite{metody_zwinne_2016}} powinny być rozpisane dla obecnego sprintu \footnote{Sprint – jeden z etapów niektórych metodyk zwinnych, który wyznacza rytm pracy. W jegotrakcie następuje faktyczne wykonanie określonej funkcjonalności\cite{Samoorganizacja_2010}} oraz zawierać dodatkowe zadania, które będą zasilać kolejny sprint bądź zostaną wykonane w istniejącym, gdy nadarzy się taka możliwość. Takie odejście do pracy umożliwia wykonanie części zadań przed wyznaczonym czasem. Narzędzia te pozwalają również na przypisanie konkretnego zadania do danego użytkownika, dzięki czemu każdy pracownik zna zakres swojej odpowiedzialności; takie rozwiązanie zapobiega wykonaniu tego samego zadania przez kilka osób.
+Przy metodykach zwinnych, właściciel produktu tworzy rejestr produktowy (ang. Product Backlog), który ma formę listy zawierającej wymagania klienta z określoną wagą  (priorytetem) i czasochłonnością.\cite{Shwaber_2004} Wymienione wyżej narzędzia pozwalają na taką pracę i umieszczanie danych w chmurze, dzięki czemu każdy członek zespołu ma do nich dostęp, niezależnie od lokalizacji, czy pracuje w biurze czy poza nim. Zadania w backlogu\footnote{Backlog – rejestr sprintu / lista zadań\cite{metody_zwinne_2016}} powinny być rozpisane dla obecnego sprintu \footnote{Sprint – jeden z etapów niektórych metodyk zwinnych, który wyznacza rytm pracy. W jego
+trakcie następuje faktyczne wykonanie określonej funkcjonalności\cite{Samoorganizacja_2010}} oraz zawierać dodatkowe zadania, które będą zasilać kolejny sprint bądź zostaną wykonane w istniejącym, gdy nadarzy się taka możliwość. Takie odejście do pracy umożliwia wykonanie części zadań przed wyznaczonym czasem. Narzędzia te pozwalają również na przypisanie konkretnego zadania do danego użytkownika, dzięki czemu każdy pracownik zna zakres swojej odpowiedzialności; takie rozwiązanie zapobiega wykonaniu tego samego zadania przez kilka osób.
 Niektóre firmy, a można nawet powiedzieć, że wiele firm, niezależnie od wykorzystywanej metodyki używa Microsoft Excela do zarządzania projektami (przyzwyczajenia?). Umożliwia on przedstawienie danych w postaci tabeli oraz różnych grafów. Każda firma może zarządzać nim na swój własny sposób, dzięki czemu proces ten jest bardzo elastyczny. Ponadto ułatwia on wykonanie prognoz przyszłych dochodów, kalkulacji wybranych parametrów i wskaźników. Kolejnym narzędziem wykorzystywanym na szeroką skalę jest SharePoint, który umożliwia współdzielenie plików czy tworzenie listy zadań, która może być wykorzystana w MS Project.
 
 Przejdźmy wreszcie do narzędzi stosowanych w metodach zwinnych. Bardzo często w projektach zwinnych planujemy bez użycia dni i godzin. W klasycznych projektach tworzymy harmonogramy, szczegółowe plany, gdzie mamy daty, gdzie mamy godziny, gdzie każde zadanie ma określony czas realizacji. W przypadku projektów zwinnych często odchodzimy od tak szczegółowego planowania, ale jakaś forma planowania oczywiście jest potrzebna, dlatego stosujemy różne alternatywne metody i jedną z takich alternatywnych metod jest metoda nazwana Team Estimation Game.
 
+\subsection{Team Estimation Game}
 
-\section{Odniesienie do książki}
-
-Jak pisze Harel w \cite{harel_rzecz_2008}: \lipsum[7]
-
-
-\subsection{Rysunek z kotem}
-
-Jak widać na rys.\ref{rysunek:kot} Ala ma kota. \lipsum[9-10] 
+Gra Team Estimation działa tak:
 
 \begin{figure}
-\centering\includegraphics[width=.4\textwidth]{img/kotek}
-\caption{Ala ma kota (opr.wł).}\label{rysunek:kot}
+	\centering\includegraphics[width=.4\textwidth]{img/team_estimation_game}
+	\caption{Team Estimation Game[www.scrum-master.pl]}\label{rysunek:teamEstimationGaem}
 \end{figure}
 
-\subsection{Tabela}
+\begin{itemize}
+	\item Członkowie zespołu kolejno pobierają kartę ze stosu i przyklejają ją do ściany. Każda karta przedstawia jedną historyjkę. Po umieszczeniu pierwszej karty w środku, każdy członek zespołu umieszcza swoją kartę po prawej, jeśli jest trudniejsza, po lewej, jeśli jest mniej trudna, lub pod inną kartą, jeśli historyjki są mniej więcej takie same. rys.\ref{rysunek:teamEstimationGaem}
+	\item Użytkownik może użyć swojej kolejki, aby przesunąć kartę już na ścianie po prawej lub lewej stronie.
+	\item Proces może być kontynuowany po tym, jak stos kart zostanie zużyty, aż do ogólnego konsensusu w rankingu kart. Gracze mogą omawiać historie i wpływać na swoje decyzje.
+	\item Następnie każdy członek drużyny odbiera kartę z numerem i umieszcza ją na jednej z kolumn. Członek zespołu może użyć swojej kolejki, aby zmienić przypisanie numeru wykonane przez innego członka zespołu. Trwa to aż do osiągnięcia konsensusu.
+\end{itemize}
 
-Co uwzględniono w tabeli \ref{tabela:coktoma}. \lipsum[13-15] 
+Zbiór liczb zawiera tylko te w sekwencji Fibonacciego, aby odzwierciedlić ogólną zasadę, że ryzyko wzrasta geometrycznie proporcjonalnie do złożoności.
 
-% Tabela. Nazwa tabeli u góry.
+\subsection{Kanban}
+
+Inną z takich alternatywnych metod jest metoda Kanban. Kanban, to koncepcja wzięta z produkcji, która została świetnie zaadaptowana właśnie do zarządzania projektami zwinnymi. Kanban w przypadku projektów jest po prostu tablicą, na której pokazujemy, rejestrujemy to, co się dzieje w projekcie: tabela \ref{tabela:kanban}
+
 \begin{table}
-\centering\caption{Co kto ma \cite{harel_rzecz_2008} (patrz też dodatek~\ref{Dod1}) \label{tabela:coktoma}}
-\begin{tabular}{|l|l|l|}% wyrównanie kolumn tabeli -> l c r - do lewej, środka, do prawej
-\hline
-Ala & ma & kota \\
-\hline
-Ola & ma & psa \\
-\hline
-Ula & ma & małpę\\
-\hline
-\end{tabular}
+	\centering\caption{Tablica w metodzie Kanban.}
+	\label{tabela:kanban}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|}% wyrównanie kolumn tabeli -> l c r - do lewej, środka, do prawej
+		\hline
+			\multicolumn{1}{|c|}{\textbf{Backlog}} &\multicolumn{2}{|c|}{\textbf{Breakdown(10*)}} & \multicolumn{3}{|c|}{\textbf{Develop(15*)}} & \multicolumn{2}{|c|}{\textbf{Validate(10*)}} \\
+		\hline
+		Epics,User Stories & Working & Done & Working & Track & Done & Working & Done \\
+		\hline
+	\end{tabular}
 \end{table}
 
-\lipsum[19-20] Warto wspomnieć, że w \cite{aizawa_groundwater_2009} rzecz przedstawiona jest zupełnie inaczej. Poniższy wzór:
+Zaczynając od lewej strony tej tablicy, mamy backlog produktu, a więc wszystkie nasze epiki, wszystkie nasze historyjki, które określają to, co jest w projekcie do realizacji.
+Następnie mamy trzy główne etapy realizacji projektu, w których nasze historyjki będą się za chwilę znajdowały:
 
-\begin{equation}
-\sum_{i=1}^{\infty}a_i
-\label{eq:mojWzor}
-\end{equation}
+\begin{itemize}
+	\item Pierwszym takim etapem jest breakdown albo analysis, czyli analizowanie user stories, rozbijanie ich na mniejsze części, na zadania, analiza tego, co jest do zrobienia, w jaki sposób mamy te funkcjonalności zrealizować.
+	W tym miejscu musimy także zastanowić się nad kompatybilnością i powiązaniami pomiędzy poszczególnymi funkcjonalnościami, a także nad priorytetami, a więc bierzemy przede wszystkim te rzeczy, które mają wysoki priorytet oraz wszystkie funkcje, które są z nimi powiązane, abyśmy mogli dostarczyć nowy produkt. 
+	\item Kolejny etap, to jest rozwój, development- w sytuacjach, gdzie opracowujemy nasz projekt, a więc tutaj zespól developerski tworzy faktycznie te rozwiązania, które miały być opracowane.
+	\item Trzeci etap, to validate, czyli kontrola, testy, ocena tego, co zostało zrobione. Sprawdzamy, czy rzeczywiście to, co miało być osiągnięte, zostało osiągnięte. Jeżeli tak, no to możemy dołączyć te funkcjonalności do produktu i przekazać je do klienta.
+\end{itemize}
 
-Wzór \ref{eq:mojWzor} wskazuje że dowód podany w \cite{kaleta_experimental_2005} może zostać podważony. \lipsum[9]
+W każdym z tych etapów widzimy co najmniej dwie kolumny:
 
-\section{Listing}
+\begin{itemize}
+	\item jedna kolumna, to working, czyli pracujemy nad czymś,
+	\item druga kolumna, to done, czyli takie pole odkładcze- wykonaliśmy to zadanie i dalej zadanie może przejść do kolejnego etapu, do kolejnej części prac.
+	\item Dodatkowo, w przypadku kolumny związanej z rozwojem, mamy taką kolumnę track – to sytuacja, w której opracowaliśmy jakąś funkcjonalność, ale nie jesteśmy jej w stanie wdrożyć dalej, ponieważ czekamy na opracowanie innych, powiązanych z nią funkcjonalności. Czasem jest tak, że pewna funkcjonalność może być już gotowa, ale nie może działać, dopóki inne elementy nie zostaną przygotowane. Dlatego jest takie pole oczekiwania na inne elementy, które muszą być przygotowane.
+\end{itemize}
 
-% lub {java} albo {bash} albo {text}
-\begin{listing}
-\begin{minted}{c} 
-int main()
-{
-   int a=2*3;
-   printf("**Ala ma kota\n**");
-   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT)); /* EV5 */
-   return 0;
-}
-\end{minted}
-\caption{Przykładowy algorytm w języku C (opr. wł.)} \label{listing:moj}
-\end{listing}
+Widzimy więc, że w tej metodyce nie mamy iteracji jako takich, mamy stały przepływ historyjek, stały przepływ pracy, która jest realizowana w naszym projekcie.
+Ale ktoś może zapytać, w jaki sposób, w takim razie określamy poziom wykonania prac, w jaki sposób określamy, ile tej pracy możemy mieć jednocześnie rozpoczętej? 
+Temu służą te liczby w nawiasach, które widzimy w nagłówku tabeli. Te liczby określają nam liczbę punktów, które mogą być aktualnie w obróbce.
+Historyjki oceniamy nie względem czasu, lecz względem punktów trudności, punktów zaangażowania, które jest niezbędne, aby daną funkcję zrealizować. 
+Jeżeli zatem, w danym etapie naszej tablicy Kanban mamy dopuszczone 10 punktów, to znaczy, że możemy tam mieć w trakcie obróbki historyjki, których wartość punktowa nie przekracza 10-ciu punktów. Tak samo w kolejnych etapach.
+Zatem to określa nam poziom pracy, która jest wykonywana i powoduje, że praca będzie przebiegać płynnie, nie będzie korków, nie będzie zatrzymań i będziemy w stanie w odpowiednim czasie dostarczać klientowi nowe produkty.
 
-W moim kodzie \ref{listing:moj} zrobiłem coś wspaniałego. \lipsum[4]
+\subsection{Planning Poker}
+
+Jeszcze inną z takich alternatywnych metod (bardzo popularną)  jest metoda, której poświęcona jest niniejsza praca. Ta metoda nazywa się Planning Poker i pozwala nam oszacować trudność, czasochłonność poszczególnych zadań, które są do wykonania w ramach projektu. Ta metoda ma też tą zaletę, że integruje zespół i pozwala uwzględnić różne punkty widzenia, a także przyczynia się do lepszego zrozumienia zadań, które są do wykonania. O co w tej grze chodzi? Bazujemy tutaj z grubsza na liczbach z ciągu Fibonacciego. Rys.\ref{rysunek:poker}
+
+\begin{figure}
+	\centering\includegraphics[width=.4\textwidth]{img/Planning_Poker}
+	\caption{Przykładowe karty do Planning Pokera[www.amazon.com].}\label{rysunek:poker}
+\end{figure}
+
+Określamy trudność poszczególnych zadań wykorzystując kolejne liczby z tego ciągu: 1, 2, 3, 5, 8,13, 21…itd. Jeżeli jakieś zadanie oceniliśmy na 5, to znaczy, że jest ono trudniejsze od zadania, które oceniliśmy na 3, ale ile ono zajmie? Tego nie wiemy, to nas chwilowo nie interesuje. Staramy się określić przede wszystkim, na ile trudne i na ile pracochłonne, naszym zdaniem, mogą być zadania.
+Praktyka pokazuje, że planując sprinty, wcale nie musimy mieć szczegółowych informacji na temat czasu, te informacje zresztą często się nie sprawdzają, Taka forma punktowa zupełnie nam wystarcza. Kiedy wiemy, ile jesteśmy w stanie w ciągu sprintu zrealizować takich punktów, to wówczas jesteśmy w stanie stwierdzić, ile możemy zadań w danym sprincie upchnąć.
+
+Jak to wygląda technicznie?
+
+\begin{itemize}
+	\item Zespół deweloperski spotyka się na spotkaniu, siada przy stole, każdy otrzymuje swoje karty i mamy pakiet zadań (czy pakiet historyjek) z backlogu, którymi się musimy zająć. Zazwyczaj spotkanie prowadzi scrum master, przedstawia on historyjkę, którą mamy się zająć, określa czego ona dotyczy.
+	\item Następnie każdy z członków zespołu wyciąga kartę, która określa trudność, jego zadaniem, realizacji tego zadania i kładzie ją na stole tak, aby nie było widać tej liczby.
+	\item Kiedy wszyscy są gotowi, odwracamy karty i patrzymy, czy wynik, który uzyskaliśmy jest zgodny, czy też nie. Jeżeli wszyscy pokazali praktycznie tą samą liczbę, to sprawa jest załatwiona, to znaczy, że wszyscy rozumiemy zadanie w taki sam sposób, tak samo oceniamy jego trudność i możemy przejść do kolejnego. 
+	\item Kiedy jednak występuje zróżnicowanie, konieczna jest dyskusja. Pytamy osoby, która podała najniższą liczbę, dlaczego tak uważa. Pytamy osoby, która podała najwyższą liczbę, dlaczego tak uważa. Bardzo często te różnice wynikają z tego, że nie do końca rozumiemy zadanie.
+\end{itemize}
+
+A więc Planning Poker pozwala nam lepiej zrozumieć zadania w zespole, dzięki czemu nie ma później nieporozumień i dzięki czemu to planowanie jest bardziej precyzyjne.
+Kiedy przejdziemy przez wszystkie historyjki i zwymiarujemy, oszacujemy ich trudność w punktach, możemy przejść do planowania sprintu. Z doświadczenia wiemy, że nasz zespół jest w stanie zrealizować określoną liczbę punktów w ciągu danego sprintu.
+Ta liczba nazywa się team velocity, czyli szybkość, z jaką zespół pracuje. Jest typowa dla każdego zespołu, a więc nie jest tak, że jeżeli jeden zespół jest w stanie zrealizować 30 punktów, to każdy inny będzie w stanie tyle samo zrealizować.
+Co więcej, nie można tej liczby traktować jako wskaźnika motywacji (zróbcie pięć punktów więcej, to dostaniecie premię) dlatego, że zaobserwowano, iż w takich przypadkach każde kolejne szacowanie po prostu powoduje, że członkowie zespołu przydzielają więcej punktów, czyli określają zadania jako trudniejsze, niż są w rzeczywistości, a więc mamy taką inflację punktów- nie ma realnego zwiększenia realnego wykonanej pracy, jest po prostu zwiększenie liczby punktów. Taki sposób motywacji nie jest zatem dobrym pomysłem.
+Dzięki tej metodzie możemy odejść od określania, czy coś będzie trwało 2,5 godziny, czy 3,5 godziny, możemy skupić się na lepszym zrozumieniu zadań, jak również na tym, aby lepiej rozplanować pracę.
