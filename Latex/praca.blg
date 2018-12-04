@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: praca.aux
+The style file: dyplom.bst
+Database file #1: literatura.bib
+I was expecting a `,' or a `}'---line 52 of file literatura.bib
+ :  
+ :  isbn = {1-880410-23-0}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "harel_rzecz_2008"
+You've used 15 entries,
+            2662 wiz_defined-function locations,
+            661 strings with 6735 characters,
+and the built_in function-call counts, 4520 in all, are:
+= -- 281
+> -- 125
+< -- 4
++ -- 54
+- -- 38
+* -- 275
+:= -- 606
+add.period$ -- 20
+call.type$ -- 15
+change.case$ -- 61
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 405
+empty$ -- 505
+format.name$ -- 40
+if$ -- 968
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 109
+newline$ -- 48
+num.names$ -- 30
+pop$ -- 211
+preamble$ -- 1
+purify$ -- 49
+quote$ -- 0
+skip$ -- 107
+stack$ -- 0
+substring$ -- 114
+swap$ -- 206
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 42
+warning$ -- 0
+while$ -- 33
+width$ -- 17
+write$ -- 122
+(There was 1 error message)
