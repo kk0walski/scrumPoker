@@ -25,7 +25,7 @@
 \contentsline {chapter}{\numberline {3\relax .\kern .5em }Rozproszone zespo\IeC {\l }y projektowe.}{18}{chapter.3}
 \contentsline {section}{\numberline {3.1\relax .\kern .5em }Zalety zarz\IeC {\k a}dzania projektami w zespo\IeC {\l }ach rozproszonych.}{18}{section.3.1}
 \contentsline {section}{\numberline {3.2\relax .\kern .5em }Dodatkowe wyzwania dla efektywnego funkcjonowania zespo\IeC {\l }\IeC {\'o}w rozproszonych.}{18}{section.3.2}
-\contentsline {chapter}{Zako\IeC {\'n}czenie}{21}{chapter*.11}
-\contentsline {chapter}{Dodatki}{22}{section*.12}
-\contentsline {chapter}{\numberline {A\relax .\kern .5em }To powinien by? dodatek}{23}{appendix.A}
-\contentsline {chapter}{Bibliografia}{24}{chapter*.13}
+\contentsline {chapter}{Zako\IeC {\'n}czenie}{20}{chapter*.11}
+\contentsline {chapter}{Dodatki}{21}{section*.12}
+\contentsline {chapter}{\numberline {A\relax .\kern .5em }To powinien by? dodatek}{22}{appendix.A}
+\contentsline {chapter}{Bibliografia}{23}{chapter*.13}
