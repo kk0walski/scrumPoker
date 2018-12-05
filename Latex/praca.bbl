@@ -6,9 +6,20 @@
   \url{http://4pm.pl/artykuly/przyjrzyjmy-sie-tradycyjnym-projektom}. Ost.
   dost. 4 grudnia 2018.
 
+\bibitem{www_nafrontendzie}
+{Bartek Dybowski}, \emph{Podstawy redux - zarządzanie stanem aplikacji
+  reactjs},
+  \url{https://www.nafrontendzie.pl/podstawy-redux-zarzadzanie-stanem-react}.
+  Ost. dost. 4 grudnia 2018.
+
 \bibitem{Cohen_2006}
 Cohen, M., \emph{Agile Estimating And Planning}, Robert C. Martin Series
   (Pearson Educatin, Inc., Massachusetts, 2006).
+
+\bibitem{www_hakermoon}
+{GeekyAnts}, \emph{Introduction to firebase},
+  \url{https://hackernoon.com/introduction-to-firebase-218a23186cd7}. Ost.
+  dost. 4 grudnia 2018.
 
 \bibitem{PMI_2000}
 Institute, P.M., \emph{A Guide to the Project Management Body of Knowledge}
@@ -18,12 +29,6 @@ Institute, P.M., \emph{A Guide to the Project Management Body of Knowledge}
 Jabłoński, B., \emph{Wykorzystanie metodyk zwinnych do poprawy wiedzy i
   umiejętności projektowych studentów kierunków technicznych}, Edukacja -
   Technika - Informatyka. 2016, tom~94.
-
-\bibitem{kaleta_experimental_2005}
-Kaleta, J., Lewandowski, D., Zajac, P., \emph{Experimental identification of
-  magnetorheological composites and elastomers properties}, w: \emph{Materials
-  Science Forum}, tom 482 (Aedermannsdorf, Switzerland: Trans Tech
-  Publications, 1984-, 2005), str. 403--406.
 
 \bibitem{Kopczewski_2015}
 Kopczewski, M., \emph{Alfabet zarządzania projektami. Zarządzanie projektem
@@ -53,6 +58,11 @@ Portny, S.E., \emph{Project Management For Dummies}, 3d edition wyd., For
 \bibitem{Shwaber_2004}
 Shwaber, K., \emph{Sprawne zarządzanie projektami metodą Scrum}, polish wyd.
   (APN PROMISE, Warszawa, 2005).
+
+\bibitem{www_react}
+Wenger, J., \emph{Using firebase with reactjs},
+  \url{https://firebase.googleblog.com/2014/05/using-firebase-with-reactjs.html}.
+  Ost. dost. 4 grudnia 2018.
 
 \bibitem{Wolf_2012}
 Wolf, H., \emph{Zwinne projekty w klasycznej organizacji Scrum, Kanban, XP}

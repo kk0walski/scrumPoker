@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{n}{export} \PYG{k}{const} \PYG{n}{startAddUserToGame} \PYG{o}{=} \PYG{p}{(}\PYG{n}{owner}\PYG{p}{,} \PYG{n}{repo}\PYG{p}{,} \PYG{n}{game}\PYG{p}{,} \PYG{n}{user} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{})} \PYG{o}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{n}{dispatch} \PYG{o}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+	\PYG{n}{var} \PYG{n}{userUpdate} \PYG{o}{=} \PYG{p}{\PYGZob{}\PYGZcb{}}
+	\PYG{k}{const} \PYG{n}{tempUser} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+	\PYG{n+nl}{email}\PYG{p}{:} \PYG{n}{user}\PYG{p}{.}\PYG{n}{email}\PYG{p}{,}
+	\PYG{n+nl}{isAnonymous}\PYG{p}{:} \PYG{n}{user}\PYG{p}{.}\PYG{n}{isAnonymous}\PYG{p}{,}
+	\PYG{n+nl}{id}\PYG{p}{:} \PYG{n}{user}\PYG{p}{.}\PYG{n}{uid}\PYG{p}{,}
+	\PYG{n+nl}{name}\PYG{p}{:} \PYG{n}{user}\PYG{p}{.}\PYG{n}{displayName}\PYG{p}{,}
+	\PYG{n+nl}{online}\PYG{p}{:} \PYG{n+nb}{true}
+	\PYG{p}{\PYGZcb{};}
+	\PYG{n}{userUpdate}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}users.\PYGZdq{}} \PYG{o}{+} \PYG{n}{user}\PYG{p}{.}\PYG{n}{uid}\PYG{p}{.}\PYG{n}{toString}\PYG{p}{()]} \PYG{o}{=} \PYG{n}{tempUser}
+	\PYG{k}{const} \PYG{n}{gameRef} \PYG{o}{=} \PYG{n}{db}
+	\PYG{p}{.}\PYG{n}{collection}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}users\PYGZdq{}}\PYG{p}{)}
+	\PYG{p}{.}\PYG{n}{doc}\PYG{p}{(}\PYG{n}{owner}\PYG{p}{.}\PYG{n}{toString}\PYG{p}{())}
+	\PYG{p}{.}\PYG{n}{collection}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}repos\PYGZdq{}}\PYG{p}{)}
+	\PYG{p}{.}\PYG{n}{doc}\PYG{p}{(}\PYG{n}{repo}\PYG{p}{.}\PYG{n}{toString}\PYG{p}{())}
+	\PYG{p}{.}\PYG{n}{collection}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}games\PYGZdq{}}\PYG{p}{)}
+	\PYG{p}{.}\PYG{n}{doc}\PYG{p}{(}\PYG{n}{game}\PYG{p}{.}\PYG{n}{toString}\PYG{p}{())}
+	
+	\PYG{n}{gameRef}\PYG{p}{.}\PYG{n}{update}\PYG{p}{(}\PYG{n}{userUpdate}\PYG{p}{).}\PYG{n}{then}\PYG{p}{(()} \PYG{o}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+	\PYG{n}{dispatch}\PYG{p}{(}\PYG{n}{addUserToGame}\PYG{p}{(}\PYG{n}{owner}\PYG{p}{,} \PYG{n}{repo}\PYG{p}{,} \PYG{n}{game}\PYG{p}{,} \PYG{n}{tempUser}\PYG{p}{))}
+	\PYG{p}{\PYGZcb{});}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

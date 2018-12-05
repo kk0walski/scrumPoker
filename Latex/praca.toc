@@ -1,31 +1,41 @@
-\contentsline {chapter}{Spis rysunk\'ow}{2}{chapter*.2}
-\contentsline {chapter}{Spis listing\IeC {\'o}w}{3}{chapter*.3}
-\contentsline {chapter}{Spis tabel}{4}{chapter*.4}
-\contentsline {chapter}{Streszczenie}{5}{chapter*.5}
+\contentsline {chapter}{Spis rysunk\'ow}{3}{chapter*.2}
+\contentsline {chapter}{Spis listing\IeC {\'o}w}{4}{chapter*.3}
+\contentsline {chapter}{Spis tabel}{5}{chapter*.4}
+\contentsline {chapter}{Streszczenie}{6}{chapter*.5}
 \setcounter {tocdepth}{-1}
-\contentsline {chapter}{Abstract}{5}{chapter*.6}
+\contentsline {chapter}{Abstract}{6}{chapter*.6}
 \setcounter {tocdepth}{2}
-\contentsline {chapter}{Wst\IeC {\k e}p}{6}{chapter*.7}
-\contentsline {section}{Opis problemu}{6}{section*.8}
-\contentsline {section}{Cel pracy}{6}{section*.9}
-\contentsline {section}{Zakres pracy}{6}{section*.10}
-\contentsline {chapter}{\numberline {1\relax .\kern .5em }Wprowadzenie}{7}{chapter.1}
-\contentsline {section}{\numberline {1.1\relax .\kern .5em }Najpopularniejsze metody zarz\IeC {\k a}dzania projektami}{7}{section.1.1}
-\contentsline {section}{\numberline {1.2\relax .\kern .5em }Podej\IeC {\'s}cie klasyczne}{8}{section.1.2}
-\contentsline {section}{\numberline {1.3\relax .\kern .5em }Podej\IeC {\'s}cie zwinne}{8}{section.1.3}
-\contentsline {section}{\numberline {1.4\relax .\kern .5em }Manifest Agile}{9}{section.1.4}
-\contentsline {chapter}{\numberline {2\relax .\kern .5em }Najcz\IeC {\k e}\IeC {\'s}ciej wykorzystywane narz\IeC {\k e}dzia w zarzadzaniu projektami.}{12}{chapter.2}
-\contentsline {section}{\numberline {2.1\relax .\kern .5em }Narz\IeC {\k e}dzia stosowane dla metod klasycznych.}{12}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1\relax .\kern .5em }Microsoft Project}{12}{subsection.2.1.1}
-\contentsline {subsection}{\numberline {2.1.2\relax .\kern .5em }Gantt Project}{12}{subsection.2.1.2}
-\contentsline {section}{\numberline {2.2\relax .\kern .5em }Najpopularniejsze narz\IeC {\k e}dzia stosowane dla metod zwinnych ( team estimation game, kanban, planning poker).}{13}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1\relax .\kern .5em }Team Estimation Game}{14}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2\relax .\kern .5em }Kanban}{14}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3\relax .\kern .5em }Planning Poker}{16}{subsection.2.2.3}
-\contentsline {chapter}{\numberline {3\relax .\kern .5em }Rozproszone zespo\IeC {\l }y projektowe.}{18}{chapter.3}
-\contentsline {section}{\numberline {3.1\relax .\kern .5em }Zalety zarz\IeC {\k a}dzania projektami w zespo\IeC {\l }ach rozproszonych.}{18}{section.3.1}
-\contentsline {section}{\numberline {3.2\relax .\kern .5em }Dodatkowe wyzwania dla efektywnego funkcjonowania zespo\IeC {\l }\IeC {\'o}w rozproszonych.}{18}{section.3.2}
-\contentsline {chapter}{Zako\IeC {\'n}czenie}{20}{chapter*.11}
-\contentsline {chapter}{Dodatki}{21}{section*.12}
-\contentsline {chapter}{\numberline {A\relax .\kern .5em }To powinien by? dodatek}{22}{appendix.A}
-\contentsline {chapter}{Bibliografia}{23}{chapter*.13}
+\contentsline {chapter}{Wst\IeC {\k e}p}{7}{chapter*.7}
+\contentsline {section}{Opis problemu}{7}{section*.8}
+\contentsline {section}{Cel pracy}{7}{section*.9}
+\contentsline {section}{Zakres pracy}{7}{section*.10}
+\contentsline {chapter}{\numberline {1\relax .\kern .5em }Wprowadzenie}{8}{chapter.1}
+\contentsline {section}{\numberline {1.1\relax .\kern .5em }Najpopularniejsze metody zarz\IeC {\k a}dzania projektami}{8}{section.1.1}
+\contentsline {section}{\numberline {1.2\relax .\kern .5em }Podej\IeC {\'s}cie klasyczne}{9}{section.1.2}
+\contentsline {section}{\numberline {1.3\relax .\kern .5em }Podej\IeC {\'s}cie zwinne}{9}{section.1.3}
+\contentsline {section}{\numberline {1.4\relax .\kern .5em }Manifest Agile}{10}{section.1.4}
+\contentsline {chapter}{\numberline {2\relax .\kern .5em }Najcz\IeC {\k e}\IeC {\'s}ciej wykorzystywane narz\IeC {\k e}dzia w zarzadzaniu projektami.}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1\relax .\kern .5em }Narz\IeC {\k e}dzia stosowane dla metod klasycznych.}{13}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1\relax .\kern .5em }Microsoft Project}{13}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2\relax .\kern .5em }Gantt Project}{13}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2\relax .\kern .5em }Najpopularniejsze narz\IeC {\k e}dzia stosowane dla metod zwinnych ( team estimation game, kanban, planning poker).}{14}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1\relax .\kern .5em }Team Estimation Game}{15}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2\relax .\kern .5em }Kanban}{15}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3\relax .\kern .5em }Planning Poker}{17}{subsection.2.2.3}
+\contentsline {chapter}{\numberline {3\relax .\kern .5em }Rozproszone zespo\IeC {\l }y projektowe.}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1\relax .\kern .5em }Zalety zarz\IeC {\k a}dzania projektami w zespo\IeC {\l }ach rozproszonych.}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2\relax .\kern .5em }Dodatkowe wyzwania dla efektywnego funkcjonowania zespo\IeC {\l }\IeC {\'o}w rozproszonych.}{19}{section.3.2}
+\contentsline {chapter}{\numberline {4\relax .\kern .5em }Implementacja projektu}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1\relax .\kern .5em }Czym jest ReactJS}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2\relax .\kern .5em }Firebase}{21}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1\relax .\kern .5em }Historia Firebase}{22}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.3\relax .\kern .5em }Wykorzystane us\IeC {\l }ugi Firebase}{22}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1\relax .\kern .5em }Firebase Authentication}{22}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2\relax .\kern .5em }Firestore}{23}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4\relax .\kern .5em }Redux czyli implementacja architektury Flux.}{23}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1\relax .\kern .5em }Architektura FLUX}{24}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.5\relax .\kern .5em }Czym redux r\IeC {\'o}\IeC {\.z}ni si\IeC {\k e} od Flux}{27}{section.4.5}
+\contentsline {chapter}{Zako\IeC {\'n}czenie}{28}{chapter*.11}
+\contentsline {chapter}{Dodatki}{29}{section*.12}
+\contentsline {chapter}{\numberline {A\relax .\kern .5em }To powinien by? dodatek}{30}{appendix.A}
+\contentsline {chapter}{Bibliografia}{31}{chapter*.13}

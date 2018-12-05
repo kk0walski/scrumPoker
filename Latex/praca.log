@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.12.3)  4 DEC 2018 23:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.12.3)  5 DEC 2018 03:39
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1043,7 +1043,11 @@ runsystem(which pygmentize && touch praca.aex)...executed.
 
 runsystem(rm praca.aex)...executed.
 
- (./praca.aux)
+ (./praca.aux
+
+LaTeX Warning: Label `listing:moj' multiply defined.
+
+)
 \openout1 = `praca.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
@@ -1064,8 +1068,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 53.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 53.
@@ -1239,38 +1242,38 @@ File: scrsize10pt.clo 2018/03/30 v3.25 KOMA-Script font size class option (10pt
 ) [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./praca.toc)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./praca.toc [1
+
+
+
+
+])
 \tf@toc=\write8
 \openout8 = `praca.toc'.
 
- [1
-
-
-
-
-] (./praca.lof)
+ [2]
+(./praca.lof)
 \tf@lof=\write9
 \openout9 = `praca.lof'.
 
-
-[2
+ [3
 
 ] (./praca.lop)
 \tf@lop=\write10
 \openout10 = `praca.lop'.
 
- [3
+ [4
 
 ] (./praca.lot)
 \tf@lot=\write11
 \openout11 = `praca.lot'.
 
- [4
+ [5
 
-] (./wstep.tex [5
+] (./wstep.tex [6
 
-]) (./rozdzial1.tex
-[6
+])
+(./rozdzial1.tex [7
 
 ]
 Rozdzia\PlPrIeC {\l } 1.
@@ -1284,87 +1287,131 @@ Overfull \hbox (47.6882pt too wide) in paragraph at lines 16--41
  [][] 
  []
 
-[7
+[8
 
-] [8pdfTeX warning (ext4): destination with the same identifier (name{table.1.1
+] [9pdfTeX warning (ext4): destination with the same identifier (name{table.1.1
 }) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.52 \section{Manifest Agile}
                              ]
-<img/agile.png, id=223, 291.0875pt x 174.6525pt>
+<img/agile.png, id=291, 291.0875pt x 174.6525pt>
 File: img/agile.png Graphic file (type png)
 <use img/agile.png>
 Package pdftex.def Info: img/agile.png  used on input line 64.
 (pdftex.def)             Requested size: 256.07741pt x 153.65735pt.
- [9] [10pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.1.1}) has been already used, duplicate ignored
+ [10] [11pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.1.1}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.78 \end{itemize}
-                   <./img/agile.png>]) (./rozdzial2.tex [11]
+                   <./img/agile.png>]) (./rozdzial2.tex [12]
 Rozdzia\PlPrIeC {\l } 2.
-<img/Microsoft_Project.jpg, id=241, 677.53125pt x 419.31656pt>
+<img/Microsoft_Project.jpg, id=310, 677.53125pt x 419.31656pt>
 File: img/Microsoft_Project.jpg Graphic file (type jpg)
 <use img/Microsoft_Project.jpg>
 Package pdftex.def Info: img/Microsoft_Project.jpg  used on input line 20.
 (pdftex.def)             Requested size: 256.07741pt x 158.48457pt.
-[12
+[13
 
-] [13pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+] [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2
 .1}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.34 
       <./img/Microsoft_Project.jpg>]
-<img/team_estimation_game.jpg, id=263, 4047.12pt x 1888.05376pt>
+<img/team_estimation_game.jpg, id=332, 4047.12pt x 1888.05376pt>
 File: img/team_estimation_game.jpg Graphic file (type jpg)
 <use img/team_estimation_game.jpg>
 Package pdftex.def Info: img/team_estimation_game.jpg  used on input line 40.
 (pdftex.def)             Requested size: 170.71393pt x 79.62901pt.
- [14pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+ [15pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 2}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.74 	\item P
              ierwszym takim etapem jest breakdown albo analysis, czyli anali...
- <./img/team_estimation_game.jpg>] [15pdfTeX warning (ext4): destination with t
+ <./img/team_estimation_game.jpg>] [16pdfTeX warning (ext4): destination with t
 he same identifier (name{table.2.1}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.94 
      ]
-<img/Planning_Poker.jpg, id=275, 426.59375pt x 314.17375pt>
+<img/Planning_Poker.jpg, id=344, 426.59375pt x 314.17375pt>
 File: img/Planning_Poker.jpg Graphic file (type jpg)
 <use img/Planning_Poker.jpg>
 Package pdftex.def Info: img/Planning_Poker.jpg  used on input line 100.
 (pdftex.def)             Requested size: 170.71393pt x 125.72958pt.
- [16pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
+ [17pdfTeX warning (ext4): destination with the same identifier (name{figure.2.
 3}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.113 	\item K
               iedy jednak występuje zróżnicowanie, konieczna jest dyskusj...
- <./img/Planning_Poker.jpg>]) (./rozdzial3.tex [17]
+ <./img/Planning_Poker.jpg>]) (./rozdzial3.tex [18]
 Rozdzia\PlPrIeC {\l } 3.
-[18
+[19
 
-]) (./zakonczenie.tex [19]) [20
-
-] [21
-
-]
-Dodatek A.
-(./praca.bbl [22
+]) (./rozdzial4.tex [20]
+Rozdzia\PlPrIeC {\l } 4.
+[21
 
 ]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 6.
+<img/firebase.png, id=370, 803.0pt x 516.93124pt>
+File: img/firebase.png Graphic file (type png)
+<use img/firebase.png>
+Package pdftex.def Info: img/firebase.png  used on input line 31.
+(pdftex.def)             Requested size: 256.07741pt x 164.85345pt.
+ [22pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+1}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.49 F
+      irestore przechowuje dane w postaci obiektów zwanych dokumentami. Te ...
+ <./img/firebase.png (PNG copy)>]
+<img/firestoreData.png, id=376, 577.15625pt x 274.02374pt>
+File: img/firestoreData.png Graphic file (type png)
+<use img/firestoreData.png>
+Package pdftex.def Info: img/firestoreData.png  used on input line 52.
+(pdftex.def)             Requested size: 256.07741pt x 121.58685pt.
+<img/firestoreTree.png, id=380, 803.0pt x 401.5pt>
+File: img/firestoreTree.png Graphic file (type png)
+<use img/firestoreTree.png>
+Package pdftex.def Info: img/firestoreTree.png  used on input line 61.
+(pdftex.def)             Requested size: 256.07741pt x 128.04152pt.
+ [23pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+2}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.69 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.4
+.3}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.69 
+      <./img/firestoreData.png> <./img/firestoreTree.png>]
+<img/flux.png, id=389, 1304.875pt x 394.47375pt>
+File: img/flux.png Graphic file (type png)
+<use img/flux.png>
+Package pdftex.def Info: img/flux.png  used on input line 75.
+(pdftex.def)             Requested size: 256.07741pt x 77.41263pt.
+\openout5 = `praca.pyg'.
+
+
+(./_minted-praca/default-pyg-prefix.pygstyle) (./_minted-praca/default.pygstyle
+)
+(./_minted-praca/246D64C876725B7526331CC7F16E355B73C1CB7B6083FCAE071A0B2B2C2A96
+FE.pygtex
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -1372,36 +1419,100 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/m/n' instead on input line 2.
+
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 7.
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
+File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-[23
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+)
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
+t line 96.
+ [24pdfTeX warning (ext4): destination with the same identifier (name{figure.4.
+4}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.102 \end{center}
+                   <./img/flux.png (PNG copy)>]
+\openout5 = `praca.pyg'.
+
+
+(./_minted-praca/4F2C174E0DEE4CBF882BF1E35885B48C73C1CB7B6083FCAE071A0B2B2C2A96
+FE.pygtex) [25] [26]
+<img/reduxFlux.jpeg, id=411, 952.55875pt x 529.98pt>
+File: img/reduxFlux.jpeg Graphic file (type jpg)
+<use img/reduxFlux.jpeg>
+Package pdftex.def Info: img/reduxFlux.jpeg  used on input line 172.
+(pdftex.def)             Requested size: 256.07741pt x 142.47382pt.
+) (./zakonczenie.tex [27pdfTeX warning (ext4): destination with the same identi
+fier (name{figure.4.5}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.1 \chapter*{Zakończenie}
+                            <./img/reduxFlux.jpeg>]) [28
+
+] [29
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 111.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 111.
+Dodatek A.
+(./praca.bbl [30
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 20--23
+[]\T1/qtm/m/n/10.95 (+20) GeekyAnts, \T1/qtm/m/it/10.95 (+20) In-tro-duc-tion t
+o fi-re-ba-se\T1/qtm/m/n/10.95 (+20) , []$\T1/cmtt/b/n/10.95 https : / / hacker
+noon . com /
+ []
+
+) [31
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 113.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 113.
  (./praca.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 111.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 111.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 113.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 113.
 Package rerunfilecheck Info: File `praca.out' has not changed.
-(rerunfilecheck)             Checksum: 10231FED10DC0C4AA7DBB74EC6AEFBA5;1976.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 111.
+(rerunfilecheck)             Checksum: B571947DDCF39E211DA4978683C4CE75;2682.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 113.
+runsystem(rm praca.pyg)...executed.
+
  ) 
 Here is how much of TeX's memory you used:
- 24279 strings out of 492641
- 444884 string characters out of 6131787
- 836876 words of memory out of 5000000
- 27428 multiletter control sequences out of 15000+600000
- 65652 words of font info for 133 fonts, out of 8000000 for 9000
+ 24608 strings out of 492641
+ 450474 string characters out of 6131787
+ 837555 words of memory out of 5000000
+ 27694 multiletter control sequences out of 15000+600000
+ 66627 words of font info for 138 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,62p,1364b,1610s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
-fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/share/texmf/fonts/type1/public/tex-gyre
-/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/te
-xmf/fonts/type1/public/tex-gyre/qtmri.pfb></usr/share/texmf/fonts/type1/public/
-cm-super/sftt1095.pfb>
-Output written on praca.pdf (24 pages, 1076314 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf
+/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/tex
+-gyre/q-ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
+></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts
+/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/q
+tmri.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on praca.pdf (32 pages, 1343061 bytes).
 PDF statistics:
- 354 PDF objects out of 1000 (max. 8388607)
- 315 compressed objects within 4 object streams
- 76 named destinations out of 1000 (max. 500000)
- 23305 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 494 PDF objects out of 1000 (max. 8388607)
+ 437 compressed objects within 5 object streams
+ 103 named destinations out of 1000 (max. 500000)
+ 24434 words of extra memory for PDF output out of 24883 (max. 10000000)
 

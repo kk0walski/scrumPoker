@@ -23,7 +23,17 @@
 \BOOKMARK [0][-]{chapter.3}{Rozproszone zespo\233y projektowe.}{}% 23
 \BOOKMARK [1][-]{section.3.1}{Zalety zarzadzania projektami w zespo\233ach rozproszonych.}{chapter.3}% 24
 \BOOKMARK [1][-]{section.3.2}{Dodatkowe wyzwania dla efektywnego funkcjonowania zespo\233\363w rozproszonych.}{chapter.3}% 25
-\BOOKMARK [0][-]{chapter*.11}{Zakonczenie}{}% 26
-\BOOKMARK [0][-]{section*.12}{Dodatki}{}% 27
-\BOOKMARK [0][-]{appendix.A}{To powinien by? dodatek}{}% 28
-\BOOKMARK [0][-]{chapter*.13}{Bibliografia}{}% 29
+\BOOKMARK [0][-]{chapter.4}{Implementacja projektu}{}% 26
+\BOOKMARK [1][-]{section.4.1}{Czym jest ReactJS}{chapter.4}% 27
+\BOOKMARK [1][-]{section.4.2}{Firebase}{chapter.4}% 28
+\BOOKMARK [2][-]{subsection.4.2.1}{Historia Firebase}{section.4.2}% 29
+\BOOKMARK [1][-]{section.4.3}{Wykorzystane us\233ugi Firebase}{chapter.4}% 30
+\BOOKMARK [2][-]{subsection.4.3.1}{Firebase Authentication}{section.4.3}% 31
+\BOOKMARK [2][-]{subsection.4.3.2}{Firestore}{section.4.3}% 32
+\BOOKMARK [1][-]{section.4.4}{Redux czyli implementacja architektury Flux.}{chapter.4}% 33
+\BOOKMARK [2][-]{subsection.4.4.1}{Architektura FLUX}{section.4.4}% 34
+\BOOKMARK [1][-]{section.4.5}{Czym redux r\363zni sie od Flux}{chapter.4}% 35
+\BOOKMARK [0][-]{chapter*.11}{Zakonczenie}{}% 36
+\BOOKMARK [0][-]{section*.12}{Dodatki}{}% 37
+\BOOKMARK [0][-]{appendix.A}{To powinien by? dodatek}{}% 38
+\BOOKMARK [0][-]{chapter*.13}{Bibliografia}{}% 39
