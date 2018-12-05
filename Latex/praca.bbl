@@ -21,6 +21,11 @@
 Cohen, M., \emph{Agile Estimating And Planning}, Robert C. Martin Series
   (Pearson Educatin, Inc., Massachusetts, 2006).
 
+\bibitem{docker_compose_reference}
+{Docker Inc.}, \emph{Compose file version 3 reference},
+  \url{https://docs.docker.com/compose/compose-file/}. Ost. dost. 12 listopada
+  2018.
+
 \bibitem{www_hakermoon}
 {GeekyAnts}, \emph{Introduction to firebase},
   \url{https://hackernoon.com/introduction-to-firebase-218a23186cd7}. Ost.
@@ -34,6 +39,12 @@ Institute, P.M., \emph{A Guide to the Project Management Body of Knowledge}
 Jabłoński, B., \emph{Wykorzystanie metodyk zwinnych do poprawy wiedzy i
   umiejętności projektowych studentów kierunków technicznych}, Edukacja -
   Technika - Informatyka. 2016, tom~94.
+
+\bibitem{kaleta_experimental_2005}
+Kaleta, J., Lewandowski, D., Zajac, P., \emph{Experimental identification of
+  magnetorheological composites and elastomers properties}, w: \emph{Materials
+  Science Forum}, tom 482 (Aedermannsdorf, Switzerland: Trans Tech
+  Publications, 1984-, 2005), str. 403--406.
 
 \bibitem{Kopczewski_2015}
 Kopczewski, M., \emph{Alfabet zarządzania projektami. Zarządzanie projektem

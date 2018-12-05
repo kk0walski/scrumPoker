@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.12.3)  5 DEC 2018 11:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2018.12.3)  5 DEC 2018 11:46
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1261,7 +1261,12 @@ File: scrsize10pt.clo 2018/03/30 v3.25 KOMA-Script font size class option (10pt
 
  [4
 
-] (./praca.lot)
+] (./praca.lot
+
+LaTeX Warning: Citation `harel_rzecz_2008' on page 5 undefined on input line 14
+.
+
+)
 \tf@lot=\write11
 \openout11 = `praca.lot'.
 
@@ -1269,8 +1274,7 @@ File: scrsize10pt.clo 2018/03/30 v3.25 KOMA-Script font size class option (10pt
 
 ] (./wstep.tex [6
 
-])
-(./rozdzial1.tex [7
+]) (./rozdzial1.tex [7
 
 ]
 Rozdzia\PlPrIeC {\l } 1.
@@ -1293,7 +1297,7 @@ Overfull \hbox (47.6882pt too wide) in paragraph at lines 16--41
                                                   
 l.52 \section{Manifest Agile}
                              ]
-<img/agile.png, id=307, 291.0875pt x 174.6525pt>
+<img/agile.png, id=354, 291.0875pt x 174.6525pt>
 File: img/agile.png Graphic file (type png)
 <use img/agile.png>
 Package pdftex.def Info: img/agile.png  used on input line 64.
@@ -1306,7 +1310,7 @@ re.1.1}) has been already used, duplicate ignored
 l.78 \end{itemize}
                    <./img/agile.png>]) (./rozdzial2.tex [12]
 Rozdzia\PlPrIeC {\l } 2.
-<img/Microsoft_Project.jpg, id=327, 677.53125pt x 419.31656pt>
+<img/Microsoft_Project.jpg, id=373, 677.53125pt x 419.31656pt>
 File: img/Microsoft_Project.jpg Graphic file (type jpg)
 <use img/Microsoft_Project.jpg>
 Package pdftex.def Info: img/Microsoft_Project.jpg  used on input line 20.
@@ -1320,7 +1324,7 @@ Package pdftex.def Info: img/Microsoft_Project.jpg  used on input line 20.
                                                   
 l.34 
       <./img/Microsoft_Project.jpg>]
-<img/team_estimation_game.jpg, id=348, 4047.12pt x 1888.05376pt>
+<img/team_estimation_game.jpg, id=394, 4047.12pt x 1888.05376pt>
 File: img/team_estimation_game.jpg Graphic file (type jpg)
 <use img/team_estimation_game.jpg>
 Package pdftex.def Info: img/team_estimation_game.jpg  used on input line 40.
@@ -1339,7 +1343,7 @@ he same identifier (name{table.2.1}) has been already used, duplicate ignored
                                                   
 l.94 
      ]
-<img/Planning_Poker.jpg, id=360, 426.59375pt x 314.17375pt>
+<img/Planning_Poker.jpg, id=406, 426.59375pt x 314.17375pt>
 File: img/Planning_Poker.jpg Graphic file (type jpg)
 <use img/Planning_Poker.jpg>
 Package pdftex.def Info: img/Planning_Poker.jpg  used on input line 100.
@@ -1360,7 +1364,7 @@ Rozdzia\PlPrIeC {\l } 4.
 [21
 
 ]
-<img/firebase.png, id=386, 803.0pt x 516.93124pt>
+<img/firebase.png, id=432, 803.0pt x 516.93124pt>
 File: img/firebase.png Graphic file (type png)
 <use img/firebase.png>
 Package pdftex.def Info: img/firebase.png  used on input line 31.
@@ -1373,12 +1377,12 @@ Package pdftex.def Info: img/firebase.png  used on input line 31.
 l.49 F
       irestore przechowuje dane w postaci obiektów zwanych dokumentami. Te ...
  <./img/firebase.png (PNG copy)>]
-<img/firestoreData.png, id=392, 577.15625pt x 274.02374pt>
+<img/firestoreData.png, id=439, 577.15625pt x 274.02374pt>
 File: img/firestoreData.png Graphic file (type png)
 <use img/firestoreData.png>
 Package pdftex.def Info: img/firestoreData.png  used on input line 52.
 (pdftex.def)             Requested size: 256.07741pt x 121.58685pt.
-<img/firestoreTree.png, id=396, 803.0pt x 401.5pt>
+<img/firestoreTree.png, id=443, 803.0pt x 401.5pt>
 File: img/firestoreTree.png Graphic file (type png)
 <use img/firestoreTree.png>
 Package pdftex.def Info: img/firestoreTree.png  used on input line 61.
@@ -1396,7 +1400,7 @@ l.69
                                                   
 l.69 
       <./img/firestoreData.png> <./img/firestoreTree.png>]
-<img/flux.png, id=406, 1304.875pt x 394.47375pt>
+<img/flux.png, id=453, 1304.875pt x 394.47375pt>
 File: img/flux.png Graphic file (type png)
 <use img/flux.png>
 Package pdftex.def Info: img/flux.png  used on input line 75.
@@ -1452,7 +1456,7 @@ FE.pygtex) [26]
 Underfull \vbox (badness 1014) has occurred while \output is active []
 
  [27]
-<img/reduxFlux.jpeg, id=436, 952.55875pt x 529.98pt>
+<img/reduxFlux.jpeg, id=482, 952.55875pt x 529.98pt>
 File: img/reduxFlux.jpeg Graphic file (type jpg)
 <use img/reduxFlux.jpeg>
 Package pdftex.def Info: img/reduxFlux.jpeg  used on input line 198.
@@ -1468,24 +1472,77 @@ FE.pygtex) [28pdfTeX warning (ext4): destination with the same identifier (name
                                                   
 l.220 \newpage
                <./img/reduxFlux.jpeg>]
-<img/fireRedux.png, id=446, 803.0pt x 286.06876pt>
+<img/fireRedux.png, id=492, 803.0pt x 286.06876pt>
 File: img/fireRedux.png Graphic file (type png)
 <use img/fireRedux.png>
 Package pdftex.def Info: img/fireRedux.png  used on input line 234.
 (pdftex.def)             Requested size: 256.07741pt x 91.22958pt.
-) (./zakonczenie.tex [29pdfTeX warning (ext4): destination with the same identi
-fier (name{figure.4.6}) has been already used, duplicate ignored
+) (./rozdzial5.tex [29pdfTeX warning (ext4): destination with the same identifi
+er (name{figure.4.6}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.1 \chapter*{Zakończenie}
-                            <./img/fireRedux.png (PNG copy)>]) [30
+l.1 \chapter{Omówienie działania aplikacji}
+                                              <./img/fireRedux.png (PNG copy)>]
+Rozdzia\PlPrIeC {\l } 5.
 
-] [31
+LaTeX Warning: Citation `harel_rzecz_2008' on page 30 undefined on input line 1
+2.
+
+[30
+
+]
+<img/swarm-network.png, id=505, 1488.56125pt x 707.64375pt>
+File: img/swarm-network.png Graphic file (type png)
+<use img/swarm-network.png>
+Package pdftex.def Info: img/swarm-network.png  used on input line 18.
+(pdftex.def)             Requested size: 256.07741pt x 121.73395pt.
+ [31pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+1}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.27 ...ef{rysunek:kot} Ala ma kota. \lipsum[9-10]
+                                                   <./img/swarm-network.png>]
+<img/kotek.pdf, id=513, 36.135pt x 33.12375pt>
+File: img/kotek.pdf Graphic file (type pdf)
+<use img/kotek.pdf>
+Package pdftex.def Info: img/kotek.pdf  used on input line 30.
+(pdftex.def)             Requested size: 170.71393pt x 156.5302pt.
+
+[32pdfTeX warning (ext4): destination with the same identifier (name{figure.5.2
+}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.36 ...abeli \ref{tabela:coktoma}. \lipsum[13-15]
+                                                   <./img/kotek.pdf>]
+
+LaTeX Warning: Citation `harel_rzecz_2008' on page 33 undefined on input line 4
+0.
+
+
+LaTeX Warning: Citation `aizawa_groundwater_2009' on page 33 undefined on input
+ line 52.
+
+\openout5 = `praca.pyg'.
+
+
+(./_minted-praca/97BEF034516176FC4FB47C17364D102973C1CB7B6083FCAE071A0B2B2C2A96
+FE.pygtex) [33pdfTeX warning (ext4): destination with the same identifier (name
+{table.5.1}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.77 ...j} zrobiłem coś wspaniałego. \lipsum[4]
+                                                  ]) (./zakonczenie.tex
+[34]) [35
+
+] [36
 
 ]
 Dodatek A.
-(./praca.bbl [32
+(./praca.bbl [37
 
 ]
 Underfull \hbox (badness 4647) in paragraph at lines 10--13
@@ -1495,49 +1552,62 @@ t/b/n/10.95 https : / / www .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--28
+Underfull \hbox (badness 10000) in paragraph at lines 30--33
 []\T1/qtm/m/n/10.95 (+20) GeekyAnts, \T1/qtm/m/it/10.95 (+20) In-tro-duc-tion t
 o fi-re-ba-se\T1/qtm/m/n/10.95 (+20) , []$\T1/cmtt/b/n/10.95 https : / / hacker
 noon . com /
  []
 
-) [33
 
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 113.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 113.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [38
+
+])
+[39]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 115.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 115.
  (./praca.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 113.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 113.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 115.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 115.
 Package rerunfilecheck Info: File `praca.out' has not changed.
-(rerunfilecheck)             Checksum: 0FA14D9E65C8722B9FDAB84A7A9A240F;2844.
+(rerunfilecheck)             Checksum: 89C07CC5FA6FC5EE9967F47CF8E51795;3318.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 113.
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 115.
 runsystem(rm praca.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 24638 strings out of 492641
- 451631 string characters out of 6131787
- 837858 words of memory out of 5000000
- 27709 multiletter control sequences out of 15000+600000
- 66627 words of font info for 138 fonts, out of 8000000 for 9000
+ 24696 strings out of 492641
+ 452861 string characters out of 6131787
+ 838292 words of memory out of 5000000
+ 27737 multiletter control sequences out of 15000+600000
+ 66943 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,14n,62p,1364b,1610s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf
-/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/fonts/enc/dvips/tex
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/tex
 -gyre/q-ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-mi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
-></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts
-/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/q
-tmri.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on praca.pdf (34 pages, 1375084 bytes).
+ex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/type1/pub
+lic/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></
+usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfit1095.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sftt1095.pfb>
+Output written on praca.pdf (40 pages, 1515319 bytes).
 PDF statistics:
- 532 PDF objects out of 1000 (max. 8388607)
- 472 compressed objects within 5 object streams
- 111 named destinations out of 1000 (max. 500000)
- 24455 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 652 PDF objects out of 1000 (max. 8388607)
+ 577 compressed objects within 6 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 25033 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -8,45 +8,47 @@ I was expecting a `,' or a `}'---line 52 of file literatura.bib
  :  isbn = {1-880410-23-0}
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-You've used 16 entries,
+Warning--I didn't find a database entry for "harel_rzecz_2008"
+Warning--I didn't find a database entry for "aizawa_groundwater_2009"
+You've used 18 entries,
             2662 wiz_defined-function locations,
-            659 strings with 6677 characters,
-and the built_in function-call counts, 4315 in all, are:
-= -- 266
-> -- 112
-< -- 1
-+ -- 49
-- -- 32
-* -- 244
-:= -- 585
-add.period$ -- 23
-call.type$ -- 16
-change.case$ -- 64
+            673 strings with 7108 characters,
+and the built_in function-call counts, 5195 in all, are:
+= -- 333
+> -- 136
+< -- 3
++ -- 59
+- -- 40
+* -- 299
+:= -- 689
+add.period$ -- 26
+call.type$ -- 18
+change.case$ -- 75
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 388
-empty$ -- 499
-format.name$ -- 32
-if$ -- 923
+cite$ -- 18
+duplicate$ -- 465
+empty$ -- 584
+format.name$ -- 41
+if$ -- 1116
 int.to.chr$ -- 0
-int.to.str$ -- 16
-missing$ -- 103
-newline$ -- 51
-num.names$ -- 32
-pop$ -- 215
+int.to.str$ -- 18
+missing$ -- 120
+newline$ -- 57
+num.names$ -- 36
+pop$ -- 253
 preamble$ -- 1
-purify$ -- 48
+purify$ -- 56
 quote$ -- 0
-skip$ -- 96
+skip$ -- 123
 stack$ -- 0
-substring$ -- 93
-swap$ -- 186
-text.length$ -- 1
+substring$ -- 137
+swap$ -- 231
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 46
+type$ -- 54
 warning$ -- 0
-while$ -- 32
-width$ -- 18
-write$ -- 127
+while$ -- 39
+width$ -- 20
+write$ -- 145
 (There was 1 error message)
