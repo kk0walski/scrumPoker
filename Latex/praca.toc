@@ -34,8 +34,10 @@
 \contentsline {subsection}{\numberline {4.3.2\relax .\kern .5em }Firestore}{23}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4\relax .\kern .5em }Redux czyli implementacja architektury Flux.}{23}{section.4.4}
 \contentsline {subsection}{\numberline {4.4.1\relax .\kern .5em }Architektura FLUX}{24}{subsection.4.4.1}
-\contentsline {section}{\numberline {4.5\relax .\kern .5em }Czym redux r\IeC {\'o}\IeC {\.z}ni si\IeC {\k e} od Flux}{27}{section.4.5}
-\contentsline {chapter}{Zako\IeC {\'n}czenie}{28}{chapter*.11}
-\contentsline {chapter}{Dodatki}{29}{section*.12}
-\contentsline {chapter}{\numberline {A\relax .\kern .5em }To powinien by? dodatek}{30}{appendix.A}
-\contentsline {chapter}{Bibliografia}{31}{chapter*.13}
+\contentsline {subsection}{\numberline {4.4.2\relax .\kern .5em }Czym redux r\IeC {\'o}\IeC {\.z}ni si\IeC {\k e} od Flux}{27}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3\relax .\kern .5em }redux-thunk}{28}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4\relax .\kern .5em }Po\IeC {\l }\IeC {\k a}czenie Firebase i redux\IeC {\textquoteright }a }{29}{subsection.4.4.4}
+\contentsline {chapter}{Zako\IeC {\'n}czenie}{30}{chapter*.11}
+\contentsline {chapter}{Dodatki}{31}{section*.12}
+\contentsline {chapter}{\numberline {A\relax .\kern .5em }To powinien by? dodatek}{32}{appendix.A}
+\contentsline {chapter}{Bibliografia}{33}{chapter*.13}

@@ -6,6 +6,11 @@
   \url{http://4pm.pl/artykuly/przyjrzyjmy-sie-tradycyjnym-projektom}. Ost.
   dost. 4 grudnia 2018.
 
+\bibitem{www_thunk}
+{Bartek Dybowski}, \emph{2 sposoby na wywołania asynchroniczne redux},
+  \url{https://www.nafrontendzie.pl/2-sposoby-wywolania-asynchroniczne-redux}.
+  Ost. dost. 5 grudnia 2018.
+
 \bibitem{www_nafrontendzie}
 {Bartek Dybowski}, \emph{Podstawy redux - zarządzanie stanem aplikacji
   reactjs},

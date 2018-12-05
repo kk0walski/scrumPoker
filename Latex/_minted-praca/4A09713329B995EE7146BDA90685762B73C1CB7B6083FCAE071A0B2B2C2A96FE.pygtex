@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{const} \PYG{n}{reducer} \PYG{o}{=} \PYG{p}{(}\PYG{n}{state}\PYG{p}{,} \PYG{n}{action}\PYG{p}{)} \PYG{o}{=\PYGZgt{}} \PYG{p}{\PYGZob{}}
+	\PYG{k}{switch} \PYG{p}{(}\PYG{n}{action}\PYG{p}{.}\PYG{n}{type}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+	\PYG{k}{case} \PYG{err}{\PYGZsq{}}\PYG{n}{INCREMENT}\PYG{err}{\PYGZsq{}}\PYG{o}{:}
+	\PYG{k}{return} \PYG{p}{\PYGZob{}} \PYG{p}{...}\PYG{n}{state}\PYG{p}{,} \PYG{n+nl}{counter}\PYG{p}{:} \PYG{n}{state}\PYG{p}{.}\PYG{n}{counter} \PYG{o}{+} \PYG{l+m+mi}{1} \PYG{p}{\PYGZcb{};}
+	\PYG{k}{case} \PYG{err}{\PYGZsq{}}\PYG{n}{DECREMENT}\PYG{err}{\PYGZsq{}}\PYG{o}{:}
+	\PYG{k}{return} \PYG{p}{\PYGZob{}} \PYG{p}{...}\PYG{n}{state}\PYG{p}{,} \PYG{n+nl}{counter}\PYG{p}{:} \PYG{n}{state}\PYG{p}{.}\PYG{n}{counter} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1} \PYG{p}{\PYGZcb{};}
+	\PYG{k}{default}\PYG{o}{:}
+	\PYG{k}{return} \PYG{n}{state}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

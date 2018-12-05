@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{n}{import} \PYG{p}{\PYGZob{}} \PYG{n}{createStore}\PYG{p}{,} \PYG{n}{applyMiddleware} \PYG{p}{\PYGZcb{}} \PYG{n}{from} \PYG{err}{\PYGZsq{}}\PYG{n}{redux}\PYG{err}{\PYGZsq{}}\PYG{p}{;}
+	\PYG{n}{import} \PYG{n}{thunk} \PYG{n}{from} \PYG{err}{\PYGZsq{}}\PYG{n}{redux}\PYG{o}{\PYGZhy{}}\PYG{n}{thunk}\PYG{err}{\PYGZsq{}}\PYG{p}{;}
+	\PYG{n}{import} \PYG{n}{rootReducer} \PYG{n}{from} \PYG{err}{\PYGZsq{}}\PYG{p}{.}\PYG{o}{/}\PYG{n}{reducers}\PYG{o}{/}\PYG{n}{index}\PYG{err}{\PYGZsq{}}\PYG{p}{;}
+	
+	\PYG{k}{const} \PYG{n}{store} \PYG{o}{=} \PYG{n}{createStore}\PYG{p}{(}
+	\PYG{n}{rootReducer}\PYG{p}{,}
+	\PYG{n}{applyMiddleware}\PYG{p}{(}\PYG{n}{thunk}\PYG{p}{)}
+	\PYG{p}{);}
+\end{Verbatim}
