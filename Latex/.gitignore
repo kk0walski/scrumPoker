@@ -11,3 +11,5 @@ praca.pdf
 *.toc
 *.log
 *.gz
+*.fls
+*.fdb_latexmk
