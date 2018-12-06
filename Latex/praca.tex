@@ -1,6 +1,7 @@
 \documentclass[inzynier,druk]{dyplom}
 \usepackage[utf8]{inputenc}
 \usepackage{hyperref}
+\usepackage{booktabs}
 %%
 \usepackage[toc]{appendix}
 \renewcommand{\appendixtocname}{Dodatki}
@@ -28,11 +29,11 @@ fontsize=\small,
 \makeatletter
 \renewcommand*{\listof}[2]{%
   \@ifundefined{ext@#1}{\float@error{#1}}{%
-    \expandafter\let\csname l@#1\endcsname \l@figure  % <- use layout of figure
+  \expandafter\let\csname l@#1\endcsname \l@figure% <- use layout of figure
     \float@listhead{#2}%
     \begingroup
       \setlength\parskip{0pt plus 1pt}%               % <- or drop this line completely
-      \@starttoc{\@nameuse{ext@#1}}%
+        \@starttoc{\@nameuse{ext@#1}}%
     \endgroup}}
 \makeatother
 
@@ -43,7 +44,7 @@ fontsize=\small,
 \author{Karol Kowalski}
 \title{Aplikacja wspomagająca zdalne szacowanie historyjek użytkownika metodą Planistycznego Pokera.}
 \titlen{Aplikacja wspomagaj?ca zdalne szacowanie historyjek u?ytkownika metod? Planistycznego Pokera.}
-\promotor{dr. hab. inż. prof. PWr. Trawiński Bogdan}
+\promotor{dr. \ hab. \ inż. \ prof. PWr. Trawiński Bogdan}
 %\konsultant{dr hab. in?. Kazimerz Kabacki}
 \wydzial{Wydział Informatyki i Zarządzania}
 \kierunek{Informatyka}
@@ -102,9 +103,8 @@ The main goal of this thesis was development of web app designed to play planing
 \appendix
 %\addappheadtotoc
 
-\chapter{To powinien by? dodatek}\label{Dod1}
+\chapter{To powinien być dodatek}\label{Dod1}
 
-\lipsum[9-11]
 
 % W pracy pojawi? si? tylko prace naprawd? cytowane.
 % \nocite{*}
