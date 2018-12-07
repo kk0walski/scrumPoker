@@ -21,10 +21,12 @@ fontsize=\small,
 \usepackage{float}
 \newfloat{listing}{htp}{lop}
 \floatname{listing}{Listing}
+\let\counterwithout\relax
+\let\counterwithin\relax
 \usepackage{chngcntr}
 \counterwithin{listing}{chapter}
 
-% patch wyr?wnuj?cy spis listing?w do lewego marginesu 
+% patch wyr?wnuj?cy spis listing?w do lewego marginesu
 %https://tex.stackexchange.com/questions/58469/why-are-listof-and-listoffigures-styled-differently
 \makeatletter
 \renewcommand*{\listof}[2]{%
@@ -42,7 +44,7 @@ fontsize=\small,
 
 % Dane o pracy
 \author{Karol Kowalski}
-\title{Aplikacja wspomagająca zdalne szacowanie historyjek użytkownika metodą Planistycznego Pokera.}
+\title{Aplikacja wspomagająca zdalne szacowanie historyjek użytkownika metodą Planistycznego Pokera}
 \titlen{Aplikacja wspomagaj?ca zdalne szacowanie historyjek u?ytkownika metod? Planistycznego Pokera.}
 \promotor{dr. \ hab. \ inż. \ prof. PWr. Trawiński Bogdan}
 %\konsultant{dr hab. in?. Kazimerz Kabacki}
@@ -73,7 +75,7 @@ z Github'a które są tam w postaci issues oraz exportu ocen do Github'a w posta
 W ramach pracy autor stworzył aplikację opartą o architekturę FLUX z bazą danych firebase jako backend.
 Dzięki temu rozwiązaniu planning poker może być rozgrywany w czasie rzeczywistym.
 Oprócz tego praca zawiera omówienie pewnych metod zarządzania zwinnego.
-Użyteczność aplikacji będzie sprawdzona w oparciu o wyniki ankiety, które zostaną zawarte w niniejszej pracy. 
+Użyteczność aplikacji będzie sprawdzona w oparciu o wyniki ankiety, które zostaną zawarte w niniejszej pracy.
 
 
 % Kilka sztuczek, ?eby:
