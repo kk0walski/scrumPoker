@@ -1,0 +1,131 @@
+\documentclass[inzynier,druk]{dyplom}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{booktabs}
+%%
+\usepackage[toc]{appendix}
+\renewcommand{\appendixtocname}{Dodatki}
+\renewcommand{\appendixpagename}{Dodatki}
+
+% pakiet do sk?adu listing?w w razie potrzeby mo?na odblokowa? mo?liwo?? numerowania linii lub zmieni? wielko?? czcionki w listingu
+\usepackage{minted}
+\setminted{breaklines,
+frame=lines,
+framesep=5mm,
+baselinestretch=1.1,
+fontsize=\small,
+%linenos
+}
+
+% nowe otoczenie do składania listingów
+\usepackage{float}
+\newfloat{listing}{htp}{lop}
+\floatname{listing}{Listing}
+\usepackage{chngcntr}
+\counterwithin{listing}{chapter}
+
+% patch wyr?wnuj?cy spis listing?w do lewego marginesu 
+%https://tex.stackexchange.com/questions/58469/why-are-listof-and-listoffigures-styled-differently
+\makeatletter
+\renewcommand*{\listof}[2]{%
+  \@ifundefined{ext@#1}{\float@error{#1}}{%
+  \expandafter\let\csname l@#1\endcsname \l@figure% <- use layout of figure
+    \float@listhead{#2}%
+    \begingroup
+      \setlength\parskip{0pt plus 1pt}%               % <- or drop this line completely
+        \@starttoc{\@nameuse{ext@#1}}%
+    \endgroup}}
+\makeatother
+
+\usepackage{url}
+\usepackage{lipsum}
+
+% Dane o pracy
+\author{Karol Kowalski}
+\title{Aplikacja wspomagająca zdalne szacowanie historyjek użytkownika metodą Planistycznego Pokera.}
+\titlen{Aplikacja wspomagaj?ca zdalne szacowanie historyjek u?ytkownika metod? Planistycznego Pokera.}
+\promotor{dr. \ hab. \ inż. \ prof. PWr. Trawiński Bogdan}
+%\konsultant{dr hab. in?. Kazimerz Kabacki}
+\wydzial{Wydział Informatyki i Zarządzania}
+\kierunek{Informatyka}
+\krotkiestreszczenie{W pracy przedstawiono projekt aplikacji umożliwiającej przeprowadzenie rozgrywki planning pokera online z użyciem ReactJS oraz Firebase.}
+\slowakluczowe{Firebase, ReactJS, FLUX, planning poker, estymacja}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\listoffigures
+
+\listof{listing}{Spis listingów}
+
+\listoftables
+
+% --- Strona ze streszczeniem i abstraktem ------------------------------------------------------------------
+\chapter*{Streszczenie} % po polsku
+Celem pracy było opracowanie aplikacji zaprojektowanej do gry w planning pokera zdalnie.
+Dostępne aplikacje spełniają swoje zadanie, jednak autor nie znalazł aplikacji,
+która byłaby silnie zintegrowana z Github'em.
+Dlatego wyróżniającą cechą jego aplikacji będzie możliwość importu historyjek
+z Github'a które są tam w postaci issues oraz exportu ocen do Github'a w postaci etykiet.
+W ramach pracy autor stworzył aplikację opartą o architekturę FLUX z bazą danych firebase jako backend.
+Dzięki temu rozwiązaniu planning poker może być rozgrywany w czasie rzeczywistym.
+Oprócz tego praca zawiera omówienie pewnych metod zarządzania zwinnego.
+Użyteczność aplikacji będzie sprawdzona w oparciu o wyniki ankiety, które zostaną zawarte w niniejszej pracy. 
+
+
+% Kilka sztuczek, ?eby:
+% - Abstract pojawi? si? na tej samej stronie co Streszczenie
+% - Abstract nie pojawi? si? w spisie tre?ci
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
+\chapter*{Abstract} % ...i to samo po angielsku
+The main goal of this thesis was development of web app designed to play planing poker online.
+Avaliable aplications fulfil their role but however author haven't found application,
+which would be strongly integrated with Github.
+That's why distinctive feature of author's app will be possibility is importing user stories from Github
+projects which are there in the shape of issues and exporting story points to Github in form of labels.
+Within work author made aplication based on FLUX architecture with firebase database as backend.
+Thanks this solution planning poker can be played in real time.
+Except of app description thesis describe some of agile managment and estimating methods.
+Usability of application will be tested thanks usability survey which reasults are consist within thesis.
+\endgroup
+\addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+% --- Koniec strony ze streszczeniem i abstraktem -----------------------------------------------------------
+
+
+
+% Rozdzia? do??czony z zewn?trz
+\input{wstep}
+
+
+\input{rozdzial1}
+
+\input{rozdzial2}
+
+\input{rozdzial3}
+
+\input{rozdzial4}
+
+\input{rozdzial5}
+
+\input{zakonczenie}
+
+\appendixpage
+\appendix
+%\addappheadtotoc
+
+\chapter{To powinien być dodatek}\label{Dod1}
+
+
+% W pracy pojawi? si? tylko prace naprawd? cytowane.
+% \nocite{*}
+
+\bibliography{literatura}
+\bibliographystyle{dyplom}
+
+\end{document}
