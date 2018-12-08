@@ -44,14 +44,19 @@ fontsize=\small,
 
 % Dane o pracy
 \author{Karol Kowalski}
-\title{Aplikacja wspomagająca zdalne szacowanie historyjek użytkownika metodą Planistycznego Pokera}
-\titlen{Aplikacja wspomagaj?ca zdalne szacowanie historyjek u?ytkownika metod? Planistycznego Pokera.}
+\title{Aplikacja wspomagająca zdalne szacowanie historyjek użytkownika metodą
+Planistycznego Pokera}
+\titlen{Application supporting remote user stories estimation
+using Planning Poker method.}
 \promotor{dr. \ hab. \ inż. \ prof. PWr. Trawiński Bogdan}
 %\konsultant{dr hab. in?. Kazimerz Kabacki}
 \wydzial{Wydział Informatyki i Zarządzania}
 \kierunek{Informatyka}
-\krotkiestreszczenie{W pracy przedstawiono projekt aplikacji umożliwiającej przeprowadzenie rozgrywki planning pokera online z użyciem ReactJS oraz Firebase.}
-\slowakluczowe{Firebase, ReactJS, FLUX, planning poker, estymacja}
+\krotkiestreszczenie{Praca przedstawia analizę problemu estymacji zadań
+w projektach prowadzonych metodykami zwinnymi. Zawiera opis projektu aplikacji
+umożliwiającej przeprowadzenie rozgrywki planning pokera online,
+stworzonej przy użyciu nowoczesnych narzędzi webowych: ReactJS i Firebase.}
+\slowakluczowe{metodyki zwinne, estymacja zadań, historyjki użytkownika, planning poker}
 
 \begin{document}
 
@@ -67,15 +72,26 @@ fontsize=\small,
 
 % --- Strona ze streszczeniem i abstraktem ------------------------------------------------------------------
 \chapter*{Streszczenie} % po polsku
-Celem pracy było opracowanie aplikacji zaprojektowanej do gry w planning pokera zdalnie.
-Dostępne aplikacje spełniają swoje zadanie, jednak autor nie znalazł aplikacji,
-która byłaby silnie zintegrowana z Github'em.
-Dlatego wyróżniającą cechą jego aplikacji będzie możliwość importu historyjek
-z Github'a które są tam w postaci issues oraz exportu ocen do Github'a w postaci etykiet.
-W ramach pracy autor stworzył aplikację opartą o architekturę FLUX z bazą danych firebase jako backend.
-Dzięki temu rozwiązaniu planning poker może być rozgrywany w czasie rzeczywistym.
-Oprócz tego praca zawiera omówienie pewnych metod zarządzania zwinnego.
-Użyteczność aplikacji będzie sprawdzona w oparciu o wyniki ankiety, które zostaną zawarte w niniejszej pracy.
+Niniejsza praca zawiera omówienie wybranych metod zwinnych zarządzania projektami,
+ze szczególnym uwzględnienie technik wykorzystywanych
+do estymacji zadań projektowych w tych metodykach.
+Spośród znanych autorowi technik, najbardziej rozpowszechnioną jest tzw. Planning Poker.
+Można znaleźć wiele aplikacji wspomagających proces estymacji przy wykorzystaniu
+tej techniki, jednakże autor nie znalazł wśród nich żadnej, która pozwalałaby
+na integrację z popularnym narzędziem Github.
+
+Celem pracy było zaprojektowanie oraz wykonanie aplikacji wspomagającej grę
+Planning Poker. Jej potencjalnymi użytkownikami są zespoły programistów
+pracujących w trybie zdalnym, które wykorzystują narzędzie Github w codziennej pracy.
+
+W ramach pracy autor stworzył aplikację typu Single-page opartą o architekturę Flux
+oraz wykorzystującą usługę Firebase jako tzw. backend.
+Wyróżniającą cechą aplikacji jest możliwość importu historyjek
+(tzw. issues) z Githuba oraz zapisu rezultatów sesji planingowych za pomocą
+odpowiedniego etykietowania historyjek w Github.
+
+Użyteczność aplikacji została zweryfikowana w oparciu o wyniki ankiety,
+które zostały zawarte w niniejszej pracy.
 
 
 % Kilka sztuczek, ?eby:
@@ -86,15 +102,25 @@ Użyteczność aplikacji będzie sprawdzona w oparciu o wyniki ankiety, które z
 \renewcommand{\cleardoublepage}{}
 \renewcommand{\clearpage}{}
 \chapter*{Abstract} % ...i to samo po angielsku
-The main goal of this thesis was development of web app designed to play planing poker online.
-Avaliable aplications fulfil their role but however author haven't found application,
-which would be strongly integrated with Github.
-That's why distinctive feature of author's app will be possibility is importing user stories from Github
-projects which are there in the shape of issues and exporting story points to Github in form of labels.
-Within work author made aplication based on FLUX architecture with firebase database as backend.
-Thanks this solution planning poker can be played in real time.
-Except of app description thesis describe some of agile managment and estimating methods.
-Usability of application will be tested thanks usability survey which reasults are consist within thesis.
+The thesis describes a few agile project management methods with the emphasis
+put on techniques used for user stories estimation.
+The well-established technique is Planning Poker.
+There are many application that support this technique, although the thesis
+author could not find a one that would offer any kind of integration with
+Github.
+
+The main goal of this thesis was to design and develop a web application to play
+Planning Poker online. The target of the application are remote teams of software
+developers that use Github in everyday work.
+
+The created application is a Single-page app based on Flux architecture
+that uses Firebase service for backend.
+The \textit{killer feature} of the application is the integration with
+Github that allows to import and filter issues and save the results of
+estimation sessions as issue labels.
+
+The usability of application has been verified based on a survey given to
+application users. The survey results are included in the thesis.
 \endgroup
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
 % --- Koniec strony ze streszczeniem i abstraktem -----------------------------------------------------------
