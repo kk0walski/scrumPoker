@@ -2,54 +2,84 @@
 % !TeX spellcheck = pl_PL
 % !TeX root = example.tex
 
-\chapter{Architektura projektu}
+\chapter{Architektura aplikacji}
 
-Projekt aplikacji wspomagającej zdalne szacowanie historyjek metodą planning pokera został wykonany w technologii webowej
-o nazwie ReactJS oraz Firebase po stronie backendu.
-ReactJS to biblioteka javascript stworzona przez firmę Facebook
-oraz Instagram dzięki której budowanie dużych oraz kompleksowych interfejsów użytkownika jest łatwiejsze.
-Jest ona przeznaczona do wykorzystania z innym frameworkiem, który wprowadza backend.
-Podczas gdy Angular, Ember oraz Backpone są popularnymi wyborami do tego,
-Firebase wprowadza najłatwiejszą i najszybszą integrację z trwałym backendem
-czasu rzeczywistego do aplikacji napisanej w ReactJS – zajmuje to tylko kilka linijek w Javascript. 
+Projekt aplikacji wspomagającej zdalne szacowanie historyjek metodą Planning Poker
+został wykonany w technologii, która pozwala na korzystanie z niej przy pomocy przeglądarki internetowej.
+
+Architektura aplikacji oparta została o dwa podstawowe narzędzia:
+ReactJS po stronie \textit{frontendu} oraz Firebase po stronie \textit{backendu}.
+ReactJS to biblioteka napisana w języku JavaScript, stworzona przez firmę Facebook,
+dzięki której budowanie dużych oraz kompleksowych interfejsów użytkownika staje się łatwiejsze.
+
+Firebase z kolei to usługa świadczona przez firmę Google, która
+pozwala na trwałe przechowywanie danych w chmurze, oferując przy tym
+wsparcie dla obustronnej komunikacji protokołem Websocket, wykorzystywanym często
+przez aplikacje internetowe wymagające interakcji pomiędzy użytkownikami w czasie rzeczywistym.
 
 \section{Czym jest ReactJS}
 
-Twórcy ReactJS opisują go jako Widok w architekturze MVC,
-nie ma na celu zastąpienie Angular’a oraz Ember’a;
-zamiast tego rozszerza ich funkcjonalność przez wprowadzenie bardzo wydajnej drogi utrzymania widoku zsynchronizowanego z javascript.
-Ten specjalny sos który renderuje HTML używa wyjątkowo szybkiego algorytmu wirtualnego drzewa DOM,
-wprowadzający o wiele lepszą wydajność niż konkurujące platformy. Ma jednokierunkowy, reaktywny przepływ danych,
-który jest znacznie bardziej zrozumiały niż tradycyjne przepływy danych.
+Twórcy ReactJS opisują go jako Widok (ang. View) w architekturze MVC.
+Wprowadza bardzo wydajny sposób utrzymania widoku zsynchronizowanego ze stanem danych
+przechowywanym w pamięci przeglądarki w postaci obiektu Javascript.
+
+Ten specjalny stos który renderuje HTML używa wyjątkowo szybkiego algorytmu opartego na wirtualnym drzewie DOM,
+które jest ``lżejszym'' odpowiednikiem drzewa DOM. ReactJS wykorzystuje je
+do minimalizacji liczby zmian w rzeczywistym drzewie DOM, potrzebnych do wprowadzenia go
+w stan bezpośrednio wynikający z kształtu powiązanych danych.
+
+Efektem tego algorytmu jest bardzo duża wydajność aplikacji korzystających z ReactJS oraz
+łatwość pisania tych aplikacji ze względu na to, iż większością optymalizacji związanych
+z renderowanie interfejsu użytkownika zajmuje się wspomniany algorytm.
+
+Ponadto ReactJS ma jednokierunkowy, reaktywny przepływ danych,
+który jest znacznie bardziej zrozumiały i łatwiejszy w rozwoju od podejścia tradycyjnego,
+czyli wielokierunkowej komunikacji pomiędzy komponentami.
+
 Komponenty – podstawowe bloki aplikacji React'owych – są zorganizowane w drzewie hierarchicznym,
 w którym komponenty-rodzice wysyłają dane do swoich dzieci przez zmienne właściwości.
 Każdy komponent ma także zmienną stanu, która determinuje obecne dane dla tego widoku.
-Za każdym razem, gdy stan jest zmieniany, komponent wywołuje metodę render, a React znajduje najbardziej efektywną metodę aktualizacji drzewa DOM\@.
+Za każdym razem, gdy stan jest zmieniany, komponent wywołuje metodę \textit{render},
+a React znajduje najbardziej efektywną metodę aktualizacji drzewa DOM.
 
 Odkąd głównym zadaniem React’a jest interfejs użytkownika,
 aplikacje na nim zrobione potrzebują czegoś jeszcze,
-co będzie zachowywało się jak backend.
-To jest miejsce gdzie wkracza Firebase.
-Dodaje Model i Kontrolera w MVC do aplikacji napisanych w ReactJS, czyniąc z nich w pełni funkcjonalne aplikacje.
-Używając React’owego jednokierunkowego systemu wiązania danych łatwo jest zintegrować go z Firebase.\cite{www_react}
+co będzie zachowywało się jak tzw. \textit{backend}, czyli sposób na trwałe
+przetrzymywanie danych, nieleżne od stanu przeglądarki, która służy jako
+środowisko uruchomieniowe dla ReactJS.
+Do tego celu zdecydowałem się na użycie usługi Firebase.
+Firebase dostarcza model (ang. Model) i kontroler (ang. Controller) w MVC
+do aplikacji napisanych w ReactJS, czyniąc z nich w pełni funkcjonalne aplikacje,
+których stan nie zależy wyłącznie od przeglądarki internetowej, w której działają.
+Używając React’owego jednokierunkowego systemu wiązania danych łatwo jest zintegrować go z Firebase.
+\cite{www_react}
 
 \section{Firebase}
 
-Firebase jest platformą dla aplikacji webowych oraz mobilnych która wprowadza
-dla deweloperów mnóstwo narzędzi oraz usług by pomóc im tworzyć wysokiej jakości aplikacje oraz zwiększyć ich bazę użytkowników.
+Firebase jest platformą dla aplikacji webowych oraz mobilnych, która wprowadza
+dla deweloperów mnóstwo narzędzi oraz usług pomagających im tworzyć wysokiej jakości
+aplikacje oraz zwiększyć ich bazę użytkowników.
 
 \subsection{Historia Firebase}
 
-W 2011 roku, zanim Firebase było Firebase’em był startup nazwany Envelope.
-Jako Envelope  wprowadził dla deweloperów API, które umożliwiało wprowadzenie czatu do ich strony internetowej.
+W 2011 roku Firebase znany był pod nazwą Envelope.
+Jako Envelope wprowadził dla deweloperów API,
+które umożliwiało wprowadzenie komunikatora do ich strony internetowej.
 
-Interesującym było to, że ludzie używali aplikacji by przekazywać dane, które były czymś więcej niż wiadomościami chatowymi.
-Deweloperzy używali Envelope by synchronizować dane aplikacji jak stan gry w czasie rzeczywistym pomiędzy ich użytkownikami.
+Interesującym było to, że ludzie używali aplikacji by przekazywać dane,
+które były czymś więcej niż wiadomościami komunikatora.
+Deweloperzy aplikacji internetowych (w tym gier) używali Envelope
+w celu synchronizacji danych aplikacji jak i stanu gry
+w czasie rzeczywistym pomiędzy ich użytkownikami.
 
-To doprowadziło założycieli Envelope, Jamesa Tamplina oraz Andrew Lee do pomysłu by rozdzielić chat oraz architekturę czasu rzeczywistego.
-W kwietniu 2012 Firebase powstał jako oddzielna firma które wprowadziła Backend jako usługę z funkcjonalnościami czasu rzeczywistego. 
+To doprowadziło założycieli Envelope, Jamesa Tamplina oraz Andrew Lee
+do pomysłu by rozdzielić komunikator online oraz platformę wymiany danych w czasie rzeczywistym.
+W kwietniu 2012 Firebase powstał jako oddzielna firma które wprowadziła usługę backendu
+(ang. BaaS, Backend-as-a-Service) z funkcjonalnościami czasu rzeczywistego.
 
-Po tym jak firma została przejęta przez Google w 2014 roku, szybko ewoluowała do wielofunkcyjnej platformy mobilnej oraz webowej jaką znamy dzisiaj.\ref{rys:firebase}
+Po tym jak firma została przejęta przez Google w 2014 roku,
+szybko ewoluowała do wielofunkcyjnej platformy mobilnej oraz webowej jaką znamy dzisiaj.
+\ref{rys:firebase}
 
 % Rysunek
 \begin{figure}
@@ -150,7 +180,7 @@ Stan oraz funkcję rozsyłające dostępne są w obiekcie this.props. Spójrzmy 
 	\textbf{Funkcja mapStateToProps}
 \end{center}
 Funkcja \textit{mapStateToProps} pobiera \textit{state} jako parametr i zwraca nowy obiekt.
-Częstą praktyką jest po prostu przekazanie całego stanu do właściwości, jednak jest to też właściwe miejsce by odfiltrować dane. 
+Częstą praktyką jest po prostu przekazanie całego stanu do właściwości, jednak jest to też właściwe miejsce by odfiltrować dane.
 \begin{center}
 	\textbf{Funkcja mapDispatchToProps}
 \end{center}
@@ -158,7 +188,7 @@ Kolejna funkcja to \textbf{mapDispatchToProps}. Zwraca ona obiekt zawierający m
 Za pomocą wywołania funkcji \textbf{dispatch} rozgłasza ona obiekty akcji do \textbf{store}.
 Metoda dispatch przekazuje obiekty akcji bezpośrednio.
 Zwykle w projekcie definiuje się to jako specjalne kreatory akcji. Dzięki kreatorom możemy opóźnić wywołanie akcji,
-lub zmienić dane w naszym redux'ie tylko wtedy, gdy są spełnione określone warunki. Listing 
+lub zmienić dane w naszym redux'ie tylko wtedy, gdy są spełnione określone warunki. Listing
 ~\ref{listing:firebase_action}
 
 % lub {java} albo {bash} albo {text}
@@ -182,7 +212,7 @@ lub zmienić dane w naszym redux'ie tylko wtedy, gdy są spełnione określone w
 	.doc(repo.toString())
 	.collection(`games`)
 	.doc(game.toString())
-	
+
 	gameRef.update(userUpdate).then(() => {
 	dispatch(addUserToGame(owner, repo, game, tempUser))
 	});
@@ -232,7 +262,7 @@ Generalnie działa to tak: ktoś wywołuje akcję, obiekt \textbf{store} wywołu
 przekazując do niej aktualny stan oraz akcję, funkcja \textbf{reducer}
 sprawdza typ przekazanej do niej akcji i w zależności jak jest ten typ, zwraca nową wersję obiektu stanu.
 Przykład: Listing
-~\ref{listing:reducer} 
+~\ref{listing:reducer}
 
 \begin{listing}
 	\begin{minted}{c}
@@ -278,7 +308,7 @@ Tak jak we Flux wszystkie operacji na danych są opisywane w postaci akcji.
 W przeciwieństwie do Flux Redux nie ma konceptu rozsyłacza,
 ponieważ opiera się na czystych funkcjach zamiast emiterów akcji,
 a czyste funkcje są łatwe do tworzenia i nie potrzebują żadnej encji (reprezentacja wyobrażonego lub rzeczywistego obiektu) by zarządzać nimi.
-Jest to więc pewne odstępstwo od Flux’a.\cite{www_nafrontendzie} 
+Jest to więc pewne odstępstwo od Flux’a.\cite{www_nafrontendzie}
 
 Inną ważną różnicą od Flux’a jest to że Redux zakłada że dane są niemutowalne.
 Możesz używać używać statycznych obiektów oraz tablic dla swojego stanu,
@@ -303,7 +333,7 @@ Biblioteka redux-thunk została stworzona przez Dana Abramova,
 który jednocześnie jest twórcą Reduxa. Pozwala ona tworzyć kreatory akcji,
 które zamiast obiektu zwracają funkcję.
 Dzięki temu możliwe jest opóźnienie rozgłoszenia akcji lub zgłoszenie jej tylko jeśli zostaną spełnione określone warunki.\cite{www_thunk}
-Jak dodać thunk do reduxa: Listing 
+Jak dodać thunk do reduxa: Listing
 ~\ref{listing:thunk-redux}
 
 \begin{listing}
@@ -311,7 +341,7 @@ Jak dodać thunk do reduxa: Listing
 	import { createStore, applyMiddleware } from 'redux';
 	import thunk from 'redux-thunk';
 	import rootReducer from './reducers/index';
-	
+
 	const store = createStore(
 	rootReducer,
 	applyMiddleware(thunk)
@@ -326,7 +356,7 @@ Jak dodać thunk do reduxa: Listing
 	\textbf{Obsługa wywołań asynchronicznych czyli kreatory akcji}
 \end{center}
 
-W przykładzie listing 
+W przykładzie listing
 ~\ref{listing:firebase_action} widnieje akcja,
 która najpierw dodaje użytkownika do bazy a później rozgłasza akcję dodawania użytkownika,
 jeżeli modyfikacja danych w bazie zakończyła się pomyślnie.
@@ -351,8 +381,8 @@ Do synchronizacji frontend’u z backend’em służy Thunk,
 który przesyła dane do store’a tylko wtedy,
 kiedy nie ma żadnych problemów po stronie firebase’a.
 Jeżeli baza danych nie będzie mogła pobrać danych bo wystąpił błąd,
-Thunk nie wykona operacji. Sposób połączenia tych dwóch elementów przedstawiono na rys. 
-~\ref{rys:fireRedux} 
+Thunk nie wykona operacji. Sposób połączenia tych dwóch elementów przedstawiono na rys.
+~\ref{rys:fireRedux}
 
 \begin{figure}
 	\centering\includegraphics[width=.6\textwidth]{img/fireRedux}
