@@ -89,8 +89,8 @@ klikając lewy przycisk myszy, czy też zaznaczając stronę za pomocą przycisk
 Po wybraniu odpowiednich elementów i naciśnięciu przycisku `Create List' pokazywane jest okno potwierdzenia,
 które pokazuje wybrane elementy oraz pole do wpisania nazwy listy.
 Po potwierdzeniu wyboru oraz wpisaniu nazwy listy, jest tworzona lista, zawierająca identyfikatory wybranych `issues'.
-Jak zostało już wcześniej wspomniane, niezbędnym elementem każej gry jest backlog.
-Tym backlogiem dla każdej gry będzie lista, którą właścicel gry tworzy przed każdym stworzeniem gry.
+Jak zostało już wcześniej wspomniane, niezbędnym elementem gry jest backlog.
+Tym backlogiem dla każdej gry będzie lista, którą właściciel tworzy zpośród tzw `issues'.
 Ta lista będzie później dostępna w formularzu tworzenia gry,
 dzięki czemu będzie można ją wybrać przy jej tworzeniu.
 W trakcie tworzenia gry, możemy określić jej nazwę i opis ale także parametry, które będą miały wpływ na grę.
@@ -100,7 +100,7 @@ Możemy także zdecydować czy my jako twórca gry również będziemy głosowa�
 Inną ważną kwestią jest to, czy karty powinny być odkrywane, kiedy każdy zagłosował
 oraz czy pozwolić graczom zmienić swoją ocenę po pokazaniu przez wszystkich kart.
 Aplikacja może również obliczać wynik punktowy historyjki po zakończonym głosowaniu automatycznie,
-robi to za pomocą średniej ważonej, kóra później jest zamieniana na najbliższą jej ocenę w skali estymacji.
+robi to za pomocą średniej ważonej, która później jest zamieniana na najbliższą jej ocenę w skali estymacji.
 Na końcu oczywiście należy wybrać backlog w postaci odpowiedniej listy, tu należy zaznaczyć,
 że jeżeli w projekcie nie będzie stworzonej żadnej listy, to nie będzie można stworzyć gry.
 Pewne ustawienia gry można zmienić po jej utworzeniu.
@@ -111,7 +111,7 @@ Formularz tworzenia gry jest pokazany na rysunku:
 \section{Rozgrywka}
 
 Aby rozgrywka w planning pokera była możliwa,
-konieczna jest asynchroniczna komunikajca z serwerem.
+konieczna jest asynchroniczna komunikacja z serwerem.
 Wszelkie akcje podczas gry są synchronizowane za pomocą `Firebase',
 a dzięki odpowiednim słuchaczom aplikacja reaguje na wszelkie zmiany w stanie gry.
 Aby gra się odbyła potrzebny jest nie tylko backlog, ale także i gracze.
