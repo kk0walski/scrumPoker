@@ -1,0 +1,169 @@
+\chapter{Projekt aplikacji}
+W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
+\section{Diagram przypadków użycia}
+\begin{figure}[H]
+	\centering\includegraphics[width=.9\textwidth]{img/useCase}
+	\caption{Diagram przypadków użycia}.
+	\label{rys:useCase}
+\end{figure}
+\textbf{Product owner chce się zalogować}
+\begin{enumerate}
+    \item System prosi użytkownika o zalogowanie.
+    \item Użytkownik naciska przycisk.
+    \item Dostawca usługi logowania loguje użytkownika lub prosi o dane logowana.
+    \item Product owner zostaje zalogowany do systemu.
+    \item Product owner przegląda listę swoich projektów.
+\end{enumerate}
+\textbf{Product owner chce stworzyć listę}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt dla którego chce stworzyć listę.
+    \item Product owner wybiera elementy do nowej listy z 'Issues' Github'a.
+    \item Product owner naciska przycisk do tworzenia listy.
+    \item Product owner nadaje listę nazwę i potwierdza wybór historyjek.
+\end{enumerate}
+\textbf{Product owner chce stworzyć gre}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt dla którego chce stworzyć grę.
+    \item Jeżeli w projekcie jest stworzona jakakolwiek lista system prosi product ownera o wypełnienie formularza,
+    w przeciwnym razie system odsyła użytkownika do listy issue's Github'a w celu stworzenia listy.
+    \item Użytkownik potwierdza swoje ustawienia.
+    \item System tworzy grę i przekierowuje użytkownika do listy gier projektu.
+\end{enumerate}
+\textbf{Product owner chce przeprowadzić grę}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner tworzy grę.
+    \item Product owner wchodzi do gry.
+    \item Product owner rozsyła link do gry graczom.
+    \item Gracze głosują nad historyjką.
+    \item Product owner zmienia historyjki nadając tempo grze.
+\end{enumerate}
+\textbf{Product owner chce zmienić dane historyjki}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt.
+    \item Product owner naciska przycisk edit przy issue.
+    \item Product owner edytuje issue.
+    \item Product onwer potwierdza zmiany.
+\end{enumerate}
+\textbf{Product owner chce zmienić ustawienia gry}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt.
+    \item Product owner wybiera gre.
+    \item Product owner wchodzi do gry.
+    \item Product onwer naciska przycisk ustawiena.
+    \item Product owner przechodzi do ekranu ustawień gry.
+    \item Product owner zmienia ustawienia.
+    \item Product owner zatwierdza ustawienia.
+    \item System zapisuje ustawienia w bazie.
+\end{enumerate}
+\textbf{Product owner chce usunąć gracza z gry}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt.
+    \item Product owner wybiera grę.
+    \item Product owner wchodzi do gry.
+    \item Product owner naciska przycisk "Gracze".
+    \item System wyświetla product ownerowi listę graczy.
+    \item Product owner naciska przycisk usunięcia przy nazwie gracza.
+    \item System usuwa gracza oraz wszystkie jego oceny z gry ponownie obliczając punktację.
+\end{enumerate}
+\textbf{Product owner chce wyeksportować punktację}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt.
+    \item Product owner wybiera grę.
+    \item Product owner naciska przycisk eksport obok przycisku usuwania gry.
+    \item System wyświetla product ownerowi listę historyjek wraz z ich punktacją.
+    \item Product owner zatwierdza punktację.
+    \item System przenosi punktację historyjek w postaci etykiet do Github'a.
+\end{enumerate}
+\textbf{Product owner chce usunąć gre}
+\begin{enumerate}
+    \item Product owner loguje się do systemu.
+    \item Product owner wybiera projekt.
+    \item Product owner wybiera grę.
+    \item Product owner naciska przycisk usuń.
+    \item System usuwa grę z bazy.
+    \item Gra znika z listy gier.
+\end{enumerate}
+\section{Interfejs}
+Aby ułatwić implementację systemu, autor zamodelował ekrany aplikacji w postaci
+tzw. makiet (ang. mockups):
+\begin{itemize}
+    \item Ekranu logowania
+    \item Ekrany listy projektów
+    \item Ekrany projektu wraz z bocznym menu (ekran pprzedstawiający issues)
+    \item Ekran formularza tworzenia gry
+    \item Ekran listy gier
+    \item Ekran gry
+\end{itemize}
+Prototyp interfejsu użytkownika został stworzony dzięki narzędziu Visual Paradigm.
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/LoginScreen}
+	\caption{Ekran Logowania}.
+	\label{rys:loginScreen}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/RepositoriesScreen}
+	\caption{Ekran główny aplikacji z repozytoriami}.
+	\label{rys:RepositoriesScreen}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/IssuesScreen}
+	\caption{Główny ekran projektu}.
+	\label{rys:IssuesScreen}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/gameCreate}
+	\caption{Formularz tworzenia gry}.
+	\label{rys:gameCreate}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/GamesList}
+	\caption{Ekran gier}.
+	\label{rys:GamesList}
+\end{figure}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/GameScreen}
+	\caption{Panel gry}.
+	\label{rys:GameScreen}
+\end{figure}
+
+Na rysunku \ref{rys:ScreensDiagram} przedstawiono diagram przepływu pomiędzy
+zaprezentowanymi powyżej makietami ekranów aplikacji.
+
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/ScreensDiagram}
+	\caption{Diagram przepływu między ekranami aplikacji}.
+	\label{rys:ScreensDiagram}
+\end{figure}
+
+\section{Baza danych}
+
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/ClassDiagram}
+	\caption{Diagram klas, przedstawiający koncepcję bazy danych}.
+	\label{rys:ClassDiagram}
+\end{figure}
+
+Na rysunku \ref{rys:ClassDiagram} przedstawiono model danych w aplikacji.
+W tym miejscu wartym odnotowania jest fakt, iż autor zdecydował się
+na zastosowanie hierarchicznej bazy danych Firestore, zamiast którejś z najczęściej
+wybieranych relacyjnych baz danych.
+Więciej o Firestore znajduje się w rozdziale o architekturze aplikacji.
+
+W tym miejscu wartym odnotowania jest fakt, iż autor zdecydował się
+na zastosowanie hierarchicznej bazy danych Firestore, zamiast którejś z najczęściej
+wybieranych relacyjnych baz danych.
+
+Ciekawym wnioskiem jest iż diagram klas UML z powodzeniem nadaje się do projektowania
+modelu danych, który następnie może być zaimplementowany zarówno bazach
+wykorzystujących relacyjny model danych (co autor miał już okazję robić
+przy okazji innych projektów) jak również w przypadku bazy stosującej
+model hierarchiczny.
+
+Więcej o Firestore znajduje się w rozdziale o architekturze aplikacji.

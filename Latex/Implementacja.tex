@@ -1,17 +1,17 @@
 \chapter{Implementacja projektu}
 
-Aplikacja \textit{Planning poker}, to aplikacja webowa oparta na platformie Firebase,
+Aplikacja \textit{Planning Poker}, to aplikacja webowa oparta na platformie Firebase,
 która jest napisana przy użyciu biblioteki ReactJS, z wykorzystaniem
 edytora Visual Studio Code.
-
-\begin{figure}
-	\centering\includegraphics[width=.2\textwidth]{img/projekt}
-	\caption{Struktura projektu}\label{rys:projekt}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
-\end{figure}
 
 Aby zachować porządek i możliwość późniejszego rozwoju aplikacji o nowe komponenty,
 koniecznym jest stworzenie uporządkowanej struktury plików zawartych w projekcie
 (rysunek \ref{rys:projekt}).
+
+\begin{figure}[H]
+	\centering\includegraphics[width=.3\textwidth]{img/projekt}
+	\caption{Struktura projektu}\label{rys:projekt}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
 
 Folderem zawierającym wszystkie podfoldery oraz pliki jest folder \texttt{scrumpoker}.
 Pliki takie jak \texttt{storage.rules} czy \texttt{.firebaesrc} powstały automatycznie
@@ -67,24 +67,27 @@ użytkownik musi mieć jakieś historyjki przypisane do wybranego projektu w Git
 Aby to zrobić musi utworzyć w projekcie, elementy zwane `issues', które w tym momencie traktowane są jako historyjki.
 Co za tym idzie, użytkownik musi się zalogować przez serwis Github, co ilustruje poniższy rysunek \ref{rys:login}.
 
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/GitLogin}
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/GitLogin}
 	\caption{Strona logowania}\label{rys:login}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
+
+
+\newpage
+
+
+
 \section{Tworzenie gry}
 
-Aby utworzyć grę, najpierw należy wybrać projekt, którego gra będzie dotyczyła.
-W aplikacji projektami są repozytoria. Rysunek: \ref{rys:projekty}.
-
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/repositories}
-	\caption{Ekran wyboru projektu}\label{rys:projekty}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
-\end{figure}
-
-Można więc wywnioskować, że grupą docelową aplikacji, są użytkownicy Githuba, czyli programiści.
+Można założyć, że grupą docelową aplikacji, są użytkownicy Githuba, czyli programiści.
 Autor, jako częsty użytkownik tej usługi, odczuł brak aplikacji wspomagającej Planning Poker,
 która byłaby z tym narzędziem zintegrowana.
+
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/repositories}
+	\caption{Ekran wyboru projektu}\label{rys:projekty}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
 
 Autor podczas przeglądania projektów na Github'ie zauważył, że jego użytkownicy,
 wszelkie problemy czy też propozycje nowych funkcjonalności aplikacji umieszczają
@@ -92,17 +95,24 @@ w sekcji \textbf{issues} danego projektu. Stwierdził wówczas, iż aplikacja kt
 istniejące problemy lub proponowane cechy, które są dostępne w już sprawdzonym narzędziu
 i eksportuje oceny do Github'a w postaci etykiet będzie dobrym pomysłem.
 
-Aby stworzyć grę należy stworzyć listę zwaną backlogiem, która jest listą złożoną z `issues'.
-Tworzy się ją w panelu repozytorium w sekcji `Issues' rys.
-~\ref{rys:issues}
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/issues}
-	\caption{Ekran projektu}\label{rys:issues}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+
+\subsection{Ekran wyboru projektu}
+
+Aby utworzyć grę, najpierw należy wybrać projekt, którego gra będzie dotyczyła.
+W aplikacji projektami są repozytoria (rysunek \ref{rys:projekty}).
+
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/Issues}
+	\caption{Ekran wyboru backlogu}\label{rys:issues}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/Formularz}
-	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
-\end{figure}
+
+
+\subsection{Ekran wyboru backlogu}
+
+Aby rozgrywka miała sens, konieczne jest posiadanie backlogu zadań,
+które zespół powinien wyestymować podczas danej sesji planingowej.
+Odpowiednią listę zadań Tworzy się ją w panelu ustawień projektu (rysunek \ref{rys:issues}),
+w sekcji \textbf{Issues}.
 
 Dzięki odpowiednim ustawieniom filtrów można odnaleźć elementy po etykietach,
 autorze czy po kamieniach milowych.
@@ -114,6 +124,11 @@ Po wybraniu odpowiednich elementów i naciśnięciu przycisku \textbf{Create Lis
 pokazywane jest okno potwierdzenia,
 które pokazuje wybrane elementy oraz pole do wpisania nazwy listy.
 
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/Formularz}
+	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
+
 Po potwierdzeniu wyboru oraz wpisaniu nazwy listy, jest tworzona lista, zawierająca
 identyfikatory wybranych historyjek (czyli \textit{issues} w projekcie Github).
 
@@ -122,9 +137,13 @@ Tym backlogiem dla każdej gry będzie lista, którą właściciel tworzy spośr
 Ta lista będzie później dostępna w formularzu tworzenia gry,
 dzięki czemu będzie można ją wybrać przy jej tworzeniu.
 
-W trakcie tworzenia gry, możemy określić jej nazwę i opis ale także parametry, które będą miały wpływ na grę.
-Oczywiście, będziemy mogli wybrać skalę estymacji gry, ale także podać prędkość(velocity) naszego zespołu,
-zdecydować czy inni gracze będą tą prędkość widzieć.
+
+\subsection{Ekran ustawień gry}
+
+W trakcie tworzenia gry możemy skorzystać z ekranu ustawień gry (rysunek \ref{rys:form})
+aby określić jej nazwę i opis ale także parametry, które będą miały wpływ na grę.
+Oczywiście, będziemy mogli wybrać skalę estymacji gry, ale także podać prędkość (ang. velocity)
+naszego zespołu, zdecydować czy inni gracze będą tą prędkość widzieć.
 Możemy także zdecydować czy twórca gry również będzie mógł głosować.
 
 Inną ważną kwestią jest to, czy karty powinny być odkrywane, kiedy każdy zagłosował
@@ -136,20 +155,20 @@ robi to za pomocą średniej ważonej, która później jest zamieniana na najbl
 Na końcu oczywiście należy wybrać backlog w postaci odpowiedniej listy, tu należy zaznaczyć,
 że jeżeli w projekcie nie będzie stworzonej żadnej listy, to nie będzie można stworzyć gry.
 
-Pewne ustawienia gry można zmienić po jej utworzeniu.
+Pewne ustawienia gry można zmienić także już po jej utworzeniu.
 
-Każda historyjka w grze jest oczywiście przechowywana w bazie w postaci identyfikatora.
-
-Formularz tworzenia gry jest pokazany na rysunku \ref{rys:form}.
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/Formularz}
+	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
 
 \section{Rozgrywka}
 
-Aby rozgrywka Planning Pokera była możliwa,
-konieczna jest asynchroniczna komunikacja z serwerem.
+Do rozgrywki Planning Pokera oczywiście potrzebni są gracze.
+Aby rozgrywka była możliwa dla więcej niż jednego gracza, konieczna jest komunikacja z serwerem.
 Wszelkie akcje podczas gry są synchronizowane za pomocą Firebase,
 a dzięki odpowiednim słuchaczom aplikacja reaguje na wszelkie zmiany w stanie gry.
 
-Aby gra się odbyła potrzebny jest nie tylko backlog, ale także i gracze.
 Gracz jest dodawany do gry poprzez udostępnianie innym użytkownikom odnośnika do gry
 w postaci jej adresu URL.
 Jeżeli gracz wejdzie do gry, zostanie poproszony o podanie nazwy,
@@ -158,8 +177,9 @@ Gracze są dodawani do bazy danych dzięki funkcji usługi Firebase nazwanej ano
 Gracze w grze mogą tylko i wyłącznie głosować,
 natomiast właściciel gry wybiera historyjkę do głosowania, to znaczy że to on narzuca tempo gry.
 Panel gry pokazuje rysunek \ref{rys:gra}.
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/gra}
+
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/gra}
 	\caption{Panel gry}\label{rys:gra}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
@@ -171,3 +191,40 @@ iż na rynku istnieją już odpowiednie aplikacje do komunikacji,
 a firmy produkujące oprogramowanie mają preferowane komunikatory, których używają
 również w innych sytuacjach niż proces planowania sprintu.
 A więc przed każdą rozgrywką autor poleca wybrać odpowiedni komunikator do komunikacji w trakcie gry.
+
+
+\section{Wynik implementacji}
+
+Nie wszystkie zaplanowane elementy znajdują się w aplikacji,
+jednak najważniejsze funkcjonalności zostały zaimplementowane:
+
+ \begin{itemize}
+	\item Logowanie przez Github'a
+	\item Pobieranie Issues z Github'a
+	\item Tworzenie list, które będą backlog'iem w grze
+	\item Tworzenie gier
+	\item Rozgrywka
+	\item Eksport wyników gier do Github'a
+	\item Możliwość usunięcia gry
+	\item Możliwość zmiany ustawień gry
+	\item Możliwość zapraszania użytkowników do gry
+\end{itemize}
+
+Funkcje których nie udało się zaimplementować to:
+
+\begin{itemize}
+	\item Pełna synchronizacja z Github'em
+	\item Edycja historyjek wraz z synchronizacją zmian z Github'em
+	\item Możliwość usuwania użytkownika z gry
+\end{itemize}
+
+\section{Podsumowanie}
+
+Dzięki użyciu odpowiednich technologii udało się stworzyć w pełni funkcjonalną aplikację,
+umożliwiającą zespołom zdalnym przeprowadzenie sesji planningowej nad dobrze
+zdefioniowanym backlogiem zadań.
+Nie znaczy to jednak, że jej stworzenie było proste.
+Autorowi zajęło trochę czasu zanim wybrał odpowiednie technologie do projektu.
+Można powiedzieć że niniejsza praca była świetną okazją do poznania
+wielu nowych narzędzi do tworzenia aplikacji internetowych wykorzystujących
+komunikację w czasie rzeczywistym.
