@@ -83,8 +83,8 @@ szybko ewoluowała do wielofunkcyjnej platformy mobilnej oraz webowej jaką znam
 \section{Usługi Firebase wykorzystane w pracy}
 
 % Rysunek
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/firebase}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/firebase}
 	\caption{Usługi Firebase.[hackernoon.com]}\label{rys:firebase}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
@@ -112,7 +112,7 @@ od łańcuchów po dane binarne a nawet obiekty, które przypominają format JSO
 Dokumenty są pogrupowane w kolekcje.
 \ref{rys:firestoreData}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering\includegraphics[width=.6\textwidth]{img/firestoreData}
 	\caption{Postać danych w firestore [hackernoon.com]}\label{rys:firestoreData}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
@@ -122,8 +122,8 @@ Te subkolekcje mogą znowu zawierać dokumenty oraz swoje subkolekcje i tak dale
 Można zatem powiedzieć że jest to hierarchiczny model danych (patrz \ref{rys:firestoreTree}).
 \cite{www_hakermoon}
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/firestoreTree}
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/firestoreTree}
 	\caption{Ułożenie danych w firestore [hackernoon.com]}\label{rys:firestoreTree}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
@@ -151,8 +151,8 @@ Jest to uzupełnienie komponentów React’a przez wykorzystanie jednokierunkowe
 Nie jest to gotowe narzędzie, czy biblioteka, lecz pewien wzorzec architektoniczny.
 Można z niego korzystać bez wielu nowych linijek kodu.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/flux}
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/flux}
 	\caption{Architektura Flux [wwww.nafrontendzie.pl]}\label{rys:flux}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
@@ -355,8 +355,8 @@ Ogólnie Redux może być opisany przez trzy fundamentalne zasady:
 	transformowane jest przez akcje, musisz tworzyć ``czyste reducery''.
 \end{itemize}
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/reduxFlux}
+\begin{figure}[H]
+	\centering\includegraphics[width=.8\textwidth]{img/reduxFlux}
 	\caption{Różnice między Redux a Flux [www.medium.com]}\label{rys:reduxFlux}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
@@ -416,7 +416,7 @@ Jeżeli baza danych nie będzie mogła pobrać danych bo wystąpił błąd,
 Thunk nie wykona żadnych operacji. Sposób połączenia tych dwóch elementów przedstawiono
 na rysunku \ref{rys:fireRedux}.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/fireRedux}
+\begin{figure}[H]
+	\centering\includegraphics[width=.8\textwidth]{img/fireRedux}
 	\caption{Sposób połączenia firebase i reduxa. [medium.com]}\label{rys:fireRedux}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}

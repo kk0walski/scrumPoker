@@ -5,7 +5,7 @@ która jest napisana przy użyciu bibliotek React.js w programie visual studio c
 Aby zachować porządek i możliwość późniejszego rozwoju aplikacji o nowe komponenty,
 koniecznym jest stworzenie uporządkowanej struktury plików zawartych w projekcie.
 ~rys.\ref{rys:projekt}
-\begin{figure}
+\begin{figure}[H]
 	\centering\includegraphics[width=.2\textwidth]{img/projekt}
 	\caption{Struktura projektu}\label{rys:projekt}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
@@ -53,7 +53,7 @@ elementy zwane `issues', które w tym momencie traktowane są jako historyjki.
 Co za tym idzie, użytkownik musi się zalogować przez serwis Github, co pokazuje poniższy rysunek.
 ~\ref{rys:login} 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/GitLogin}
 	\caption{Strona logowania}\label{rys:login}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
@@ -62,7 +62,7 @@ Co za tym idzie, użytkownik musi się zalogować przez serwis Github, co pokazu
 Aby utworzyć grę, najpierw należy wybrać projekt, którego gra będzie dotyczyła.
 W aplikacji projektami są repozytoria. Rysunek: 
 ~\ref{rys:projekty}
-\begin{figure}
+\begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/repositories}
 	\caption{Ekran wyboru projektu}\label{rys:projekty}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
@@ -75,13 +75,9 @@ w już sprawdzonym narzędziu i eksportuje oceny do Github'a w postaci etykiet b
 Aby stworzyć grę należy stworzyć listę zwaną backlogiem, która jest listą złożoną z `issues'.
 Tworzy się ją w panelu repozytorium w sekcji `Issues' rys.
 ~\ref{rys:issues} 
-\begin{figure}
+\begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/issues}
 	\caption{Ekran projektu}\label{rys:issues}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
-\end{figure}
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/Formularz}
-	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 Dzięki odpowiednim filtrom można przefiltrować elementy po etykietach, autorze, czy po kamieniach milowych.
 Aby stworzyć listę, należy wybrać odpowiednie zagadnienia,
@@ -108,6 +104,11 @@ Każda historyjka w grze jest oczywiście przechowywana w bazie w postaci identy
 Formularz tworzenia gry jest pokazany na rysunku: 
 ~\ref{rys:form} 
 
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/Formularz}
+	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
+
 \section{Rozgrywka}
 
 Aby rozgrywka planning pokera była możliwa,
@@ -121,10 +122,11 @@ dzięki której będzie można go odróżnić od innych graczy.
 Gracze są dodawani do bazy danych dzięki funkcji usługi firebase nazwanej anonimowe logowanie.
 Panel gry pokazuje rysunek:
 ~\ref{rys:gra}
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/gra}
+\begin{figure}[H]
+	\centering\includegraphics[width=.9\textwidth]{img/gra}
 	\caption{Panel gry}\label{rys:gra}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
+
 Istotnym elementem każdego planning pokera jest komunikacja między graczami,
 autor jednak stwierdził,
 iż na rynku istnieją już odpowiednie aplikacje do komunikacji,
