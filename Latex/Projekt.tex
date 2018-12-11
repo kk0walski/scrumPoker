@@ -1,15 +1,8 @@
 \chapter{Projekt aplikacji}
 
-\section{Wprowadzenie}
-
-Projektowana aplikacja w założeniach miała być pewnym dodatkowym modułem do Github'a.
-W przyszłości będzie korzystała z webhook'ów aby zsynchronizować swój stan z tym serwisem.
 W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
 
 \section{Diagram przypadków użycia}
-
-Omówienie diagramu: 
-~\ref{rys:useCase}
 
 \begin{figure}[H]
 	\centering\includegraphics[width=.9\textwidth]{img/useCase}
@@ -23,7 +16,7 @@ Omówienie diagramu:
     \item System prosi użytkownika o zalogowanie.
     \item Użytkownik naciska przycisk.
     \item Dostawca usługi logowania loguje użytkownika lub prosi o dane logowana.
-    \item Product owner zostaje zalogowany do sytemu.
+    \item Product owner zostaje zalogowany do systemu.
     \item Product owner przegląda listę swoich projektów.
 \end{enumerate}
 
@@ -32,7 +25,7 @@ Omówienie diagramu:
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt dla którego chce stworzyć listę.
-    \item Product owner wybiera elementy do nowej listy z 'issues' Github'a.
+    \item Product owner wybiera elementy do nowej listy z 'Issues' Github'a.
     \item Product owner naciska przycisk do tworzenia listy.
     \item Product owner nadaje listę nazwę i potwierdza wybór historyjek.
 \end{enumerate}
@@ -48,18 +41,18 @@ Omówienie diagramu:
     \item System tworzy grę i przekierowuje użytkownika do listy gier projektu.
 \end{enumerate}
 
-\textbf{Product owner chce rozpocząć gre}
+\textbf{Product owner chce przeprowadzić grę}
 
 \begin{enumerate}
     \item Product owner loguje się do systemu.
-    \item Product owner tworzy gre.
+    \item Product owner tworzy grę.
     \item Product owner wchodzi do gry.
     \item Product owner rozsyła link do gry graczom.
     \item Gracze głosują nad historyjką.
     \item Product owner zmienia historyjki nadając tempo grze.
 \end{enumerate}
 
-\textbf{Product owner chce zmienić dane w issue}
+\textbf{Product owner chce zmienić dane historyjki}
 
 \begin{enumerate}
     \item Product owner loguje się do systemu.
@@ -77,7 +70,7 @@ Omówienie diagramu:
     \item Product owner wybiera gre.
     \item Product owner wchodzi do gry.
     \item Product onwer naciska przycisk ustawiena.
-    \item System przedstawia product ownerowi formularz zmiany ustawień.
+    \item Product owner przechodzi do ekranu ustawień gry.
     \item Product owner zmienia ustawienia.
     \item Product owner zatwierdza ustawienia.
     \item System zapisuje ustawienia w bazie.
@@ -88,24 +81,24 @@ Omówienie diagramu:
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt.
-    \item Product owner wybiera gre.
+    \item Product owner wybiera grę.
     \item Product owner wchodzi do gry.
     \item Product owner naciska przycisk "Gracze".
-    \item System wyświetla product ownerowi liste graczy.
+    \item System wyświetla product ownerowi listę graczy.
     \item Product owner naciska przycisk usunięcia przy nazwie gracza.
-    \item System usuwa gracza oraz wszystkie jego oceny z gry ponownie obliczając punktacje.
+    \item System usuwa gracza oraz wszystkie jego oceny z gry ponownie obliczając punktację.
 \end{enumerate}
 
-\textbf{Product owner chce wyeksportować punktacje}
+\textbf{Product owner chce wyeksportować punktację}
 
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt.
-    \item Product owner wybiera gre.
+    \item Product owner wybiera grę.
     \item Product owner naciska przycisk eksport obok przycisku usuwania gry.
     \item System wyświetla product ownerowi listę historyjek wraz z ich punktacją.
-    \item Product owner zatwierdza punktacje.
-    \item System przenosi punktacje historyjek w postaci etykiet do Github'a.
+    \item Product owner zatwierdza punktację.
+    \item System przenosi punktację historyjek w postaci etykiet do Github'a.
 \end{enumerate}
 
 \textbf{Product owner chce usunąć gre}
@@ -113,31 +106,30 @@ Omówienie diagramu:
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt.
-    \item Product owner wybiera gre.
-    \item Product owner naciska przycisk usuń
-    \item System usuwa gre z bazy.
+    \item Product owner wybiera grę.
+    \item Product owner naciska przycisk usuń.
+    \item System usuwa grę z bazy.
     \item Gra znika z listy gier.
 \end{enumerate}
 
 \section{Interfejs}
 
-Aby ułatwić sobie implementacje systemu autor zamodelował ekrany aplikacji w postaci mockap'ów.
-Poniżej znajdują się mokapy:
+Aby ułatwić implementację systemu, autor zamodelował ekrany aplikacji w postaci
+tzw. makiet (ang. mockups):
 
 \begin{itemize}
-    \item Ekranu logowania.
-    \item Ekrany listy projektów.
-    \item Ekrany projektu w raz z bocznym menu (ekran pprzedstawiający issues)
+    \item Ekranu logowania
+    \item Ekrany listy projektów
+    \item Ekrany projektu wraz z bocznym menu (ekran pprzedstawiający issues)
     \item Ekran formularza tworzenia gry
     \item Ekran listy gier
     \item Ekran gry
 \end{itemize}
 
 Prototyp interfejsu użytkownika został stworzony dzięki narzędziu Visual Paradigm.
-Cały interfejs został zainpirowany aplikacjami www.planningPoker.com oraz scrumpyPoker.
 
 \begin{figure}[H]
-	\centering\includegraphics[width=.5\textwidth]{img/LoginScreen}
+	\centering\includegraphics[width=.7\textwidth]{img/LoginScreen}
 	\caption{Ekran Logowania}.
 	\label{rys:loginScreen}
 \end{figure}
@@ -180,8 +172,11 @@ Cały interfejs został zainpirowany aplikacjami www.planningPoker.com oraz scru
 
 \section{Baza danych}
 
-Użytą techonologią bazy danych jest Firestore, która jest hierarchiczną bazą danych.
-Więciej o firestore znajduje się w rozdziale o architekturze aplikacji.
+Na rysunku \ref{rys:ClassDiagram} przedstawiono model danych w aplikacji.
+W tym miejscu wartym odnotowania jest fakt, iż autor zdecydował się
+na zastosowanie hierarchicznej bazy danych Firestore, zamiast którejś z najczęściej
+wybieranych relacyjnych baz danych.
+Więciej o Firestore znajduje się w rozdziale o architekturze aplikacji.
 
 \begin{figure}[H]
 	\centering\includegraphics[width=\textwidth]{img/ClassDiagram}
