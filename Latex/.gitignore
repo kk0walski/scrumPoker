@@ -8,9 +8,9 @@ _minted-praca/
 *.out
 *.synctex(busy)
 praca.pdf
+oswiadczenie.pdf
 *.toc
 *.log
 *.gz
 *.fls
 *.fdb_latexmk
-oswiadczenie.pdf
