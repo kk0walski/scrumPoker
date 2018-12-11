@@ -4,14 +4,16 @@ Aplikacja \textit{Planning poker}, to aplikacja webowa oparta na platformie Fire
 która jest napisana przy użyciu biblioteki ReactJS, z wykorzystaniem
 edytora Visual Studio Code.
 
-\begin{figure}
-	\centering\includegraphics[width=.2\textwidth]{img/projekt}
-	\caption{Struktura projektu}\label{rys:projekt}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
-\end{figure}
+
 
 Aby zachować porządek i możliwość późniejszego rozwoju aplikacji o nowe komponenty,
 koniecznym jest stworzenie uporządkowanej struktury plików zawartych w projekcie
 (rysunek \ref{rys:projekt}).
+
+\begin{figure}[H]
+	\centering\includegraphics[width=.2\textwidth]{img/projekt}
+	\caption{Struktura projektu}\label{rys:projekt}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
 
 Folderem zawierającym wszystkie podfoldery oraz pliki jest folder \texttt{scrumpoker}.
 Pliki takie jak \texttt{storage.rules} czy \texttt{.firebaesrc} powstały automatycznie
@@ -67,17 +69,17 @@ użytkownik musi mieć jakieś historyjki przypisane do wybranego projektu w Git
 Aby to zrobić musi utworzyć w projekcie, elementy zwane `issues', które w tym momencie traktowane są jako historyjki.
 Co za tym idzie, użytkownik musi się zalogować przez serwis Github, co ilustruje poniższy rysunek \ref{rys:login}.
 
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/GitLogin}
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/GitLogin}
 	\caption{Strona logowania}\label{rys:login}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
 \section{Tworzenie gry}
 
 Aby utworzyć grę, najpierw należy wybrać projekt, którego gra będzie dotyczyła.
-W aplikacji projektami są repozytoria. Rysunek: \ref{rys:projekty}.
-
-\begin{figure}
+W aplikacji projektami są repozytoria. Rysunek:
+~\ref{rys:projekty}
+\begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/repositories}
 	\caption{Ekran wyboru projektu}\label{rys:projekty}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
@@ -95,11 +97,7 @@ i eksportuje oceny do Github'a w postaci etykiet będzie dobrym pomysłem.
 Aby stworzyć grę należy stworzyć listę zwaną backlogiem, która jest listą złożoną z `issues'.
 Tworzy się ją w panelu repozytorium w sekcji `Issues' rys.
 ~\ref{rys:issues}
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/issues}
-	\caption{Ekran projektu}\label{rys:issues}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
-\end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/Formularz}
 	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
@@ -140,7 +138,13 @@ Pewne ustawienia gry można zmienić po jej utworzeniu.
 
 Każda historyjka w grze jest oczywiście przechowywana w bazie w postaci identyfikatora.
 
-Formularz tworzenia gry jest pokazany na rysunku \ref{rys:form}.
+Formularz tworzenia gry jest pokazany na rysunku 
+~\ref{rys:form}.
+
+\begin{figure}[H]
+	\centering\includegraphics[width=.7\textwidth]{img/Formularz}
+	\caption{Formularz tworzenia gry}\label{rys:form}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
+\end{figure}
 
 \section{Rozgrywka}
 
@@ -157,9 +161,10 @@ dzięki której będzie można go odróżnić od innych graczy.
 Gracze są dodawani do bazy danych dzięki funkcji usługi Firebase nazwanej anonimowe logowanie.
 Gracze w grze mogą tylko i wyłącznie głosować,
 natomiast właściciel gry wybiera historyjkę do głosowania, to znaczy że to on narzuca tempo gry.
-Panel gry pokazuje rysunek \ref{rys:gra}.
-\begin{figure}
-	\centering\includegraphics[width=.7\textwidth]{img/gra}
+Panel gry pokazuje rysunek 
+~\ref{rys:gra}.
+\begin{figure}[H]
+	\centering\includegraphics[width=\textwidth]{img/gra}
 	\caption{Panel gry}\label{rys:gra}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
@@ -171,3 +176,35 @@ iż na rynku istnieją już odpowiednie aplikacje do komunikacji,
 a firmy produkujące oprogramowanie mają preferowane komunikatory, których używają
 również w innych sytuacjach niż proces planowania sprintu.
 A więc przed każdą rozgrywką autor poleca wybrać odpowiedni komunikator do komunikacji w trakcie gry.
+
+\section{Wynik implementacji}
+
+Nie wszystkie zaplanowane elementy znajdują się w aplikacji,
+ jednak najważniejsze funkcjonalności zostały zaimplementowane:
+
+ \begin{itemize}
+	\item Logowanie przez Github'a.
+	\item Pobieranie Issues z Github'a.
+	\item Tworzenie list, które będą backlog'iem w grze.
+	\item Tworzenie gier.
+	\item Rozgrywka.
+	\item Eksport wyników gier do Github'a.
+	\item Możliwość usunięcia gry.
+	\item Możliwość zmiany ustawień gry.
+	\item Możliwość zapraszania użytkowników do gry.
+\end{itemize}
+
+Nie wszystko udało się jednak zaimplementować
+
+\begin{itemize}
+	\item Pełna synchronizacja z Github'em.
+	\item Edycja historyjek wraz z synchronizacją zmian z Github'em.
+	\item Możliwość usuwania użytkownika z gry
+\end{itemize}
+
+\section{Podsumowanie}
+
+Dzięki użyciu odpowiednich technologii udało się stworzyć w pełni funkcjonującą aplikację.
+Nie znaczy to jednak, że jej stworzenie było proste.
+Autorowi zajęło trochę czasu zanim wybrał odpowiednie technologie do projektu.
+Można powiedzieć że niniejsza praca była świetną okazją do poznania wielu nowych narzędzi do tworzenia paplikacji.
