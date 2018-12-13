@@ -29,9 +29,7 @@ class Repositories extends Component {
 
     componentDidMount() {
         var me = this.gh.getUser();
-        me.listRepos({
-            affiliation: 'owner'
-        }).then(result => {
+        me.listRepos().then(result => {
             this.setState({
                 data: result.data,
                 totalItemsCount: result.data.length,
