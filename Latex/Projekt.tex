@@ -3,8 +3,7 @@ W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
 \section{Diagram przypadków użycia}
 \begin{figure}[H]
 	\centering\includegraphics[width=.9\textwidth]{img/useCase}
-	\caption{Diagram przypadków użycia}.
-	\label{rys:useCase}
+	\caption{Diagram przypadków użycia}.\label{rys:useCase}
 \end{figure}
 \textbf{Product owner chce się zalogować}
 \begin{enumerate}
@@ -18,7 +17,7 @@ W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt dla którego chce stworzyć listę.
-    \item Product owner wybiera elementy do nowej listy z 'Issues' Github'a.
+    \item Product owner wybiera elementy do nowej listy z `Issues' Github'a.
     \item Product owner naciska przycisk do tworzenia listy.
     \item Product owner nadaje listę nazwę i potwierdza wybór historyjek.
 \end{enumerate}
@@ -66,7 +65,7 @@ W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
     \item Product owner wybiera projekt.
     \item Product owner wybiera grę.
     \item Product owner wchodzi do gry.
-    \item Product owner naciska przycisk "Gracze".
+    \item Product owner naciska przycisk `Gracze'.
     \item System wyświetla product ownerowi listę graczy.
     \item Product owner naciska przycisk usunięcia przy nazwie gracza.
     \item System usuwa gracza oraz wszystkie jego oceny z gry ponownie obliczając punktację.
@@ -104,53 +103,45 @@ tzw.\ makiet (ang.\ mockups):
 Prototyp interfejsu użytkownika został stworzony dzięki narzędziu Visual Paradigm.
 \begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/LoginScreen}
-	\caption{Ekran Logowania}.
-	\label{rys:loginScreen}
+	\caption{Ekran Logowania}.\label{rys:loginScreen}
 \end{figure}
 \begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/RepositoriesScreen}
-	\caption{Ekran główny aplikacji z repozytoriami}.
-	\label{rys:RepositoriesScreen}
+	\caption{Ekran główny aplikacji z repozytoriami}.\label{rys:RepositoriesScreen}
 \end{figure}
 \begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/IssuesScreen}
-	\caption{Główny ekran projektu}.
-	\label{rys:IssuesScreen}
+	\caption{Główny ekran projektu}.\label{rys:IssuesScreen}
 \end{figure}
 \begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/gameCreate}
-	\caption{Formularz tworzenia gry}.
-	\label{rys:gameCreate}
+	\caption{Formularz tworzenia gry}.\label{rys:gameCreate}
 \end{figure}
 \begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/GamesList}
-	\caption{Ekran gier}.
-	\label{rys:GamesList}
+	\caption{Ekran gier}.\label{rys:GamesList}
 \end{figure}
 \begin{figure}[H]
 	\centering\includegraphics[width=.7\textwidth]{img/GameScreen}
-	\caption{Panel gry}.
-	\label{rys:GameScreen}
+	\caption{Panel gry}.\label{rys:GameScreen}
 \end{figure}
 
-Na rysunku \ref{rys:ScreensDiagram} przedstawiono diagram przepływu pomiędzy
+Na rysunku:~\ref{rys:ScreensDiagram} przedstawiono diagram przepływu pomiędzy
 zaprezentowanymi powyżej makietami ekranów aplikacji.
 
 \begin{figure}[H]
 	\centering\includegraphics[width=\textwidth]{img/ScreensDiagram}
-	\caption{Diagram przepływu między ekranami aplikacji}.
-	\label{rys:ScreensDiagram}
+	\caption{Diagram przepływu między ekranami aplikacji}.\label{rys:ScreensDiagram}
 \end{figure}
 
 \section{Baza danych}
 
 \begin{figure}[H]
 	\centering\includegraphics[width=\textwidth]{img/ClassDiagram}
-	\caption{Diagram klas, przedstawiający koncepcję bazy danych}.
-	\label{rys:ClassDiagram}
+	\caption{Diagram klas, przedstawiający koncepcję bazy danych}.\label{rys:ClassDiagram}
 \end{figure}
 
-Na rysunku \ref{rys:ClassDiagram} przedstawiono model danych w aplikacji.
+Na rysunku~\ref{rys:ClassDiagram} przedstawiono model danych w aplikacji.
 W tym miejscu wartym odnotowania jest fakt, iż autor zdecydował się
 na zastosowanie hierarchicznej bazy danych Firestore, zamiast którejś z najczęściej
 wybieranych relacyjnych baz danych.
