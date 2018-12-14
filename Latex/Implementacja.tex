@@ -25,8 +25,8 @@ Folder \texttt{node modules} zawiera zależności, niezbędne do uruchomienia ap
 Folder \texttt{src} zawiera cały kod źródłowy aplikacji.
 Głównym plikiem projektu jest \texttt{index.jsx}. To w tym pliku renderowana jest cała aplikacja.
 
-Aby uruchomić program, niezbędny jest też backend w postaci utworzonego
-i skonfigurowanego projektu Firebase.
+Aby uruchomić program,
+niezbędny jest też backend w postaci utworzonego i skonfigurowanego projektu Firebase.
 Konfiguracje należy umieścić w pliku \texttt{src/firebase/firebase.jsx}
 (patrz listing~\ref{listing:firebaseConfig}).
 
@@ -136,7 +136,7 @@ dzięki czemu będzie można ją wybrać przy jej tworzeniu.
 
 W trakcie tworzenia gry możemy skorzystać z ekranu ustawień gry (rysunek~\ref{rys:form})
 aby określić jej nazwę i opis ale także parametry, które będą miały wpływ na grę.
-Oczywiście, będziemy mogli wybrać skalę estymacji gry, ale także podać prędkość (ang. velocity)
+Oczywiście, będziemy mogli wybrać skalę estymacji gry, ale także podać prędkość (ang.\ velocity)
 naszego zespołu, zdecydować czy inni gracze będą tą prędkość widzieć.
 Możemy także zdecydować czy twórca gry również będzie mógł głosować.
 
@@ -164,7 +164,7 @@ Wszelkie akcje podczas gry są synchronizowane za pomocą Firebase,
 a dzięki odpowiednim słuchaczom aplikacja reaguje na wszelkie zmiany w stanie gry.
 
 Gracz jest dodawany do gry poprzez udostępnianie innym użytkownikom odnośnika do gry
-w postaci jej adresu URL.
+w postaci jej adresu URL\@.
 Jeżeli gracz wejdzie do gry, zostanie poproszony o podanie nazwy,
 dzięki której będzie można go odróżnić od innych graczy.
 Gracze są dodawani do bazy danych dzięki funkcji usługi Firebase nazwanej anonimowe logowanie.

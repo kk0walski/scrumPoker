@@ -19,12 +19,12 @@ przez aplikacje internetowe wymagające interakcji pomiędzy użytkownikami w cz
 
 \section{Czym jest ReactJS}
 
-Twórcy ReactJS opisują go jako Widok (ang. View) w architekturze MVC.
+Twórcy ReactJS opisują go jako Widok (ang. View) w architekturze MVC\@.
 Wprowadza bardzo wydajny sposób utrzymania widoku zsynchronizowanego ze stanem danych
 przechowywanym w pamięci przeglądarki w postaci obiektu Javascript.
 
 Ten specjalny stos który renderuje HTML używa wyjątkowo szybkiego algorytmu opartego na wirtualnym drzewie DOM,
-które jest ``lżejszym'' odpowiednikiem drzewa DOM. ReactJS wykorzystuje je
+które jest ``lżejszym'' odpowiednikiem drzewa DOM\@. ReactJS wykorzystuje je
 do minimalizacji liczby zmian w rzeczywistym drzewie DOM, potrzebnych do wprowadzenia go
 w stan bezpośrednio wynikający z kształtu powiązanych danych.
 
@@ -40,19 +40,19 @@ Komponenty – podstawowe bloki aplikacji React'owych – są zorganizowane w dr
 w którym komponenty-rodzice wysyłają dane do swoich dzieci przez zmienne właściwości.
 Każdy komponent ma także zmienną stanu, która determinuje obecne dane dla tego widoku.
 Za każdym razem, gdy stan jest zmieniany, komponent wywołuje metodę \textit{render},
-a React znajduje najbardziej efektywną metodę aktualizacji drzewa DOM.
+a React znajduje najbardziej efektywną metodę aktualizacji drzewa DOM\@.
 
 Odkąd głównym zadaniem React’a jest interfejs użytkownika,
 aplikacje na nim zrobione potrzebują czegoś jeszcze,
 co będzie zachowywało się jak tzw. \textit{backend}, czyli sposób na trwałe
 przetrzymywanie danych, nieleżne od stanu przeglądarki, która służy jako
-środowisko uruchomieniowe dla ReactJS.
+środowisko uruchomieniowe dla ReactJS\@.
 Do tego celu zdecydowałem się na użycie usługi Firebase.
 Firebase dostarcza model (ang. Model) i kontroler (ang. Controller) w MVC
 do aplikacji napisanych w ReactJS, czyniąc z nich w pełni funkcjonalne aplikacje,
 których stan nie zależy wyłącznie od przeglądarki internetowej, w której działają.
 Używając React’owego jednokierunkowego systemu wiązania danych łatwo jest zintegrować go z Firebase.
-\cite{www_react}
+~\cite{www_react}
 
 \section{Firebase}
 
@@ -108,9 +108,9 @@ synchronizować oraz przeszukiwać dane w aplikacjach mobilnych oraz webowych �
 
 Firestore przechowuje dane w postaci obiektów zwanych dokumentami.
 Te dokumenty posiadają pary klucz-wartosć oraz mogą zawierać jakiekolwiek rodzaje danych
-od łańcuchów po dane binarne a nawet obiekty, które przypominają format JSON.
+od łańcuchów po dane binarne a nawet obiekty, które przypominają format JSON\@.
 Dokumenty są pogrupowane w kolekcje.
-\ref{rys:firestoreData}
+~\ref{rys:firestoreData}
 
 \begin{figure}
 	\centering\includegraphics[width=.6\textwidth]{img/firestoreData}
@@ -119,8 +119,8 @@ Dokumenty są pogrupowane w kolekcje.
 
 Fierstore może zawierać wiele kolekcji zawierających dokumenty, które wskazują na subkolekcje.
 Te subkolekcje mogą znowu zawierać dokumenty oraz swoje subkolekcje i tak dalej.
-Można zatem powiedzieć że jest to hierarchiczny model danych (patrz \ref{rys:firestoreTree}).
-\cite{www_hakermoon}
+Można zatem powiedzieć że jest to hierarchiczny model danych (patrz~\ref{rys:firestoreTree}).
+~\cite{www_hakermoon}
 
 \begin{figure}
 	\centering\includegraphics[width=.6\textwidth]{img/firestoreTree}
@@ -132,7 +132,7 @@ Można zatem powiedzieć że jest to hierarchiczny model danych (patrz \ref{rys:
 Jedną z najważniejszych cech komponentów ReactJS jest wbudowany w nie stan.
 Jest to bardzo przydatna koncepcja. Komponent posiada stan,
 który może ulec zmianie w wyniku interakcji użytkownika z aplikacją.
-Zmiana stanu pociąga za sobą operację re-renderowania drzewa Virtual DOM.
+Zmiana stanu pociąga za sobą operację re-renderowania drzewa Virtual DOM\@.
 W wyniku tego, pewne części interfejsu widocznego na ekranie ulegają zmianie.
 Oczywiście wiadomym jest też, że jeden komponent może zależeć od innego komponentu.
 Możemy przecież przekazywać stan komponentu rodzica do jego komponentów dzieci itd.
@@ -142,7 +142,7 @@ rozrasta się poziom skomplikowania poszczególnych komponentów.
 Z tego względu programiści Facebooka, odpowiedzialni za rozwój ReactJS, wymyślili
 architekturę aplikacji, która rozwiązuje ten problem.
 Architektura ta nazwa się \textbf{Flux}.
-\cite{www_nafrontendzie}
+~\cite{www_nafrontendzie}
 
 \subsection{Architektura FLUX}
 
@@ -180,7 +180,7 @@ Counter = connect(mapStateToProps, mapDispatchToProps)(Counter);
 \caption{Przykładowe akcje licznika i ich stan} \label{listing:licznik}
 \end{listing}
 
-W listingu \ref{listing:licznik} przedstawiony jest prosty licznik z dwoma akcjami,
+W listingu~\ref{listing:licznik} przedstawiony jest prosty licznik z dwoma akcjami,
 które zwiększają bądź zmniejszają licznik o jeden.
 Stan oraz funkcje rozsyłające dostępne są w obiekcie \texttt{this.props}.
 Spójrzmy na kod odpowiedzialny za ich mapowanie.
@@ -199,7 +199,7 @@ Metoda \texttt{dispatch} przekazuje obiekty akcji bezpośrednio.
 
 Zwykle w projekcie definiuje się to jako specjalne kreatory akcji.
 Dzięki kreatorom możemy opóźnić wywołanie akcji lub zmienić dane w naszym Redux tylko wtedy,
-gdy są spełnione określone warunki (patrz \ref{listing:firebase_action}).
+gdy są spełnione określone warunki (patrz~\ref{listing:firebase_action}).
 
 % lub {java} albo {bash} albo {text}
 \begin{listing}
@@ -264,8 +264,8 @@ Wracając do Flux. Tak tworzona akcja jest dostarczana do store za pomocą wywo�
 Funkcja ta w zasadzie zarządza całym przepływem danych.
 Każdy store w aplikacji rejestruje w dispatcherze swoje funkcje wywołania zwrotnego
 w celu obsługi przychodzących akcji.
-W momencie gdy akcja jest rozsyłana (ang. dispatch), wywoływane są po kolei wszystkie
-funkcje wywołania zwrotnego (ang. callback).
+W momencie gdy akcja jest rozsyłana (ang.\ dispatch), wywoływane są po kolei wszystkie
+funkcje wywołania zwrotnego (ang.\ callback).
 Jeden z nich powinien umieć rozpoznać akcję po jej typie i być przygotowany na jej odpowiednią obsługę.
 
 \begin{center}
@@ -280,7 +280,7 @@ Funkcja ta przyjmuje dwa parametry: \texttt{state} oraz \texttt{action}.
 Działa to tak: ktoś wywołuje akcję, obiekt \textbf{store} wywołuje funkcję \textbf{reducer},
 przekazując do niej aktualny stan oraz akcję, \textbf{reducer}
 sprawdza typ przekazanej do niej akcji i w zależności od tego jaki jest ten typ,
-zwraca nową wersję obiektu stanu (patrz przykład \ref{listing:reducer}).
+zwraca nową wersję obiektu stanu (patrz przykład~\ref{listing:reducer}).
 
 \begin{listing}
 \begin{minted}{c}
@@ -302,7 +302,7 @@ W przykładzie, jeśli typ akcji to `INCREMENT' to zwracany jest nowy obiekt sta
 który ma zwiększoną o jeden wartość atrybutu \texttt{counter}.
 Jeśli natomiast typ akcji to `DECREMENT' to zwracany jest nowy stan z atrybutem
 \texttt{counter} zmniejszonym o jeden.
-Jeśli typ akcji jest w tym miejscu nieznany, wykonujemy domyślną (ang. default) operację, którą jest
+Jeśli typ akcji jest w tym miejscu nieznany, wykonujemy domyślną (ang.\ default) operację, którą jest
 przekazanie obiekt stanu w niezmienionej postaci.
 
 Generalnie wszystkie obiekty store zawierają łącznie cały stan aplikacji.
@@ -311,7 +311,7 @@ która jest rejestrowana w ``dispatcherze'', i która obsługuje akcje związane
 Cechą Reduxa jest to, że cały stan jest przechowywany w jednym obiekcie.
 
 Kolejny element na diagramie to widok.
-Można powiedzieć, że jest on reprezentowany po prostu przez komponent ReactJS.
+Można powiedzieć, że jest on reprezentowany po prostu przez komponent ReactJS\@.
 Używa on stanu aplikacji zapisanego w obiekcie store, tak jakby był on wewnętrznym stanem komponentu.
 Zmiana stanu w store powoduje re-renderownie komponentu.
 Dodatkowo komponent widoku może rozsyłać kolejne akcje, na przykład kiedy użytkownik
@@ -324,7 +324,7 @@ To programista może zdecydować jak to dokładnie będzie zaimplementowane.
 Na szczęście nie jest on zdany sam na siebie, ponieważ istnieje kilka gotowych
 implementacji architektury Flux w postaci bibliotek.
 Jedną z nich jest oczywiście Redux.
-\cite{www_nafrontendzie}
+~\cite{www_nafrontendzie}
 
 \subsection{Czym Redux różni się od Flux}
 
@@ -338,12 +338,12 @@ ponieważ opiera się na czystych funkcjach zamiast obiektów emiterów akcji,
 a czyste funkcje są łatwe do tworzenia i nie potrzebują żadnej encji
 (reprezentacja wyobrażonego lub rzeczywistego obiektu) by nimi zarządzać.
 Jest to więc pewne odstępstwo od Flux’a.
-\cite{www_nafrontendzie}
+~\cite{www_nafrontendzie}
 
 Inną ważną różnicą od Flux jest to, że Redux zakłada niemutowalność danych.
 Możesz używać statycznych obiektów oraz tablic dla swojego stanu,
 ale mutowanie ich wewnątrz reducerów jest bardzo odradzane,
-dlatego po zmianie stanu zawsze powinien być zwracany nowy obiekt (patrz rysunek \ref{rys:reduxFlux}).
+dlatego po zmianie stanu zawsze powinien być zwracany nowy obiekt (patrz rysunek~\ref{rys:reduxFlux}).
 
 Ogólnie Redux może być opisany przez trzy fundamentalne zasady:
 \begin{itemize}
@@ -366,9 +366,9 @@ Biblioteka \textbf{redux-thunk} została stworzona przez Dana Abramova,
 który jednocześnie jest twórcą Reduxa. Pozwala ona tworzyć kreatory akcji,
 które zamiast obiektu zwracają funkcję.
 Dzięki temu możliwe jest opóźnienie rozgłoszenia akcji lub zgłoszenie jej tylko
-jeśli zostaną spełnione określone warunki. \cite{www_thunk}
+jeśli zostaną spełnione określone warunki.~\cite{www_thunk}
 
-Jak dodać thunk do Reduxa pokazuje listing \ref{listing:thunk-redux}.
+Jak dodać thunk do Reduxa pokazuje listing~\ref{listing:thunk-redux}.
 
 \begin{listing}
 \begin{minted}{c}
@@ -388,7 +388,7 @@ Jak dodać thunk do Reduxa pokazuje listing \ref{listing:thunk-redux}.
 	\textbf{Obsługa wywołań asynchronicznych czyli kreatory akcji}
 \end{center}
 
-W przykładzie (listing \ref{listing:firebase_action}) widnieje akcja,
+W przykładzie (listing~\ref{listing:firebase_action}) widnieje akcja,
 która najpierw dodaje użytkownika do bazy, a następnie rozgłasza akcję dodawania użytkownika,
 jeżeli modyfikacja danych w bazie zakończyła się pomyślnie.
 
@@ -414,7 +414,7 @@ kiedy nie ma żadnych problemów po stronie Firebase.
 
 Jeżeli baza danych nie będzie mogła pobrać danych bo wystąpił błąd,
 Thunk nie wykona żadnych operacji. Sposób połączenia tych dwóch elementów przedstawiono
-na rysunku \ref{rys:fireRedux}.
+na rysunku~\ref{rys:fireRedux}.
 
 \begin{figure}
 	\centering\includegraphics[width=.6\textwidth]{img/fireRedux}
