@@ -1,4 +1,4 @@
-\chapter{Projekt aplikacji}
+﻿\chapter{Projekt aplikacji}
 W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
 \section{Diagram przypadków użycia}
 \begin{figure}[H]
@@ -21,12 +21,12 @@ W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
     \item Product owner naciska przycisk do tworzenia listy.
     \item Product owner nadaje listę nazwę i potwierdza wybór historyjek.
 \end{enumerate}
-\textbf{Product owner chce stworzyć gre}
+\textbf{Product owner chce stworzyć grę}
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt dla którego chce stworzyć grę.
     \item Jeżeli w projekcie jest stworzona jakakolwiek lista system prosi product ownera o wypełnienie formularza,
-    w przeciwnym razie system odsyła użytkownika do listy issue's Github'a w celu stworzenia listy.
+    w przeciwnym razie system odsyła użytkownika do listy issue's GitHub w celu stworzenia listy.
     \item Użytkownik potwierdza swoje ustawienia.
     \item System tworzy grę i przekierowuje użytkownika do listy gier projektu.
 \end{enumerate}
@@ -43,9 +43,9 @@ W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt.
-    \item Product owner wybiera gre.
+    \item Product owner wybiera grę.
     \item Product owner wchodzi do gry.
-    \item Product onwer naciska przycisk ustawiena.
+    \item Product owner naciska przycisk ustawienia.
     \item Product owner przechodzi do ekranu ustawień gry.
     \item Product owner zmienia ustawienia.
     \item Product owner zatwierdza ustawienia.
@@ -72,7 +72,7 @@ W niniejszym rozdziale autor umieścił projekt aplikacji oraz bazy danych.
     \item Product owner zatwierdza punktację.
     \item System przenosi punktację historyjek w postaci etykiet do Github'a.
 \end{enumerate}
-\textbf{Product owner chce usunąć gre}
+\textbf{Product owner chce usunąć grę}
 \begin{enumerate}
     \item Product owner loguje się do systemu.
     \item Product owner wybiera projekt.
@@ -87,7 +87,7 @@ tzw.\ makiet (ang.\ mockups):
 \begin{itemize}
     \item Ekranu logowania
     \item Ekrany listy projektów
-    \item Ekrany projektu wraz z bocznym menu (ekran pprzedstawiający issues)
+    \item Ekrany projektu wraz z bocznym menu (ekran przedstawiający issues)
     \item Ekran formularza tworzenia gry
     \item Ekran listy gier
     \item Ekran gry
@@ -137,16 +137,10 @@ Na rysunku~\ref{rys:ClassDiagram} przedstawiono model danych w aplikacji.
 W tym miejscu wartym odnotowania jest fakt, iż autor zdecydował się
 na zastosowanie hierarchicznej bazy danych Firestore, zamiast którejś z najczęściej
 wybieranych relacyjnych baz danych.
-Więciej o Firestore znajduje się w rozdziale o architekturze aplikacji.
-
-W tym miejscu wartym odnotowania jest fakt, iż autor zdecydował się
-na zastosowanie hierarchicznej bazy danych Firestore, zamiast którejś z najczęściej
-wybieranych relacyjnych baz danych.
+Więcej o Firestore znajdziemy w rozdziale o architekturze aplikacji.
 
 Ciekawym wnioskiem jest iż diagram klas UML z powodzeniem nadaje się do projektowania
-modelu danych, który następnie może być zaimplementowany zarówno bazach
+modelu danych, który następnie może być zaimplementowany zarówno w bazach
 wykorzystujących relacyjny model danych (co autor miał już okazję robić
 przy okazji innych projektów) jak również w przypadku bazy stosującej
 model hierarchiczny.
-
-Więcej o Firestore znajduje się w rozdziale o architekturze aplikacji.

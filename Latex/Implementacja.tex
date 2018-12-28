@@ -1,4 +1,4 @@
-% !TeX program = latexmk
+﻿% !TeX program = latexmk
 % !TeX spellcheck = pl_PL
 % !TeX root = example.tex
 
@@ -57,19 +57,19 @@ export { firebase, database as default };
 \caption{Konfiguracja firebase}\label{listing:firebaseConfig}
 \end{listing}
 
-Z wyjątkiem stanu gry, aplikacja wszelkie dane pobiera z serwisu Github poprzez
-udostępnione API, wykorzystując do tego biliotekę \texttt{octokit/rest}.
+Z wyjątkiem stanu gry, aplikacja wszelkie dane pobiera z serwisu GitHub poprzez
+udostępnione API, wykorzystując do tego bibliotekę \texttt{octokit/rest}.
 
 W każdym komponencie, wymagającym danych z tego serwisu,
 uruchamiane są metody, które ładują niezbędne dane do stanu komponentu.
 
-Jako że wszelkie gry tworzone w aplikacji dotyczą projektów prowadzonych na Github'ie,
-użytkownik, aby skorzystać z aplikacji, musi posiadać konto na Github'ie oraz co najmniej
+Jako że wszelkie gry tworzone w aplikacji dotyczą projektów prowadzonych na GitHub,
+użytkownik, aby skorzystać z aplikacji, musi posiadać konto na GitHub oraz co najmniej
 jeden projekt założony w tej usłudze.
-Biorąc pod uwagę, że w trakcie rozgrywki Planning Pokera oceniane są historyjki z backlogu,
-użytkownik musi mieć jakieś historyjki przypisane do wybranego projektu w Github.
+Biorąc pod uwagę, że w trakcie rozgrywki Planning Pokera oceniane są historyjki z backlog,
+użytkownik musi mieć jakieś historyjki przypisane do wybranego projektu w GitHub.
 Aby to zrobić musi utworzyć w projekcie, elementy zwane `issues', które w tym momencie traktowane są jako historyjki.
-Co za tym idzie, użytkownik musi się zalogować przez serwis Github, co ilustruje poniższy rysunek~\ref{rys:login}.
+Co za tym idzie, użytkownik musi się zalogować przez serwis GitHub, co ilustruje poniższy rysunek~\ref{rys:login}.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=\textwidth]{img/GitLogin.png}
@@ -78,7 +78,7 @@ Co za tym idzie, użytkownik musi się zalogować przez serwis Github, co ilustr
 
 \section{Tworzenie gry}
 
-Można założyć, że grupą docelową aplikacji, są użytkownicy Githuba, czyli programiści.
+Można założyć, że grupą docelową aplikacji, są użytkownicy GitHub, czyli programiści.
 Autor, jako częsty użytkownik tej usługi, odczuł brak aplikacji wspomagającej Planning Poker,
 która byłaby z tym narzędziem zintegrowana.
 
@@ -87,11 +87,11 @@ która byłaby z tym narzędziem zintegrowana.
 	\caption{Ekran wyboru projektu}\label{rys:projekty}% Źródło rysunku i etykieta przez którą odwołujemy się do rysunku.
 \end{figure}
 
-Autor podczas przeglądania projektów na Github'ie zauważył, że jego użytkownicy,
+Autor podczas przeglądania projektów na GitHub zauważył, że jego użytkownicy,
 wszelkie problemy czy też propozycje nowych funkcjonalności aplikacji umieszczają
 w sekcji \textbf{issues} danego projektu. Stwierdził wówczas, iż aplikacja która ocenia
 istniejące problemy lub proponowane cechy, które są dostępne w już sprawdzonym narzędziu
-i eksportuje oceny do Github'a w postaci etykiet będzie dobrym pomysłem.
+i eksportuje oceny do GitHub w postaci etykiet będzie dobrym pomysłem.
 
 
 \subsection{Ekran wyboru projektu}
@@ -108,8 +108,8 @@ W aplikacji projektami są repozytoria (rysunek~\ref{rys:projekty}).
 \subsection{Ekran wyboru backlogu}
 
 Aby rozgrywka miała sens, konieczne jest posiadanie backlogu zadań,
-które zespół powinien wyestymować podczas danej sesji planingowej.
-Odpowiednią listę zadań Tworzy się ją w panelu ustawień projektu (rysunek~\ref{rys:issues}),
+które zespół powinien wyestymować podczas danej sesji planningowej.
+Odpowiednią listę zadań tworzy się w panelu ustawień projektu (rysunek~\ref{rys:issues}),
 w sekcji \textbf{Issues}.
 
 Dzięki odpowiednim ustawieniom filtrów można odnaleźć elementy po etykietach,
@@ -128,7 +128,7 @@ które pokazuje wybrane elementy oraz pole do wpisania nazwy listy.
 \end{figure}
 
 Po potwierdzeniu wyboru oraz wpisaniu nazwy listy, jest tworzona lista, zawierająca
-identyfikatory wybranych historyjek (czyli \textit{issues} w projekcie Github).
+identyfikatory wybranych historyjek (czyli \textit{issues} w projekcie GitHub).
 
 Jak zostało już wcześniej wspomniane, niezbędnym elementem gry jest backlog.
 Tym backlogiem dla każdej gry będzie lista, którą właściciel tworzy spośród wspomnianych historyjek.
@@ -147,7 +147,7 @@ Możemy także zdecydować czy twórca gry również będzie mógł głosować.
 Inną ważną kwestią jest to, czy karty powinny być odkrywane, kiedy każdy zagłosował
 oraz czy pozwolić graczom zmienić swoją ocenę po pokazaniu wszystkich kart.
 
-Aplikacja może również obliczać wynik punktowy historyjki po zakończonym głosowaniu automatycznie,
+Aplikacja może również obliczać wynik punktowy historyjki po zakończonym głosowania automatycznie,
 robi to za pomocą średniej ważonej, która później jest zamieniana na najbliższą jej ocenę w skali estymacji.
 
 Na końcu oczywiście należy wybrać backlog w postaci odpowiedniej listy, tu należy zaznaczyć,
@@ -166,7 +166,7 @@ Gracz jest dodawany do gry poprzez udostępnianie innym użytkownikom odnośnika
 w postaci jej adresu URL\@.
 Jeżeli gracz wejdzie do gry, zostanie poproszony o podanie nazwy,
 dzięki której będzie można go odróżnić od innych graczy.
-Gracze są dodawani do bazy danych dzięki funkcji usługi Firebase nazwanej anonimowe logowanie.
+Gracze są dodawani do bazy danych dzięki funkcji usługi Firebase nazwanej „anonimowe logowanie”.
 Gracze w grze mogą tylko i wyłącznie głosować,
 natomiast właściciel gry wybiera historyjkę do głosowania, to znaczy że to on narzuca tempo gry.
 Panel gry pokazuje rysunek~\ref{rys:gra}.
@@ -192,12 +192,12 @@ Nie wszystkie zaplanowane elementy znajdują się w aplikacji,
 jednak najważniejsze funkcjonalności zostały zaimplementowane:
 
  \begin{itemize}
-	\item Logowanie przez Github'a
-	\item Pobieranie Issues z Github'a
+	\item Logowanie przez GitHub
+	\item Pobieranie Issues z GitHub
 	\item Tworzenie list, które będą backlog'iem w grze
 	\item Tworzenie gier
 	\item Rozgrywka
-	\item Eksport wyników gier do Github'a
+	\item Eksport wyników gier do GitHub
 	\item Możliwość usunięcia gry
 	\item Możliwość zmiany ustawień gry
 	\item Możliwość zapraszania użytkowników do gry
@@ -206,8 +206,8 @@ jednak najważniejsze funkcjonalności zostały zaimplementowane:
 Funkcje których nie udało się zaimplementować to:
 
 \begin{itemize}
-	\item Pełna synchronizacja z Github'em
-	\item Edycja historyjek wraz z synchronizacją zmian z Github'em
+	\item Pełna synchronizacja z GitHub
+	\item Edycja historyjek wraz z synchronizacją zmian z GitHub
 	\item Możliwość usuwania użytkownika z gry
 \end{itemize}
 
@@ -215,9 +215,10 @@ Funkcje których nie udało się zaimplementować to:
 
 Dzięki użyciu odpowiednich technologii udało się stworzyć w pełni funkcjonalną aplikację,
 umożliwiającą zespołom zdalnym przeprowadzenie sesji planningowej nad dobrze
-zdefioniowanym backlogiem zadań.
+zdefiniowanym backlogiem zadań.
 Nie znaczy to jednak, że jej stworzenie było proste.
-Autorowi zajęło trochę czasu zanim wybrał odpowiednie technologie do projektu.
+Autorowi zajęło sporo czasu wybranie odpowiednich technologii do projektu.
 Można powiedzieć że niniejsza praca była świetną okazją do poznania
 wielu nowych narzędzi do tworzenia aplikacji internetowych wykorzystujących
 komunikację w czasie rzeczywistym.
+
