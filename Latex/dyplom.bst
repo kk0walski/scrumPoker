@@ -888,7 +888,7 @@ FUNCTION {format.org.or.pub}
   year empty$ and
     'skip$
     {
-      add.blank "(" *
+      add.blank "" *
       t empty$
         { address "address" bibinfo.check *
         }
@@ -909,7 +909,7 @@ FUNCTION {format.org.or.pub}
           *
         }
       if$
-      ")" *
+      "" *
     }
   if$
 }
