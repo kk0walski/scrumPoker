@@ -66,14 +66,14 @@ W 2011 roku Firebase znany był pod nazwą Envelope.
 Jako Envelope wprowadził dla deweloperów API (Application Programming Interface),
 który umożliwiał wprowadzenie komunikatora do ich strony internetowej.
 
-Interesującym było to, że ludzie używali aplikacji by przekazywać dane,
+Interesującym było to, że ludzie używali aplikacji, by przekazywać dane,
 które były czymś więcej niż wiadomościami komunikatora.
 Deweloperzy aplikacji internetowych (w tym gier) używali Envelope
 w celu synchronizacji danych aplikacji jak i stanu gry
 w czasie rzeczywistym pomiędzy ich użytkownikami.
 
 To doprowadziło założycieli Envelope, Jamesa Tamplina oraz Andrew Lee
-do pomysłu by rozdzielić komunikator online oraz platformę wymiany danych w czasie rzeczywistym.
+do pomysłu, by rozdzielić komunikator online oraz platformę wymiany danych w czasie rzeczywistym.
 W kwietniu 2012 Firebase powstał jako oddzielna firma które wprowadziła usługę backendu
 (ang. BaaS, Backend-as-a-Service) z funkcjonalnościami czasu rzeczywistego.
 
@@ -189,7 +189,7 @@ Spójrzmy na kod odpowiedzialny za ich mapowanie.
 \end{center}
 Funkcja \texttt{mapStateToProps} pobiera \texttt{state} jako parametr i zwraca nowy obiekt.
 Częstą praktyką jest po prostu przekazanie całego stanu do właściwości,
-jednak jest to też właściwe miejsce by odfiltrować dane.
+jednak jest to też właściwe miejsce, by odfiltrować dane.
 \begin{center}
 	\textbf{Funkcja mapDispatchToProps}
 \end{center}
@@ -237,7 +237,7 @@ export const startAddUserToGame = (owner, repo, game, user = {}) => {
 W tym przykładzie gracz jest dodawany do gry tylko wtedy,
 gdy jest uczestnikiem gry w bazie danych Firestore.
 Jak widać w przykładzie, kreator zwraca funkcję,
-która wykorzystuje \texttt{dispatch} by wysłać akcję do store.
+która wykorzystuje \texttt{dispatch}, by wysłać akcję do store.
 Aby zadziałać, funkcja musi znać dokładną lokalizację gry w bazie oraz dane użytkownika.
 Aby dostać się do gry, musimy znać właściciela oraz nazwę repozytorium w której znajduje się gra
 oraz identyfikator gry.
@@ -336,7 +336,7 @@ Tak jak we Flux, wszystkie operacje na danych są opisywane w postaci akcji.
 W przeciwieństwie do Flux, Redux jednak nie ma konceptu rozsyłacza,
 ponieważ opiera się na czystych funkcjach zamiast obiektów emiterów akcji,
 a czyste funkcje są łatwe do tworzenia i nie potrzebują żadnej encji
-(reprezentacja wyobrażonego lub rzeczywistego obiektu) by nimi zarządzać.
+(reprezentacja wyobrażonego lub rzeczywistego obiektu), by nimi zarządzać.
 Jest to więc pewne odstępstwo od Flux.
 ~\cite{www_nafrontendzie}
 
@@ -351,7 +351,7 @@ Ogólnie Redux może być opisany przez trzy fundamentalne zasady:
 	w drzewie obiektów wewnątrz pojedynczego obiektu store.
 	\item Stan jest tylko do odczytu: jedynym sposobem na zmianę stanu jest wywołanie akcji,
 	która zwraca obiekt opisujący co powinno się stać.
-	\item Zmiany wykonywane są w ramach czystych funkcji: aby określić jak drzewo stanu
+	\item Zmiany wykonywane są w ramach czystych funkcji: aby określić, jak drzewo stanu
 	transformowane jest przez akcje, musisz tworzyć ``czyste reducery''.
 \end{itemize}
 

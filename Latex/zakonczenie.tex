@@ -1,16 +1,37 @@
 ﻿\chapter*{Zakończenie}
 
-Celem pracy było zaprojektowanie oraz zaimplementowanie narzędzia wspomagającego szacowanie zadań metodą planning pokera.
-Udało się zrealizować założenia projektu, jednak koncepcja często się zmieniała,
-co wynikało z braku doświadczenia w tworzeniu aplikacji czasu rzeczywistego oraz poszukiwania odpowiednich rozwiązań.
-Jednak aplikacja dzięki wykorzystaniu odpowiednich narzędzi została stworzona i przetestowana.
+Celem niniejszej pracy było zaprojektowanie oraz implementacja narzędzia wspomagającego szacowanie zadań metodą planistycznego pokera (ang. Planning Poker).
+Postawione cele i założenia projektu zostały w pełni zrealizowane.
+Finalna wersja aplikacji poprzedzona była serią wielu implementacji prototypów w ramach wyboru optymalnego zestawu narzędzi programistycznych.
+Wynika to z faktu, że technologie webowe są obecnie najdynamiczniej rozwijającą się gałęzią informatyki.
+Ogromna liczba dostępnych tzw. frameworków do budowy aplikacji webowych, tak po stronie klienta - interfejsu użytkownika (tzw. frontend),
+jak również wybór technologii po stronie serwera (w tym rozwiązania chmurowe)
+wymusiła na autorze dogłębną ich analizę i przegląd pod kątem kompatybilności i możliwości użycia w projekcie.
 
-Uważam że usługa Firebase nadaje się świetnie do aplikacji wymagających asynchronicznej komunikacji.
-Aplikacja została przetestowana na wszystkich przeglądarkach, a nawet na urządzeniach mobilnych.
-Dzięki usłudze Firebase Hosting jest ona także dostępna w internecie.
 
-Mimo, że podobne aplikacje już istnieją,
-sądze że przedstawiony w niniejszej pracy program może znaleźć zainteresowanie wśród programistów.
-Obserwując trendy na rynku pracy, aplikacje które pomagają w pracy zdalnej będą coraz bardziej poszukiwane.
-Na koniec pragnę zauważyć, że mimo kilku zmian koncepcji, ostatecznie zaproponowana aplikacja spełnia w całości założone cele.
+Aplikacja webowa stworzona jako implementacja w ramach niniejszej pracy opiera się na modelu klient-serwer,
+gdzie częścią serwerową (tzw. backend) zajmuje się usługa „chmurowa” firmy Google, tj. Firebase. Można zauważyć,
+że usługa ta doskonale nadaje się do aplikacji wymagających komunikacji asynchronicznej,
+co w przypadku narzędzia dla wielu użytkowników pracujących w tym samym czasie jest cechą nadrzędną.
 
+Aby zapewnić użytkownikom, czyli tzw. stronie klienta (ang. client side) nowoczesny i funkcjonalny interfejs,
+użyto tzw. frameworka React-Redux – na chwilę obecną silnego kandydata dla wielu projektów i Start-Upów ze względu na ogromne wsparcie społeczności Open-Source.
+
+Hosting aplikacji został również oparty na jednej z usług „chmurowych” firmy Google – Firebase Hosting.
+Znacznie ułatwia to zarządzanie zmianami w projekcie, dzięki wsparciu dla typowego obecnie procesu rozwoju oprogramowania w oparciu o system kontroli wersji (GIT).
+
+Po serii testów funkcjonalnych na wiodących przeglądarkach internetowych, na systemach operacyjnych MS Windows,
+Linux, a także Android zostały przeprowadzone również testy użyteczności.
+
+Mimo, że podobne pod kątem wyglądu aplikacje już istnieją,
+zaproponowana w ramach pracy aplikacja z cała pewnością może znaleźć zainteresowanie wśród członków zespołów projektowych,
+zwłaszcza szczególnie ceniących sobie użycie sprawdzonych i nowoczesnych rozwiązań webowych,
+dających swobodę użycia i oferujących bezpieczeństwo danych, tak ważne w dzisiejszych czasach.
+
+Możliwość rozszerzenia najpopularniejszej na świecie platformy do zarządzania projektami open-source – GitHub o funkcję estymacji historyjek / zadań (ang. user stories / issues),
+w oparciu o API i metody autentykacji oraz autoryzacji tejże platformy,
+pozwala na natychmiastowe przejście całego zespołu projektowego na interfejs stworzonej aplikacji celem kontynuacji procesu estymacji.
+
+Pozwala to wyeliminować szereg zbędnych czynności organizacyjnych i konfiguracyjnych oraz buduje w użytkownikach poczucie bezpieczeństwa szczególnie,
+iż nie jest wymagane tworzenie kolejnych kont użytkownika a dane projektowe są pobierane z platformy GitHub i przechowywane na zabezpieczonej platformie Firebase.
+Obserwując obecne trendy na rynku pracy\cite{www_rozproszony} należy przypuszczać, że aplikacje wspierające pracę zdalną będą coraz bardziej poszukiwane.
