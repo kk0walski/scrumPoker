@@ -129,20 +129,17 @@ Można zatem powiedzieć że jest to hierarchiczny model danych (patrz~\ref{rys:
 
 \section{Redux czyli implementacja architektury Flux}
 
-Jedną z najważniejszych cech komponentów ReactJS jest wbudowany w nie stan.
+Najistotniejszy dla komponentów ReactJS jest zaimplementowany w nie stan.
 Jest to bardzo przydatna koncepcja. Komponent posiada stan,
-który może ulec zmianie w wyniku interakcji użytkownika z aplikacją.
-Zmiana stanu pociąga za sobą operację re-renderowania drzewa Virtual DOM\@.
-W wyniku tego, pewne części interfejsu widocznego na ekranie ulegają zmianie.
-Oczywiście wiadomym jest też, że jeden komponent może zależeć od innego komponentu.
-Możemy przecież przekazywać stan komponentu rodzica do jego komponentów dzieci itd.
+który może się zmienić w wyniku interakcji aplikacji i użytkownika.
+Zmiana stanu powoduje operację re-renderowania drzewa Virtual DOM\@.
+W następstwie tego, niektóre części interfejsu widocznego na ekranie ulegają zmianie.
+Zapewne wiadomo, że jeden komponent może być zależny od innego komponentu. Można przecież przekazywać stan komponentu rodzica do jego komponentów dzieci itd.
 
-To wszystko działa świetnie. Niestety w miarę jak aplikacja rośnie,
+To wszystko działa doskonale. Niestety wraz ze wzrostem aplkacji,
 rozrasta się poziom skomplikowania poszczególnych komponentów.
-Z tego względu programiści Facebook a, odpowiedzialni za rozwój ReactJS, wymyślili
-architekturę aplikacji, która rozwiązuje ten problem.
-Architektura ta nazywa się \textbf{Flux}.
-~\cite{www_nafrontendzie}
+Z tego względu programiści Facebook a, odpowiedzialni za rozwój ReactJS, wymyślili architekturę aplikacji, która rozwiązuje ten problem.
+Architektura ta nazywa się \textbf{Flux}. ~\cite{www_nafrontendzie}
 
 \subsection{Architektura FLUX}
 
@@ -298,10 +295,10 @@ const reducer = (state, action) => {
 \caption{Przykładowy reducer licznika} \label{listing:reducer}
 \end{listing}
 
-W przykładzie, jeśli typ akcji to `INCREMENT' to zwracany jest nowy obiekt stanu,
-który ma zwiększoną o jeden wartość atrybutu \texttt{counter}.
-Jeśli natomiast typ akcji to `DECREMENT' to zwracany jest nowy stan z atrybutem
-\texttt{counter} zmniejszonym o jeden.
+W przedstawionym przykładzie, jeśli typem akcji jest `INCREMENT' to zwracany jest nowy obiekt stanu,
+dla którego wartość atrybutu jest zwiększona o jeden \texttt{counter}.
+Jeżeli zaś typem akcji jest `DECREMENT' to zwracany jest nowy stan, którego atrybut jest
+\texttt{counter} zmniejszony o jeden.
 Jeśli typ akcji jest w tym miejscu nieznany, wykonujemy domyślną (ang.\ default) operację, którą jest
 przekazanie obiekt stanu w niezmienionej postaci.
 
@@ -310,9 +307,9 @@ Store zawiera implementację funkcji wywoływania zwrotnego,
 która jest rejestrowana w ``dispatcher'', i która obsługuje akcje związane z danym store.
 Cechą Redux jest to, że cały stan jest przechowywany w jednym obiekcie.
 
-Kolejny element na diagramie to widok.
-Można powiedzieć, że jest on reprezentowany po prostu przez komponent ReactJS\@.
-Używa on stanu aplikacji zapisanego w obiekcie store, tak jakby był on wewnętrznym stanem komponentu.
+Kolejny obiekt na diagramie to widok.
+Można rzec, że jest on po prostu reprezentowany przez komponent ReactJS\@.
+Wykorzystuje on stan aplikacji zapisany w obiekcie store tak, jakby był on stanem wewnętrznym komponentu.
 Zmiana stanu w store powoduje re-renderowanie komponentu.
 Dodatkowo komponent widoku może rozsyłać kolejne akcje, na przykład kiedy użytkownik
 kliknie na jakiś przycisk interfejsu na ekranie.
@@ -345,14 +342,14 @@ Możesz używać statycznych obiektów oraz tablic dla swojego stanu,
 ale mutowanie ich wewnątrz reducerów jest bardzo odradzane,
 dlatego po zmianie stanu zawsze powinien być zwracany nowy obiekt (patrz rysunek~\ref{rys:reduxFlux}).
 
-Ogólnie Redux może być opisany przez trzy fundamentalne zasady:
+Ogólnie Redux można opisać poprzez trzy kardynalne zasady:
 \begin{itemize}
-	\item Pojedyncze źródło prawdy: stan całej aplikacji przetrzymywany jest
+	\item Pojedyncze źródło prawdy: stan aplikacji trzymymany jest
 	w drzewie obiektów wewnątrz pojedynczego obiektu store.
-	\item Stan jest tylko do odczytu: jedynym sposobem na zmianę stanu jest wywołanie akcji,
-	która zwraca obiekt opisujący co powinno się stać.
+	\item Stan jest tylko do odczytu: jedyną metodą na zmianę stanu jest wywołanie akcji,
+	która zwraca obiekt mówiący co powinno się stać.
 	\item Zmiany wykonywane są w ramach czystych funkcji: aby określić, jak drzewo stanu
-	transformowane jest przez akcje, musisz tworzyć ``czyste reducery''.
+	przekształcane jest przez akcje, musisz tworzyć ``czyste reducery''.
 \end{itemize}
 
 \begin{figure}
