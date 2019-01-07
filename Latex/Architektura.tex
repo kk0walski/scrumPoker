@@ -296,9 +296,8 @@ const reducer = (state, action) => {
 \end{listing}
 
 W przedstawionym przykładzie, jeśli typem akcji jest `INCREMENT' to zwracany jest nowy obiekt stanu,
-dla którego wartość atrybutu jest zwiększona o jeden \texttt{counter}.
-Jeżeli zaś typem akcji jest `DECREMENT' to zwracany jest nowy stan, którego atrybut jest
-\texttt{counter} zmniejszony o jeden.
+dla którego wartość atrybutu \textls{counter} jest zwiększona o jeden.
+Jeżeli zaś typem akcji jest `DECREMENT' to zwracany jest nowy stan, którego atrybut \textls{counter} jest zmniejszony o jeden.
 Jeśli typ akcji jest w tym miejscu nieznany, wykonujemy domyślną (ang.\ default) operację, którą jest
 przekazanie obiekt stanu w niezmienionej postaci.
 
