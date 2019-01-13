@@ -115,16 +115,6 @@ export const startSelectStory = (owner, repo, game, story, previous) => {
             .collection("games")
             .doc(game.toString())
 
-        if (!previous.finalScore || previous.finalScore === "") {
-            for (var key in previous.votes) {
-                if (!previous.votes.hasOwnProperty(key)) continue;
-                delete previous.votes[key].value
-            }
-            gameRef.collection("backlog").doc(previous.id.toString()).update({
-                votes: previous.votes
-            })
-        }
-
         gameRef.update({
             selectedStory: story
         }).then(() => {
@@ -210,7 +200,7 @@ export const flipCards = (owner, repo, game, story, calculateEnabled) => {
                 newStory.flipped = true;
                 storyRef.update(newStory)
             } else {
-                newStory.finalScore = 0;
+                newStory.finalScore = "";
                 newStory.flipped = true;
                 storyRef.update(newStory)
             }

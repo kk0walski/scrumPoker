@@ -12,7 +12,7 @@ export default class VouteDeck extends Component {
                             {vote.name}
                             <span className="badge badge-primary badge-pill">
                                 {
-                                    vote.value ?  storyInfo.flipped ? vote.value :  vote.id === user.uid ? vote.value : <FaCheck />  : "none"
+                                    (vote.value || vote.value === 0) ?  storyInfo.flipped ? vote.value :  vote.id === user.uid ? vote.value : <FaCheck />  : "none"
                                 }
                             </span>
                         </li>
